@@ -3,49 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* kongTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* kongTests.m */; };
+		00E356F31AD99517003FC87E /* KONGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KONGTests.m */; };
+		0D78323A69764E489C4EC6B0 /* EduFavoritExpanded-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = EE60EA4803AF47248BFA69F6 /* EduFavoritExpanded-Book.otf */; };
+		0F98A9F31D00485693709A41 /* RobotoMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4730BC7F7F15420EB2359AB1 /* RobotoMono-Medium.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		222127C7C6CAFA63EFDAE9B9 /* libPods-kong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E95427264357D8C5A2447C /* libPods-kong.a */; };
-		4E524682032FAF6D024B92AB /* libPods-kong-kongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 981C9EAF902E1920015ED062 /* libPods-kong-kongTests.a */; };
-		7EC556172717F28400040CF5 /* RobotoMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556072717F28300040CF5 /* RobotoMono-MediumItalic.ttf */; };
-		7EC556182717F28400040CF5 /* RobotoMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556072717F28300040CF5 /* RobotoMono-MediumItalic.ttf */; };
-		7EC556192717F28400040CF5 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556082717F28300040CF5 /* Oswald-Regular.ttf */; };
-		7EC5561A2717F28400040CF5 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556082717F28300040CF5 /* Oswald-Regular.ttf */; };
-		7EC5561B2717F28400040CF5 /* RobotoMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556092717F28300040CF5 /* RobotoMono-Light.ttf */; };
-		7EC5561C2717F28400040CF5 /* RobotoMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556092717F28300040CF5 /* RobotoMono-Light.ttf */; };
-		7EC5561D2717F28400040CF5 /* RobotoMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560A2717F28300040CF5 /* RobotoMono-Italic.ttf */; };
-		7EC5561E2717F28400040CF5 /* RobotoMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560A2717F28300040CF5 /* RobotoMono-Italic.ttf */; };
-		7EC5561F2717F28400040CF5 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560B2717F28300040CF5 /* RobotoMono-Thin.ttf */; };
-		7EC556202717F28400040CF5 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560B2717F28300040CF5 /* RobotoMono-Thin.ttf */; };
-		7EC556212717F28400040CF5 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560C2717F28300040CF5 /* Oswald-ExtraLight.ttf */; };
-		7EC556222717F28400040CF5 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560C2717F28300040CF5 /* Oswald-ExtraLight.ttf */; };
-		7EC556232717F28400040CF5 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560D2717F28300040CF5 /* RobotoMono-Regular.ttf */; };
-		7EC556242717F28400040CF5 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560D2717F28300040CF5 /* RobotoMono-Regular.ttf */; };
-		7EC556252717F28400040CF5 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560E2717F28400040CF5 /* Oswald-SemiBold.ttf */; };
-		7EC556262717F28400040CF5 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560E2717F28400040CF5 /* Oswald-SemiBold.ttf */; };
-		7EC556272717F28400040CF5 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560F2717F28400040CF5 /* RobotoMono-ThinItalic.ttf */; };
-		7EC556282717F28400040CF5 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC5560F2717F28400040CF5 /* RobotoMono-ThinItalic.ttf */; };
-		7EC556292717F28400040CF5 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556102717F28400040CF5 /* RobotoMono-Bold.ttf */; };
-		7EC5562A2717F28400040CF5 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556102717F28400040CF5 /* RobotoMono-Bold.ttf */; };
-		7EC5562B2717F28400040CF5 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556112717F28400040CF5 /* Oswald-Bold.ttf */; };
-		7EC5562C2717F28400040CF5 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556112717F28400040CF5 /* Oswald-Bold.ttf */; };
-		7EC5562D2717F28400040CF5 /* RobotoMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556122717F28400040CF5 /* RobotoMono-Medium.ttf */; };
-		7EC5562E2717F28400040CF5 /* RobotoMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556122717F28400040CF5 /* RobotoMono-Medium.ttf */; };
-		7EC5562F2717F28400040CF5 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556132717F28400040CF5 /* Oswald-Medium.ttf */; };
-		7EC556302717F28400040CF5 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556132717F28400040CF5 /* Oswald-Medium.ttf */; };
-		7EC556312717F28400040CF5 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556142717F28400040CF5 /* RobotoMono-BoldItalic.ttf */; };
-		7EC556322717F28400040CF5 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556142717F28400040CF5 /* RobotoMono-BoldItalic.ttf */; };
-		7EC556332717F28400040CF5 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556152717F28400040CF5 /* Oswald-Light.ttf */; };
-		7EC556342717F28400040CF5 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556152717F28400040CF5 /* Oswald-Light.ttf */; };
-		7EC556352717F28400040CF5 /* RobotoMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556162717F28400040CF5 /* RobotoMono-LightItalic.ttf */; };
-		7EC556362717F28400040CF5 /* RobotoMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC556162717F28400040CF5 /* RobotoMono-LightItalic.ttf */; };
+		1CA925EEAA81EC59AFF35E8A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42187E2FB7FF84E755A0B2AC /* ExpoModulesProvider.swift */; };
+		2223C03650A7485295CAEB09 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AC327DC5D0245FAAA42E7C7 /* RobotoMono-Thin.ttf */; };
+		2C339DD5EA8E40B2A9143E5B /* RobotoMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD8D67306DA841F0949F3949 /* RobotoMono-Italic.ttf */; };
+		3BAD1F8873FB46AC9185EE05 /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F17AA8D4DDC49518E950AD8 /* Oswald-Medium.ttf */; };
+		3CC744BBF20F47AAB9C77322 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91455373E62D4D958D87D37D /* Oswald-Bold.ttf */; };
+		6172F2D35A4C3AA820D92908 /* libPods-KONG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-KONG.a */; };
+		6337D4928BABE856DD35DB49 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68CE16FF3A1EA26522A0B20 /* ExpoModulesProvider.swift */; };
+		64B6FA09E536492386DFC9A0 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3601FF203B9D4550A20A0467 /* Oswald-Light.ttf */; };
+		6A2F6C56EBAC46A3BECF5270 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 518FF450341E48F894DE950F /* Oswald-ExtraLight.ttf */; };
+		7BE7B0CE1F8C4F8BA03648DA /* EduFavoritExpanded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83FED1EC67A8446097181463 /* EduFavoritExpanded-Bold.otf */; };
+		7EF68E3733C33B6898317E18 /* libPods-KONG-KONGTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-KONG-KONGTests.a */; };
+		81CCEDA4058B4DE1B6BF662B /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76916839D0744B1A50412F6 /* Oswald-Regular.ttf */; };
+		89FBE309B7F44C22A77E3527 /* RobotoMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94C21E20403743238337EC3F /* RobotoMono-Light.ttf */; };
+		98B90B82A6624DF982B68C29 /* Oswald-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67EB625F0DE84EF296F44EA6 /* Oswald-SemiBold.ttf */; };
+		A52632C178944B709A2A1EA8 /* EduFavoritExpanded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4043C16BBF6F4267B591CF7E /* EduFavoritExpanded-Light.otf */; };
+		AC2482EBB8FE4C94A15A42AC /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9D05756905A41A59E2E667C /* RobotoMono-Regular.ttf */; };
+		B5A6974582EE40A69A39AF9E /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BDA12550C5B42008AE25831 /* RobotoMono-ThinItalic.ttf */; };
+		BED1E40900B7484CB090F91D /* RobotoMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1E8CE37CF3F4F5E860A6178 /* RobotoMono-LightItalic.ttf */; };
+		C157FFE080534DB4B8B7ED52 /* EduFavoritExpanded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8C6D6BB843884A599D704FC3 /* EduFavoritExpanded-Medium.otf */; };
+		C60A9A86E277484D8A17690B /* EduFavoritExpanded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 62250DE8CF6F4697AC36D609 /* EduFavoritExpanded-Regular.otf */; };
+		CCAF84E92746F59600D63162 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCAF84E82746F59600D63162 /* Launch Screen.storyboard */; };
+		CCAF84EB2746F69800D63162 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCAF84EA2746F69800D63162 /* Media.xcassets */; };
+		CF6815B3C81444A786804EDC /* RobotoMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01EA6B0F3F904543BC6A4252 /* RobotoMono-MediumItalic.ttf */; };
+		D4465D936D054E17AD7AEF5F /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 322CE6B25B0A40ADB73D3904 /* RobotoMono-BoldItalic.ttf */; };
+		D97B8DDC7B514768A2080567 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7140F09B88B143E6BE938301 /* RobotoMono-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,72 +46,53 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = kong;
+			remoteInfo = KONG;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* kongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* KONGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KONGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* kongTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kongTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* KONGTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KONGTests.m; sourceTree = "<group>"; };
+		01EA6B0F3F904543BC6A4252 /* RobotoMono-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-MediumItalic.ttf"; path = "../assets/fonts/RobotoMono-MediumItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* KONG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KONG.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = kong/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = kong/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = kong/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kong/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = kong/main.m; sourceTree = "<group>"; };
-		2D413F4F8556377BDBFA9A20 /* Pods-kongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kongTests.release.xcconfig"; path = "Target Support Files/Pods-kongTests/Pods-kongTests.release.xcconfig"; sourceTree = "<group>"; };
-		2F02D4F2E1BC4D408DB84AB4 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		3260CF26E72B4CD187187644 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		33E95427264357D8C5A2447C /* libPods-kong.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kong.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3737F1CB075A403B902C0041 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		394CC76F92451A7289693219 /* libPods-kong-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kong-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		408D731FD0C70EE5CD37DFAF /* Pods-kong-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-tvOS.release.xcconfig"; path = "Target Support Files/Pods-kong-tvOS/Pods-kong-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		4418AE5642024963B3ABC007 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		4942B44E0D784830D25444CB /* Pods-kong-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-kong-tvOSTests/Pods-kong-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		59207AFC362947E19EB4B96E /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		5E2DFE2873BB4BCB90152122 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		5E667D09982C4518A597CA1B /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		60DC9D0BB3BC465CBE85FBD7 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		62C18DC8B10246C4AAB55348 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		63B0D02A44AD758E3B2AC3B4 /* Pods-kong-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-kong-tvOSTests/Pods-kong-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		63C49F64477201DE57AAC104 /* Pods-kong-kongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-kongTests.release.xcconfig"; path = "Target Support Files/Pods-kong-kongTests/Pods-kong-kongTests.release.xcconfig"; sourceTree = "<group>"; };
-		7393E675AFF5436EB7D64724 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		7E0541642397B253006DEB4D /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../assets/fonts; sourceTree = "<group>"; };
-		7E2B1DCC239876590067D4BB /* KONG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = KONG.entitlements; path = kong/KONG.entitlements; sourceTree = "<group>"; };
-		7EC556072717F28300040CF5 /* RobotoMono-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-MediumItalic.ttf"; path = "../assets/fonts/RobotoMono-MediumItalic.ttf"; sourceTree = "<group>"; };
-		7EC556082717F28300040CF5 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Regular.ttf"; path = "../assets/fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; };
-		7EC556092717F28300040CF5 /* RobotoMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Light.ttf"; path = "../assets/fonts/RobotoMono-Light.ttf"; sourceTree = "<group>"; };
-		7EC5560A2717F28300040CF5 /* RobotoMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Italic.ttf"; path = "../assets/fonts/RobotoMono-Italic.ttf"; sourceTree = "<group>"; };
-		7EC5560B2717F28300040CF5 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Thin.ttf"; path = "../assets/fonts/RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
-		7EC5560C2717F28300040CF5 /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-ExtraLight.ttf"; path = "../assets/fonts/Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
-		7EC5560D2717F28300040CF5 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Regular.ttf"; path = "../assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
-		7EC5560E2717F28400040CF5 /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-SemiBold.ttf"; path = "../assets/fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
-		7EC5560F2717F28400040CF5 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-ThinItalic.ttf"; path = "../assets/fonts/RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
-		7EC556102717F28400040CF5 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Bold.ttf"; path = "../assets/fonts/RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
-		7EC556112717F28400040CF5 /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Bold.ttf"; path = "../assets/fonts/Oswald-Bold.ttf"; sourceTree = "<group>"; };
-		7EC556122717F28400040CF5 /* RobotoMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-Medium.ttf"; path = "../assets/fonts/RobotoMono-Medium.ttf"; sourceTree = "<group>"; };
-		7EC556132717F28400040CF5 /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Medium.ttf"; path = "../assets/fonts/Oswald-Medium.ttf"; sourceTree = "<group>"; };
-		7EC556142717F28400040CF5 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-BoldItalic.ttf"; path = "../assets/fonts/RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
-		7EC556152717F28400040CF5 /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Oswald-Light.ttf"; path = "../assets/fonts/Oswald-Light.ttf"; sourceTree = "<group>"; };
-		7EC556162717F28400040CF5 /* RobotoMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoMono-LightItalic.ttf"; path = "../assets/fonts/RobotoMono-LightItalic.ttf"; sourceTree = "<group>"; };
-		87D932A06FC27A5760768C50 /* Pods-kong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong.debug.xcconfig"; path = "Target Support Files/Pods-kong/Pods-kong.debug.xcconfig"; sourceTree = "<group>"; };
-		898C65E4081C403EA1B80912 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		97CE432E028C4AD38AAA11B4 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		981C9EAF902E1920015ED062 /* libPods-kong-kongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kong-kongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AD1181386324E329F81CB5F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		A8BAABA073D545A6B133E80C /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		C0969543C8F64710AC408C67 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		C106AF7F3AA5C6C8CD956A11 /* Pods-kong-kongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-kongTests.debug.xcconfig"; path = "Target Support Files/Pods-kong-kongTests/Pods-kong-kongTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C5080BAE84FEBBB266C88F4A /* Pods-kongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kongTests.debug.xcconfig"; path = "Target Support Files/Pods-kongTests/Pods-kongTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC5B09C8E374C1137B2AD1EF /* Pods-kong-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-kong-tvOS/Pods-kong-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		D8E525DCC29BB6D3DCB133E5 /* Pods-kong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kong.release.xcconfig"; path = "Target Support Files/Pods-kong/Pods-kong.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = KONG/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = KONG/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = KONG/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = KONG/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = KONG/main.m; sourceTree = "<group>"; };
+		1D0AE47A65C8663E3B452821 /* Pods-KONG-KONGTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KONG-KONGTests.release.xcconfig"; path = "Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests.release.xcconfig"; sourceTree = "<group>"; };
+		322CE6B25B0A40ADB73D3904 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-BoldItalic.ttf"; path = "../assets/fonts/RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3601FF203B9D4550A20A0467 /* Oswald-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Light.ttf"; path = "../assets/fonts/Oswald-Light.ttf"; sourceTree = "<group>"; };
+		4043C16BBF6F4267B591CF7E /* EduFavoritExpanded-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EduFavoritExpanded-Light.otf"; path = "../assets/fonts/EduFavoritExpanded-Light.otf"; sourceTree = "<group>"; };
+		42187E2FB7FF84E755A0B2AC /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-KONG-KONGTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		4730BC7F7F15420EB2359AB1 /* RobotoMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Medium.ttf"; path = "../assets/fonts/RobotoMono-Medium.ttf"; sourceTree = "<group>"; };
+		518FF450341E48F894DE950F /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-ExtraLight.ttf"; path = "../assets/fonts/Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
+		5BDA12550C5B42008AE25831 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-ThinItalic.ttf"; path = "../assets/fonts/RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
+		62250DE8CF6F4697AC36D609 /* EduFavoritExpanded-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EduFavoritExpanded-Regular.otf"; path = "../assets/fonts/EduFavoritExpanded-Regular.otf"; sourceTree = "<group>"; };
+		6423831EA8574132BED9D8CC /* libPods-KONG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KONG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67EB625F0DE84EF296F44EA6 /* Oswald-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-SemiBold.ttf"; path = "../assets/fonts/Oswald-SemiBold.ttf"; sourceTree = "<group>"; };
+		6C97AB639B58BBB4B15BBE30 /* Pods-KONG-KONGTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KONG-KONGTests.debug.xcconfig"; path = "Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7140F09B88B143E6BE938301 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Bold.ttf"; path = "../assets/fonts/RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
+		7AC327DC5D0245FAAA42E7C7 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Thin.ttf"; path = "../assets/fonts/RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
+		83FED1EC67A8446097181463 /* EduFavoritExpanded-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EduFavoritExpanded-Bold.otf"; path = "../assets/fonts/EduFavoritExpanded-Bold.otf"; sourceTree = "<group>"; };
+		8C6D6BB843884A599D704FC3 /* EduFavoritExpanded-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EduFavoritExpanded-Medium.otf"; path = "../assets/fonts/EduFavoritExpanded-Medium.otf"; sourceTree = "<group>"; };
+		8F17AA8D4DDC49518E950AD8 /* Oswald-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Medium.ttf"; path = "../assets/fonts/Oswald-Medium.ttf"; sourceTree = "<group>"; };
+		91455373E62D4D958D87D37D /* Oswald-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Bold.ttf"; path = "../assets/fonts/Oswald-Bold.ttf"; sourceTree = "<group>"; };
+		94C21E20403743238337EC3F /* RobotoMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Light.ttf"; path = "../assets/fonts/RobotoMono-Light.ttf"; sourceTree = "<group>"; };
+		A1E8CE37CF3F4F5E860A6178 /* RobotoMono-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-LightItalic.ttf"; path = "../assets/fonts/RobotoMono-LightItalic.ttf"; sourceTree = "<group>"; };
+		A76916839D0744B1A50412F6 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Oswald-Regular.ttf"; path = "../assets/fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		ABFE59519B596E51CEFDCCC0 /* libPods-KONG-KONGTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KONG-KONGTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0A881CF5CF3F2B244570E2A /* Pods-KONG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KONG.debug.xcconfig"; path = "Target Support Files/Pods-KONG/Pods-KONG.debug.xcconfig"; sourceTree = "<group>"; };
+		CC9241DF2735A1FB00DC0552 /* KONG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = KONG.entitlements; path = KONG/KONG.entitlements; sourceTree = "<group>"; };
+		CCAF84E82746F59600D63162 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CCAF84EA2746F69800D63162 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		D00AAFFCFCFDA5787532823F /* Pods-KONG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KONG.release.xcconfig"; path = "Target Support Files/Pods-KONG/Pods-KONG.release.xcconfig"; sourceTree = "<group>"; };
+		D9D05756905A41A59E2E667C /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Regular.ttf"; path = "../assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
+		DD8D67306DA841F0949F3949 /* RobotoMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Italic.ttf"; path = "../assets/fonts/RobotoMono-Italic.ttf"; sourceTree = "<group>"; };
+		E68CE16FF3A1EA26522A0B20 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-KONG/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F44C34603611478CA116D99C /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		F68B1893A93419195F7008CD /* libPods-kong-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kong-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE60EA4803AF47248BFA69F6 /* EduFavoritExpanded-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "EduFavoritExpanded-Book.otf"; path = "../assets/fonts/EduFavoritExpanded-Book.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E524682032FAF6D024B92AB /* libPods-kong-kongTests.a in Frameworks */,
+				7EF68E3733C33B6898317E18 /* libPods-KONG-KONGTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,20 +108,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222127C7C6CAFA63EFDAE9B9 /* libPods-kong.a in Frameworks */,
+				6172F2D35A4C3AA820D92908 /* libPods-KONG.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* kongTests */ = {
+		00E356EF1AD99517003FC87E /* KONGTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* kongTests.m */,
+				00E356F21AD99517003FC87E /* KONGTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = kongTests;
+			path = KONGTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -159,71 +132,73 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* kong */ = {
+		13B07FAE1A68108700A75B9A /* KONG */ = {
 			isa = PBXGroup;
 			children = (
-				7E2B1DCC239876590067D4BB /* KONG.entitlements */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				CC9241DF2735A1FB00DC0552 /* KONG.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				CCAF84E82746F59600D63162 /* Launch Screen.storyboard */,
+				CCAF84EA2746F69800D63162 /* Media.xcassets */,
 			);
-			name = kong;
+			name = KONG;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				33E95427264357D8C5A2447C /* libPods-kong.a */,
-				F68B1893A93419195F7008CD /* libPods-kong-tvOS.a */,
-				394CC76F92451A7289693219 /* libPods-kong-tvOSTests.a */,
-				981C9EAF902E1920015ED062 /* libPods-kong-kongTests.a */,
+				6423831EA8574132BED9D8CC /* libPods-KONG.a */,
+				ABFE59519B596E51CEFDCCC0 /* libPods-KONG-KONGTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6B465B60BF1643D2946D7D76 /* Resources */ = {
+		39CAA8C7A9484C6CA4380699 /* KONGTests */ = {
 			isa = PBXGroup;
 			children = (
-				7EC556112717F28400040CF5 /* Oswald-Bold.ttf */,
-				7EC5560C2717F28300040CF5 /* Oswald-ExtraLight.ttf */,
-				7EC556152717F28400040CF5 /* Oswald-Light.ttf */,
-				7EC556132717F28400040CF5 /* Oswald-Medium.ttf */,
-				7EC556082717F28300040CF5 /* Oswald-Regular.ttf */,
-				7EC5560E2717F28400040CF5 /* Oswald-SemiBold.ttf */,
-				7EC556102717F28400040CF5 /* RobotoMono-Bold.ttf */,
-				7EC556142717F28400040CF5 /* RobotoMono-BoldItalic.ttf */,
-				7EC5560A2717F28300040CF5 /* RobotoMono-Italic.ttf */,
-				7EC556092717F28300040CF5 /* RobotoMono-Light.ttf */,
-				7EC556162717F28400040CF5 /* RobotoMono-LightItalic.ttf */,
-				7EC556122717F28400040CF5 /* RobotoMono-Medium.ttf */,
-				7EC556072717F28300040CF5 /* RobotoMono-MediumItalic.ttf */,
-				7EC5560D2717F28300040CF5 /* RobotoMono-Regular.ttf */,
-				7EC5560B2717F28300040CF5 /* RobotoMono-Thin.ttf */,
-				7EC5560F2717F28400040CF5 /* RobotoMono-ThinItalic.ttf */,
-				5E667D09982C4518A597CA1B /* AntDesign.ttf */,
-				5E2DFE2873BB4BCB90152122 /* Entypo.ttf */,
-				7393E675AFF5436EB7D64724 /* EvilIcons.ttf */,
-				A8BAABA073D545A6B133E80C /* Feather.ttf */,
-				62C18DC8B10246C4AAB55348 /* FontAwesome.ttf */,
-				97CE432E028C4AD38AAA11B4 /* FontAwesome5_Brands.ttf */,
-				9AD1181386324E329F81CB5F /* FontAwesome5_Regular.ttf */,
-				F44C34603611478CA116D99C /* FontAwesome5_Solid.ttf */,
-				898C65E4081C403EA1B80912 /* Fontisto.ttf */,
-				2F02D4F2E1BC4D408DB84AB4 /* Foundation.ttf */,
-				4418AE5642024963B3ABC007 /* Ionicons.ttf */,
-				C0969543C8F64710AC408C67 /* MaterialCommunityIcons.ttf */,
-				3737F1CB075A403B902C0041 /* MaterialIcons.ttf */,
-				60DC9D0BB3BC465CBE85FBD7 /* Octicons.ttf */,
-				59207AFC362947E19EB4B96E /* SimpleLineIcons.ttf */,
-				3260CF26E72B4CD187187644 /* Zocial.ttf */,
+				42187E2FB7FF84E755A0B2AC /* ExpoModulesProvider.swift */,
+			);
+			name = KONGTests;
+			sourceTree = "<group>";
+		};
+		65B94E13AFF549E29ED5D8CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83FED1EC67A8446097181463 /* EduFavoritExpanded-Bold.otf */,
+				EE60EA4803AF47248BFA69F6 /* EduFavoritExpanded-Book.otf */,
+				4043C16BBF6F4267B591CF7E /* EduFavoritExpanded-Light.otf */,
+				8C6D6BB843884A599D704FC3 /* EduFavoritExpanded-Medium.otf */,
+				62250DE8CF6F4697AC36D609 /* EduFavoritExpanded-Regular.otf */,
+				91455373E62D4D958D87D37D /* Oswald-Bold.ttf */,
+				518FF450341E48F894DE950F /* Oswald-ExtraLight.ttf */,
+				3601FF203B9D4550A20A0467 /* Oswald-Light.ttf */,
+				8F17AA8D4DDC49518E950AD8 /* Oswald-Medium.ttf */,
+				A76916839D0744B1A50412F6 /* Oswald-Regular.ttf */,
+				67EB625F0DE84EF296F44EA6 /* Oswald-SemiBold.ttf */,
+				7140F09B88B143E6BE938301 /* RobotoMono-Bold.ttf */,
+				322CE6B25B0A40ADB73D3904 /* RobotoMono-BoldItalic.ttf */,
+				DD8D67306DA841F0949F3949 /* RobotoMono-Italic.ttf */,
+				94C21E20403743238337EC3F /* RobotoMono-Light.ttf */,
+				A1E8CE37CF3F4F5E860A6178 /* RobotoMono-LightItalic.ttf */,
+				4730BC7F7F15420EB2359AB1 /* RobotoMono-Medium.ttf */,
+				01EA6B0F3F904543BC6A4252 /* RobotoMono-MediumItalic.ttf */,
+				D9D05756905A41A59E2E667C /* RobotoMono-Regular.ttf */,
+				7AC327DC5D0245FAAA42E7C7 /* RobotoMono-Thin.ttf */,
+				5BDA12550C5B42008AE25831 /* RobotoMono-ThinItalic.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		7A77B2C6629C8190769DC82A /* KONG */ = {
+			isa = PBXGroup;
+			children = (
+				E68CE16FF3A1EA26522A0B20 /* ExpoModulesProvider.swift */,
+			);
+			name = KONG;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -236,14 +211,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				7E0541642397B253006DEB4D /* fonts */,
-				13B07FAE1A68108700A75B9A /* kong */,
+				13B07FAE1A68108700A75B9A /* KONG */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* kongTests */,
+				00E356EF1AD99517003FC87E /* KONGTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				85AEF45A4A4FCDB7AD2222F7 /* Pods */,
-				6B465B60BF1643D2946D7D76 /* Resources */,
+				E233CBF5F47BEE60B243DCF8 /* Pods */,
+				E4C0EC1C94C1355C6C9C426F /* ExpoModulesProviders */,
+				65B94E13AFF549E29ED5D8CF /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -254,69 +229,74 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* KONG.app */,
-				00E356EE1AD99517003FC87E /* kongTests.xctest */,
+				00E356EE1AD99517003FC87E /* KONGTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		85AEF45A4A4FCDB7AD2222F7 /* Pods */ = {
+		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				87D932A06FC27A5760768C50 /* Pods-kong.debug.xcconfig */,
-				D8E525DCC29BB6D3DCB133E5 /* Pods-kong.release.xcconfig */,
-				CC5B09C8E374C1137B2AD1EF /* Pods-kong-tvOS.debug.xcconfig */,
-				408D731FD0C70EE5CD37DFAF /* Pods-kong-tvOS.release.xcconfig */,
-				4942B44E0D784830D25444CB /* Pods-kong-tvOSTests.debug.xcconfig */,
-				63B0D02A44AD758E3B2AC3B4 /* Pods-kong-tvOSTests.release.xcconfig */,
-				C5080BAE84FEBBB266C88F4A /* Pods-kongTests.debug.xcconfig */,
-				2D413F4F8556377BDBFA9A20 /* Pods-kongTests.release.xcconfig */,
-				C106AF7F3AA5C6C8CD956A11 /* Pods-kong-kongTests.debug.xcconfig */,
-				63C49F64477201DE57AAC104 /* Pods-kong-kongTests.release.xcconfig */,
+				C0A881CF5CF3F2B244570E2A /* Pods-KONG.debug.xcconfig */,
+				D00AAFFCFCFDA5787532823F /* Pods-KONG.release.xcconfig */,
+				6C97AB639B58BBB4B15BBE30 /* Pods-KONG-KONGTests.debug.xcconfig */,
+				1D0AE47A65C8663E3B452821 /* Pods-KONG-KONGTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E4C0EC1C94C1355C6C9C426F /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				7A77B2C6629C8190769DC82A /* KONG */,
+				39CAA8C7A9484C6CA4380699 /* KONGTests */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* kongTests */ = {
+		00E356ED1AD99517003FC87E /* KONGTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "kongTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "KONGTests" */;
 			buildPhases = (
-				DED8D1AB886CA9D4621D7380 /* [CP] Check Pods Manifest.lock */,
+				A130D646172E58E1D159D8F2 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				43C5BCDF28F109D045363124 /* [CP] Copy Pods Resources */,
+				077E01280D4B4AD18B2E1770 /* [CP] Embed Pods Frameworks */,
+				4E62BDF20514810D028A5FBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = kongTests;
-			productName = kongTests;
-			productReference = 00E356EE1AD99517003FC87E /* kongTests.xctest */;
+			name = KONGTests;
+			productName = KONGTests;
+			productReference = 00E356EE1AD99517003FC87E /* KONGTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* kong */ = {
+		13B07F861A680F5B00A75B9A /* KONG */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "kong" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "KONG" */;
 			buildPhases = (
-				86AFFA5CFF2939B57F48514A /* [CP] Check Pods Manifest.lock */,
+				3E482C27206C4DEF2FE45063 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				94BE4F2188CF488E2BB0E269 /* [CP] Copy Pods Resources */,
+				C8AC78B0264D0F9F6F6D630E /* [CP] Embed Pods Frameworks */,
+				ADC9DDC32298B72B3CF5DC8E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = kong;
-			productName = kong;
+			name = KONG;
+			productName = KONG;
 			productReference = 13B07F961A680F5B00A75B9A /* KONG.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -326,21 +306,19 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
-				ORGANIZATIONNAME = "Airtime Network";
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = VU5JJZ69G2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = VU5JJZ69G2;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kong" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "KONG" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -352,8 +330,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* kong */,
-				00E356ED1AD99517003FC87E /* kongTests */,
+				13B07F861A680F5B00A75B9A /* KONG */,
+				00E356ED1AD99517003FC87E /* KONGTests */,
 			);
 		};
 /* End PBXProject section */
@@ -363,22 +341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EC556242717F28400040CF5 /* RobotoMono-Regular.ttf in Resources */,
-				7EC5562E2717F28400040CF5 /* RobotoMono-Medium.ttf in Resources */,
-				7EC5562A2717F28400040CF5 /* RobotoMono-Bold.ttf in Resources */,
-				7EC5562C2717F28400040CF5 /* Oswald-Bold.ttf in Resources */,
-				7EC5561C2717F28400040CF5 /* RobotoMono-Light.ttf in Resources */,
-				7EC556202717F28400040CF5 /* RobotoMono-Thin.ttf in Resources */,
-				7EC556342717F28400040CF5 /* Oswald-Light.ttf in Resources */,
-				7EC556282717F28400040CF5 /* RobotoMono-ThinItalic.ttf in Resources */,
-				7EC556222717F28400040CF5 /* Oswald-ExtraLight.ttf in Resources */,
-				7EC556182717F28400040CF5 /* RobotoMono-MediumItalic.ttf in Resources */,
-				7EC556262717F28400040CF5 /* Oswald-SemiBold.ttf in Resources */,
-				7EC5561E2717F28400040CF5 /* RobotoMono-Italic.ttf in Resources */,
-				7EC556302717F28400040CF5 /* Oswald-Medium.ttf in Resources */,
-				7EC5561A2717F28400040CF5 /* Oswald-Regular.ttf in Resources */,
-				7EC556322717F28400040CF5 /* RobotoMono-BoldItalic.ttf in Resources */,
-				7EC556362717F28400040CF5 /* RobotoMono-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,24 +348,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EC5561B2717F28400040CF5 /* RobotoMono-Light.ttf in Resources */,
-				7EC556252717F28400040CF5 /* Oswald-SemiBold.ttf in Resources */,
-				7EC5562B2717F28400040CF5 /* Oswald-Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				7EC556292717F28400040CF5 /* RobotoMono-Bold.ttf in Resources */,
-				7EC556352717F28400040CF5 /* RobotoMono-LightItalic.ttf in Resources */,
-				7EC556172717F28400040CF5 /* RobotoMono-MediumItalic.ttf in Resources */,
-				7EC556332717F28400040CF5 /* Oswald-Light.ttf in Resources */,
-				7EC556272717F28400040CF5 /* RobotoMono-ThinItalic.ttf in Resources */,
-				7EC556312717F28400040CF5 /* RobotoMono-BoldItalic.ttf in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				7EC556212717F28400040CF5 /* Oswald-ExtraLight.ttf in Resources */,
-				7EC5562D2717F28400040CF5 /* RobotoMono-Medium.ttf in Resources */,
-				7EC5561D2717F28400040CF5 /* RobotoMono-Italic.ttf in Resources */,
-				7EC5561F2717F28400040CF5 /* RobotoMono-Thin.ttf in Resources */,
-				7EC5562F2717F28400040CF5 /* Oswald-Medium.ttf in Resources */,
-				7EC556192717F28400040CF5 /* Oswald-Regular.ttf in Resources */,
-				7EC556232717F28400040CF5 /* RobotoMono-Regular.ttf in Resources */,
+				7BE7B0CE1F8C4F8BA03648DA /* EduFavoritExpanded-Bold.otf in Resources */,
+				0D78323A69764E489C4EC6B0 /* EduFavoritExpanded-Book.otf in Resources */,
+				A52632C178944B709A2A1EA8 /* EduFavoritExpanded-Light.otf in Resources */,
+				C157FFE080534DB4B8B7ED52 /* EduFavoritExpanded-Medium.otf in Resources */,
+				C60A9A86E277484D8A17690B /* EduFavoritExpanded-Regular.otf in Resources */,
+				3CC744BBF20F47AAB9C77322 /* Oswald-Bold.ttf in Resources */,
+				6A2F6C56EBAC46A3BECF5270 /* Oswald-ExtraLight.ttf in Resources */,
+				64B6FA09E536492386DFC9A0 /* Oswald-Light.ttf in Resources */,
+				3BAD1F8873FB46AC9185EE05 /* Oswald-Medium.ttf in Resources */,
+				CCAF84EB2746F69800D63162 /* Media.xcassets in Resources */,
+				81CCEDA4058B4DE1B6BF662B /* Oswald-Regular.ttf in Resources */,
+				98B90B82A6624DF982B68C29 /* Oswald-SemiBold.ttf in Resources */,
+				D97B8DDC7B514768A2080567 /* RobotoMono-Bold.ttf in Resources */,
+				D4465D936D054E17AD7AEF5F /* RobotoMono-BoldItalic.ttf in Resources */,
+				2C339DD5EA8E40B2A9143E5B /* RobotoMono-Italic.ttf in Resources */,
+				89FBE309B7F44C22A77E3527 /* RobotoMono-Light.ttf in Resources */,
+				BED1E40900B7484CB090F91D /* RobotoMono-LightItalic.ttf in Resources */,
+				0F98A9F31D00485693709A41 /* RobotoMono-Medium.ttf in Resources */,
+				CF6815B3C81444A786804EDC /* RobotoMono-MediumItalic.ttf in Resources */,
+				AC2482EBB8FE4C94A15A42AC /* RobotoMono-Regular.ttf in Resources */,
+				2223C03650A7485295CAEB09 /* RobotoMono-Thin.ttf in Resources */,
+				CCAF84E92746F59600D63162 /* Launch Screen.storyboard in Resources */,
+				B5A6974582EE40A69A39AF9E /* RobotoMono-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,59 +390,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		43C5BCDF28F109D045363124 /* [CP] Copy Pods Resources */ = {
+		077E01280D4B4AD18B2E1770 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kong-kongTests/Pods-kong-kongTests-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kong-kongTests/Pods-kong-kongTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86AFFA5CFF2939B57F48514A /* [CP] Check Pods Manifest.lock */ = {
+		3E482C27206C4DEF2FE45063 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -489,64 +424,31 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-kong-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-KONG-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94BE4F2188CF488E2BB0E269 /* [CP] Copy Pods Resources */ = {
+		4E62BDF20514810D028A5FBF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-kong/Pods-kong-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kong/Pods-kong-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KONG-KONGTests/Pods-KONG-KONGTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DED8D1AB886CA9D4621D7380 /* [CP] Check Pods Manifest.lock */ = {
+		A130D646172E58E1D159D8F2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -561,11 +463,45 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-kong-kongTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-KONG-KONGTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADC9DDC32298B72B3CF5DC8E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8AC78B0264D0F9F6F6D630E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KONG/Pods-KONG-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -594,7 +530,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* kongTests.m in Sources */,
+				00E356F31AD99517003FC87E /* KONGTests.m in Sources */,
+				1CA925EEAA81EC59AFF35E8A /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +541,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				6337D4928BABE856DD35DB49 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,37 +550,28 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* kong */;
+			target = 13B07F861A680F5B00A75B9A /* KONG */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = kong;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C106AF7F3AA5C6C8CD956A11 /* Pods-kong-kongTests.debug.xcconfig */;
+			baseConfigurationReference = 6C97AB639B58BBB4B15BBE30 /* Pods-KONG-KONGTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = kongTests/Info.plist;
+				INFOPLIST_FILE = KONGTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -650,20 +579,23 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kong.app/kong";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KONG.app/KONG";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63C49F64477201DE57AAC104 /* Pods-kong-kongTests.release.xcconfig */;
+			baseConfigurationReference = 1D0AE47A65C8663E3B452821 /* Pods-KONG-KONGTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
-				INFOPLIST_FILE = kongTests/Info.plist;
+				INFOPLIST_FILE = KONGTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -671,51 +603,65 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kong.app/kong";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KONG.app/KONG";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87D932A06FC27A5760768C50 /* Pods-kong.debug.xcconfig */;
+			baseConfigurationReference = C0A881CF5CF3F2B244570E2A /* Pods-KONG.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = kong/KONG.entitlements;
-				CURRENT_PROJECT_VERSION = 1634187662;
-				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
-				INFOPLIST_FILE = kong/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.3;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = KONG/KONG.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6TDH2RLH5Q;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = KONG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.airtime.kongApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KONG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8E525DCC29BB6D3DCB133E5 /* Pods-kong.release.xcconfig */;
+			baseConfigurationReference = D00AAFFCFCFDA5787532823F /* Pods-KONG.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = kong/KONG.entitlements;
-				CURRENT_PROJECT_VERSION = 1634187662;
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
-				INFOPLIST_FILE = kong/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5.3;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = KONG/KONG.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6TDH2RLH5Q;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = KONG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.airtime.kongApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KONG;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -753,6 +699,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -769,6 +716,16 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -808,6 +765,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -817,6 +775,16 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/lib/swift\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -826,7 +794,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "kongTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "KONGTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -835,7 +803,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "kong" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "KONG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -844,7 +812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kong" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "KONG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

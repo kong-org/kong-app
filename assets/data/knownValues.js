@@ -1,5 +1,5 @@
 const knownValues = {
-    "knownTokens": {
+    knownTokens: {
         "0x177F2aCE25f81fc50F9F6e9193aDF5ac758e8098": {
             "symbol": "K",
             "name": "Kong",
@@ -21,7 +21,7 @@ const knownValues = {
         //     "decimals": 18            
         // }
     },
-    "knownContractVersions": {
+    knownContractVersions: {
         "0x84dc89fd96667110ea1366bd5b353fda6161e69743024c7ceffe1264306f2424": {
             "type": "ERC20 Escrow",
             "curve": "SECP256R1",
@@ -48,10 +48,10 @@ const knownValues = {
         //     "expectedECCAddress": "0x39Bbf21600cb2823F88ec265fdf96D7DfEdf6fD7"
         // }        
     },
-    "knownHardwareManufacturers": {
+    knownHardwareManufacturers: {
         "0xb2661c8f913ccc97c03ed6512a5709f8e52d372ca5b7367d649c246c5249c8a6": "Microchip Technology Inc."
     },
-    "knownHardwareModels": {
+    knownHardwareModels: {
         "0xe7544eeb34f2ce8cdacb300c2b1185748efd5bf986121fcbd6d09463f6b677f4": "ATECC608A",
         "0x1563a9c2e3229e2c817d074c964125ea1539719a5904056131139e7b0d4df4b8": "ATECC608B"
     }

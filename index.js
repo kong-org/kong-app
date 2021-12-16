@@ -1,10 +1,14 @@
 /**
  * @format
  */
+import './shim'
 
-import {AppRegistry} from 'react-native';
+import { AppRegistry } from 'react-native';
 import App from './App';
-import {name as appName} from './app.json';
-import './shim.js';
+import { name as appName } from './app.json';
+// Import the crypto getRandomValues shim (**BEFORE** the shims)
+import "react-native-get-random-values"
+// Import the the ethers shims (**BEFORE** ethers)
+import "@ethersproject/shims"
 
 AppRegistry.registerComponent(appName, () => App);
