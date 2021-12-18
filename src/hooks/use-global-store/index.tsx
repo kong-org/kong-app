@@ -132,7 +132,8 @@ export const initializeGlobalStore = (): IStore => {
     bridgeNode:
       MMKV.getString(MMKVKeys.BRIDGE_NODE) ?? defaultSettings.bridgeNode,
     registerAddress:
-      JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS)!) ??
+      (MMKV.getString(MMKVKeys.REGISTER_ADDRESS) &&
+        JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS))) ??
       defaultSettings.registerAddress,
   });
   const [blockchainData, setBlockchainData] = useState<BlockChainData>(
