@@ -21,6 +21,10 @@ import {MMKV, MMKVKeys} from '../../common/mmkv';
 import {isIOS, scale, truncateAddress} from '../../common/utils';
 import {useWallet} from '../../hooks/useWallet';
 import defaultSettings from '../../../assets/data/defaultSettings';
+import {SettingsStyles} from './styles';
+import {EditableSettings} from './EditableSettings';
+import {useWalletConnect} from '@walletconnect/react-native-dapp';
+import {connected} from 'process';
 var {height} = Dimensions.get('screen');
 interface ISettings {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Settings'>;
@@ -38,39 +42,9 @@ export const Settings: FC<ISettings> = ({navigation}) => {
   } = useGlobalStore();
   const [runReset, setRunReset] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      if (chainSettings.ethNode === defaultSettings.ethNode && runReset) {
-        await resetToDefaultSettings();
-        console.log(`reset device proofs complete.`);
-        setResetButtonText(strings.textSettingsReset);
-      }
-      setRunReset(false);
-    })();
-  }, [chainSettings.ethNode]);
+  const connector = useWalletConnect();
 
-  const resetFn = async () => {
-    setChainSettings(defaultSettings);
-    try {
-      setResetButtonText(strings.textSettingsResetPending);
-      setResetButtonText(strings.textSettingsResetPending);
-      MMKV.set(MMKVKeys.ETH_NODE, defaultSettings.ethNode);
-      MMKV.set(MMKVKeys.IPFS_NODE, defaultSettings.ipfsNode);
-      MMKV.set(
-        MMKVKeys.REGISTER_ADDRESS,
-        JSON.stringify(defaultSettings.registerAddress),
-      );
-      setRunReset(true);
-    } catch (error) {
-      setResetButtonText(strings.textSettingsResetFail);
-    }
-  };
-
-  const {
-    connectWalletHandler,
-    walletAddress,
-    connected: isConnected,
-  } = useWallet();
+  const {connectWalletHandler, walletAddress, connected} = useWallet(connector);
   return (
     <View style={SettingsStyles.viewSettings}>
       <StatusBar barStyle="light-content" />
@@ -120,7 +94,7 @@ export const Settings: FC<ISettings> = ({navigation}) => {
                     color: '#9C9CB0',
                     fontFamily: 'RobotoMono-Regular',
                   }}>
-                  {isConnected
+                  {connected
                     ? walletAddress && truncateAddress(walletAddress)
                     : 'No wallet connected'}
                 </Text>
@@ -128,10 +102,10 @@ export const Settings: FC<ISettings> = ({navigation}) => {
               <TouchableOpacity onPress={connectWalletHandler}>
                 <Text
                   style={{
-                    color: isConnected ? '#FC6161' : '#2BFF88',
+                    color: connected ? '#FC6161' : '#2BFF88',
                     fontWeight: 'bold',
                   }}>
-                  {isConnected ? 'DISCONNECT' : 'CONNECT'}
+                  {connected ? 'DISCONNECT' : 'CONNECT'}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -170,52 +144,7 @@ export const Settings: FC<ISettings> = ({navigation}) => {
             )}
 
             <View style={SettingsStyles.viewSettingsBorder} />
-
-            {/* Blockchain Box */}
-            <Text style={SettingsStyles.textSettingsSettingsHeading}>
-              {strings.textSettingsSettingsHeading}
-            </Text>
-
-            <Text style={SettingsStyles.textSettingsScan}>Ethereum</Text>
-            <TextInput
-              style={SettingsStyles.textSettingsNodeIpValue}
-              onChangeText={text => {
-                setChainSettings(
-                  Object.assign({}, chainSettings, {
-                    ethNode: text,
-                  }),
-                );
-                MMKV.set(MMKVKeys.ETH_NODE, text);
-              }}
-              onEndEditing={() => {
-                loadContracts();
-              }}
-              multiline={true}
-              value={chainSettings.ethNode}
-            />
-
-            <Text style={SettingsStyles.textSettingsScan}>IPFS</Text>
-            <TextInput
-              style={SettingsStyles.textSettingsNodeIpValue}
-              onChangeText={text => {
-                setChainSettings(
-                  Object.assign({}, chainSettings, {
-                    ipfsNode: text,
-                  }),
-                );
-                MMKV.set(MMKVKeys.IPFS_NODE, text);
-              }}
-              onEndEditing={() => {
-                loadContracts();
-              }}
-              multiline={true}
-              value={chainSettings.ipfsNode}
-            />
-
-            <Text style={SettingsStyles.textSettingsReset} onPress={resetFn}>
-              {resetButtonText}
-            </Text>
-
+            <EditableSettings />
             <View style={SettingsStyles.viewSettingsBorder} />
 
             {/* Version Box */}
@@ -232,118 +161,3 @@ export const Settings: FC<ISettings> = ({navigation}) => {
     </View>
   );
 };
-const SettingsStyles = StyleSheet.create({
-  // Settings.
-  viewSettings: {
-    height,
-    backgroundColor: '#000000',
-    flex: 1,
-  },
-  viewSettingsContainer: {
-    flexDirection: 'column',
-    textAlign: 'left',
-  },
-  viewSettingsBorder: {
-    borderTopColor: '#626270',
-    borderTopWidth: 1,
-    marginTop: scale(20),
-    marginBottom: scale(20),
-  },
-  viewSettingsBody: {
-    margin: scale(25),
-  },
-  viewSettingsRows: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  viewSettingsSwitchRow: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: scale(15),
-  },
-  textSettingsDescriptionHeading: {
-    color: '#EDEDFD',
-    fontFamily: 'EduFavoritExpanded-Bold',
-    fontSize: scale(20),
-    lineHeight: scale(28),
-    marginBottom: scale(20),
-  },
-  textSettingsDescription: {
-    color: '#9C9CB0',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-  },
-  textSettingsFAQ: {
-    color: '#EDEDFD',
-    fontFamily: 'EduFavoritExpanded-Bold',
-    fontSize: scale(17),
-    lineHeight: scale(28),
-  },
-  textSettingsTellMeMore: {
-    color: '#EDEDFD',
-    fontFamily: 'EduFavoritExpanded-Bold',
-    fontSize: scale(17),
-    lineHeight: scale(28),
-  },
-  textSettingsSettingsHeading: {
-    color: '#EDEDFD',
-    fontFamily: 'EduFavoritExpanded-Bold',
-    fontSize: scale(17),
-    lineHeight: scale(28),
-    marginBottom: scale(20),
-  },
-  textSettingsWalletHeading: {
-    color: '#EDEDFD',
-    fontFamily: 'EduFavoritExpanded-Bold',
-    fontSize: scale(17),
-    lineHeight: scale(28),
-  },
-  textSettingsNodeIpValue: {
-    color: '#9C9CB0',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-    marginBottom: scale(8),
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'dotted',
-    textDecorationColor: '#979797',
-  },
-  textSettingsScan: {
-    color: '#9C9CB0',
-    fontFamily: 'RobotoMono-Regular',
-    textAlign: 'left',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-  },
-  textSettingsScanDescription: {
-    color: '#9C9CB0',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-  },
-  textSettingsScanCompatibility: {
-    color: '#EDEDFD',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-    marginTop: scale(20),
-  },
-  textSettingsReset: {
-    color: '#EDEDFD',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(16),
-    lineHeight: scale(28),
-  },
-  textSettingsVersion: {
-    color: '#EDEDFD',
-    fontFamily: 'RobotoMono-Regular',
-    fontSize: scale(12),
-    lineHeight: scale(30),
-    marginBottom: scale(20),
-  },
-});

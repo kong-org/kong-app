@@ -13,6 +13,7 @@ import buttonStyles from '../../../assets/styles/buttonStyles';
 import {scale} from '../../common/utils';
 import {useWallet} from '../../hooks/useWallet';
 import {useGlobalStore} from '../../hooks/use-global-store';
+import {useWalletConnect} from '@walletconnect/react-native-dapp';
 const {width} = Dimensions.get('screen');
 interface IVerifyBeforeClaimModal {
   isVisible: boolean;
@@ -25,7 +26,7 @@ export const VerifyBeforeClaimModal: FC<IVerifyBeforeClaimModal> = ({
   isVisible,
   setIsVisible,
 }) => {
-  const {connector} = useWallet();
+  const connector = useWalletConnect();
   const {
     setters: {setFullVerification},
   } = useGlobalStore();

@@ -68,9 +68,15 @@ export const asyncWrapper = async <Type>(
 };
 
 export const truncateAddress = (address: string) => {
-  return address.substr(0, 5) + '...' + address.substr(address.length - 4);
+  return address.slice(0, 5) + '...' + address.slice(address.length - 4);
 };
-
+export const truncateDescription = (desc: string) => {
+  if (desc.length > 150) {
+    return desc.slice(0, 150) + '...';
+  } else {
+    return desc;
+  }
+};
 export const createNumArray = (low: number, high: number) => {
   const array = [];
   for (let i = low; i < high; i++) {

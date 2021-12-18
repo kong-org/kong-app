@@ -7,6 +7,7 @@ export enum MMKVKeys {
   FULL_VERIFICATION = 'fullVerification',
   ETH_NODE = 'ethNode',
   IPFS_NODE = 'ipfsNode',
+  BRIDGE_NODE = 'bridgeNode',
   REGISTER_ADDRESS = 'registerAddress',
   DEVICE_ROOT_COUNT = 'deviceRootCount',
 }

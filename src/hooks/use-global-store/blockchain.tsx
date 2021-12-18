@@ -60,7 +60,7 @@ export const getBlockchainFns = ({
       new ethers.providers.JsonRpcProvider(chainSettings.ethNode);
 
     const registerMerkleRootContract: ethers.Contract = new ethers.Contract(
-      chainSettings.registerAddress.kongERC20,
+      chainSettings.registerAddress.registerMerkleRoot,
       registerMerkleRootABI['abi'],
       provider,
     );
@@ -446,7 +446,7 @@ export const getBlockchainFns = ({
               method: 'eth_call',
               params: [
                 {
-                  to: chainSettings.registerAddress.oldKongERC20, // TODO: replace this this a variable that gets returned
+                  to: chainSettings.registerAddress.oldRegistry, // TODO: replace this this a variable that gets returned
                   data:
                     hashedInterfaces.registerDevice.getRegistrationDetails +
                     (chainDataVal.length == 66
@@ -805,16 +805,8 @@ export const getBlockchainFns = ({
         const encodedDataABI = web3.eth.abi.encodeFunctionCall(
           {
             inputs: [
-              {
-                internalType: 'uint256',
-                name: 'tokenId',
-                type: 'uint256',
-              },
-              {
-                internalType: 'uint256[2]',
-                name: 'rs',
-                type: 'uint256[2]',
-              },
+              {internalType: 'uint256', name: 'tokenId', type: 'uint256'},
+              {internalType: 'uint256[2]', name: 'rs', type: 'uint256[2]'},
               {
                 internalType: 'uint256',
                 name: 'primaryPublicKeyX',
@@ -825,21 +817,9 @@ export const getBlockchainFns = ({
                 name: 'primaryPublicKeyY',
                 type: 'uint256',
               },
-              {
-                internalType: 'uint256',
-                name: 'blockNumber',
-                type: 'uint256',
-              },
-              {
-                internalType: 'bytes32',
-                name: 'merkleRoot',
-                type: 'bytes32',
-              },
-              {
-                internalType: 'bytes',
-                name: 'oracleSignature',
-                type: 'bytes',
-              },
+              {internalType: 'uint256', name: 'blockNumber', type: 'uint256'},
+              {internalType: 'bytes32', name: 'merkleRoot', type: 'bytes32'},
+              {internalType: 'bytes', name: 'oracleSignature', type: 'bytes'},
             ],
             name: 'revealOracle',
             outputs: [],
@@ -849,13 +829,15 @@ export const getBlockchainFns = ({
           chainDataVal,
         );
         try {
+          console.log(connector.accounts[0]);
           const tx = await connector.sendTransaction({
             from: connector.accounts[0],
             to: '0x4100c66D2033338597FCB622D1cAb1EFD871F3Ac',
             data: encodedDataABI,
           });
           return tx;
-        } catch {
+        } catch (e) {
+          console.log(e);
           navigate('Fail', {
             warning: 'Tx Failure',
             description:

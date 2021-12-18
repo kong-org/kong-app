@@ -6,8 +6,8 @@ export type ChainSettings = {
   ipfsNode: string;
   bridgeNode: string;
   registerAddress: {
-    kongERC20: string;
-    oldKongERC20: string;
+    registerMerkleRoot: string;
+    oldRegistry: string;
     citizenERC20: string;
     citizenERC721: string;
     revealCitizen: string;

@@ -346,7 +346,6 @@ export const getNfcFns = ({
       walletAddress: walletAddress.slice(2),
     };
     // Checks
-    console.log(walletAddress);
     // // check if wallet has erc721
     const ERC721Balance: any = await asyncWrapper(
       await state.chainSettings.citizenERC721Contract?.balanceOf(walletAddress),
@@ -375,6 +374,14 @@ export const getNfcFns = ({
       navigateToFail('Reveal Error', `Oracle cannot be created: ${oracle}`);
       return;
     }
+
+    console.log(
+      connector.accounts,
+      connector.bridge,
+      connector.key,
+      connector.networkId,
+      connector.chainId,
+    );
     const tokenId: any = parseInt(
       await asyncWrapper(
         await state.chainSettings.citizenERC721Contract?.tokenOfOwnerByIndex(
@@ -383,6 +390,15 @@ export const getNfcFns = ({
         ),
         e => navigateToFail(strings.textFailDefaultWarning, `Error: ${e}`),
       ),
+    );
+    console.log(
+      tokenId,
+      ['0x' + result.r, '0x' + result.s],
+      '0x' + result.x,
+      '0x' + result.y,
+      result.blockNumber,
+      state.blockchainData.root,
+      oracle,
     );
     navigate('Polling');
     const tx = await writeChainData(
@@ -397,35 +413,35 @@ export const getNfcFns = ({
       oracle,
     );
 
-    // const tx =
-    //   '0x04cf1e3c2d143f66d978b7e1ca890be260b342be70bf509bd26e5017f7d60759';
-    const fetchItem = fetch(`${state.chainSettings.bridgeNode}/reveal`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        tx,
-      }).toString(),
-    });
+    // // const tx =
+    // //   '0x04cf1e3c2d143f66d978b7e1ca890be260b342be70bf509bd26e5017f7d60759';
+    // const fetchItem = fetch(`${state.chainSettings.bridgeNode}/reveal`, {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   body: new URLSearchParams({
+    //     tx,
+    //   }).toString(),
+    // });
 
-    const retries = 3;
-    let i = 0;
-    while (i < retries) {
-      const response = await fetchItem;
-      if (response.ok) {
-        const responseJSON = await response.json();
-        console.log(responseJSON);
-        navigate('Reveal', {revealDetails: {...responseJSON, tokenId}});
-        break;
-      }
-      i++;
-    }
-    // after 3 retries go to timeout
-    if (i === 3) {
-      navigate('Timeout');
-    }
+    // const retries = 3;
+    // let i = 0;
+    // while (i < retries) {
+    //   const response = await fetchItem;
+    //   if (response.ok) {
+    //     const responseJSON = await response.json();
+    //     console.log(responseJSON);
+    //     navigate('Reveal', {revealDetails: {...responseJSON, tokenId}});
+    //     break;
+    //   }
+    //   i++;
+    // }
+    // // after 3 retries go to timeout
+    // if (i === 3) {
+    //   navigate('Timeout');
+    // }
   };
   const nfcClaim = async (walletAddress: string) => {
     console.log(`ClAIM CALLED: ${Date.now()}`);
@@ -436,7 +452,9 @@ export const getNfcFns = ({
       });
       await nfcIOSRun(walletAddress.slice(2));
       updateHeadlessVerification(false);
+      // TODO: add more restrictive rules and conditonal handling of different contracts
       if (state.blockchainData.contractAddress) {
+        console.log(state.blockchainData.contractAddress);
         navigate('Detected');
       } else {
         navigateToFail(

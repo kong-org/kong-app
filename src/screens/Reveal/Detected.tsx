@@ -8,9 +8,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {useWallet} from '../../hooks/useWallet';
-import {Video} from 'expo-av';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
+import {Video} from '../../components/Video';
+import {useWalletConnect} from '@walletconnect/react-native-dapp';
 
 const {height, width} = Dimensions.get('screen');
 interface IDetected {
@@ -19,7 +20,8 @@ interface IDetected {
 
 export const Detected: FC<IDetected> = ({navigation}) => {
   const headerHeight = useHeaderHeight();
-  const {walletAddress, connector} = useWallet();
+  const connector = useWalletConnect();
+  const {walletAddress} = useWallet(connector);
   const {
     methods: {
       nfc: {nfcReveal},
@@ -35,14 +37,9 @@ export const Detected: FC<IDetected> = ({navigation}) => {
       <SafeAreaView style={DetectedStyles.viewDetectedBody}>
         <View style={DetectedStyles.viewDetectedContainer}>
           <Video
-            ref={video}
             source={{
               uri: 'https://storage.googleapis.com/kong-assets/kong-card.mp4',
             }}
-            style={{width: 350, height: 350, marginBottom: 29}}
-            isLooping
-            // onPlaybackStatusUpdate={status => setStatus(() => status)} used to log video info
-            resizeMode="cover"
           />
           <View style={{alignItems: 'center'}}>
             <Text style={DetectedStyles.textDetectedId}>KONG ID DETECTED</Text>

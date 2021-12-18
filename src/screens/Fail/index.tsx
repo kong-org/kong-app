@@ -33,6 +33,8 @@ export const Fail: FC<IHome> = ({route, navigation}) => {
           <Text style={FailStyles.textFailWarning}>{warning}</Text>
           <Text style={FailStyles.textFailDescription}>{description}</Text>
         </View>
+      </View>
+      <View style={FailStyles.viewFailButtonContainer}>
         <View style={{display: 'flex', alignItems: 'center'}}>
           <Button
             title={strings.textButtonRetry}
@@ -58,19 +60,29 @@ const FailStylesFn = (headerHeight: number) =>
     },
     viewFailContainer: {
       display: 'flex',
-      justifyContent: 'space-between',
-      height: '100%',
-      width: width - 2 * 25,
-      marginLeft: 25,
-      paddingTop: 80,
+      position: 'absolute',
+      // justifyContent: 'center',
+      paddingTop: scale(150),
+      height: height - headerHeight,
+      width: width - 2 * scale(25),
+      marginLeft: scale(25),
+    },
+    viewFailButtonContainer: {
+      display: 'flex',
+      position: 'absolute',
+      justifyContent: 'flex-end',
+      height: height - headerHeight,
+      width: width - 2 * scale(25),
+      marginLeft: scale(25),
+      paddingBottom: scale(50),
     },
     viewHomeButtonContainer: {display: 'flex', alignItems: 'center'},
     textFailWarning: {
       color: '#FFFFFF',
-      fontFamily: 'EduFavoritExpanded-Bold',
-      fontSize: scale(42),
-      lineHeight: scale(60),
+      fontFamily: 'EduFavoritExpanded-Regular',
+      fontSize: scale(25),
       textAlign: 'left',
+      maxWidth: width * 0.5,
       marginTop: scale(21),
       marginBottom: scale(21),
     },

@@ -1,5 +1,5 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
-import React, {FC, useRef} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -16,7 +16,7 @@ import buttonStyles from '../../../assets/styles/buttonStyles';
 import {Button} from 'react-native-elements';
 import {useGetResultDetails} from './useGetResultDetails';
 import strings from '../../../assets/text/strings';
-import {scale} from '../../common/utils';
+import {scale, truncateDescription} from '../../common/utils';
 const {height, width} = Dimensions.get('screen');
 interface IHome {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Results'>;
@@ -79,6 +79,19 @@ export const Results: FC<IHome> = ({navigation}) => {
         </View>
         <View style={ResultsStyles.viewResultsDetailContainer}>
           {details.map((item, idx) => {
+            const [description, setDescription] = useState(
+              truncateDescription(item.description!),
+            );
+            const [isExpanded, setIsExpanded] = useState(false);
+            const touchExpandHandler = () => {
+              if (isExpanded) {
+                setDescription(truncateDescription(item.description!));
+                setIsExpanded(false);
+              } else {
+                setDescription(item.description!);
+                setIsExpanded(true);
+              }
+            };
             return (
               <View key={idx} style={{marginBottom: 20}}>
                 <Text style={ResultsStyles.textResultsValueHeader}>
@@ -89,8 +102,10 @@ export const Results: FC<IHome> = ({navigation}) => {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                   }}>
-                  <Text style={ResultsStyles.textResultsValueSubheader}>
-                    {item.description}
+                  <Text
+                    onPress={touchExpandHandler}
+                    style={ResultsStyles.textResultsValueSubheader}>
+                    {description}
                   </Text>
                   {item.image}
                 </View>
@@ -226,7 +241,7 @@ export const Results: FC<IHome> = ({navigation}) => {
               <Text style={ResultsStyles.textResultsNode}>{ethNode}</Text>
             </View>
           </View>
-          <View style={ResultsStyles.viewResultsGetInstructions}>
+          {/* <View style={ResultsStyles.viewResultsGetInstructions}>
             <View style={{marginBottom: 20}}>
               <Text style={ResultsStyles.textResultsInstructions}>
                 You can use the results of this scan to manually verify the
@@ -240,7 +255,7 @@ export const Results: FC<IHome> = ({navigation}) => {
                 onPress={() => {}}
               />
             </View>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </View>
@@ -357,6 +372,7 @@ const ResultsStylesFn = (color: string) =>
       color: '#9C9CB0',
       fontSize: scale(15),
       fontFamily: 'RobotoMono-Regular',
+      maxWidth: width * 0.82,
     },
     textResultsNode: {
       color: '#9C9CB0',

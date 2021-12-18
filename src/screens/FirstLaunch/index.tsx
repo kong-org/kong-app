@@ -1,14 +1,14 @@
 import React, {FC, useEffect} from 'react';
 import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
 import {Button} from 'react-native-elements';
-import {Video} from 'expo-av';
 import {RootStackParamList} from '../Routes/RootStackParamList';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {StatusBar} from 'react-native';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import strings from '../../../assets/text/strings';
-import {useVideoRef} from '../../hooks/useVideoRef';
 import {isIOS, scale} from '../../common/utils';
+import {Video} from '../../components/Video';
+
 const {height} = Dimensions.get('screen');
 interface IFirstLaunch {
   navigation: NativeStackNavigationProp<RootStackParamList, 'FirstLaunch'>;
@@ -24,7 +24,6 @@ export const FirstLaunch: FC<IFirstLaunch> = ({navigation}) => {
     },
     methods: {refreshDeviceProofs},
   } = useGlobalStore();
-  const {video} = useVideoRef();
   useEffect(() => {
     chainSettings.registerMerkleRootContract && refreshDeviceProofs();
   }, [chainSettings.registerMerkleRootContract]);
@@ -33,13 +32,7 @@ export const FirstLaunch: FC<IFirstLaunch> = ({navigation}) => {
     <View style={FirstLaunchStyles.viewFirstLaunchVideo}>
       <StatusBar barStyle="light-content" />
 
-      <Video
-        ref={video}
-        source={require(ASSETS + '/kong_chip.mp4')}
-        style={{width: 350, height: 350}}
-        isLooping
-        resizeMode="cover"
-      />
+      <Video source={require(ASSETS + '/kong_chip.mp4')} />
       <View style={FirstLaunchStyles.viewFirstLaunchOverlay}>
         <React.Fragment>
           <View style={FirstLaunchStyles.viewFirstLaunchOverlayImage}>

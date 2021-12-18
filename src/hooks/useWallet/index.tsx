@@ -1,30 +1,17 @@
-import {useWalletConnect} from '@walletconnect/react-native-dapp';
-import React, {useCallback, useMemo} from 'react';
+import WalletConnect from '@walletconnect/client';
 
-export const useWallet = () => {
-  const connector = useWalletConnect();
-
-  const memoizedConnector = useMemo(() => connector, [connector.connected]);
-
-  const walletAddress = useMemo(
-    () => (connector.connected ? connector.accounts[0] : null),
-    [connector.connected],
-  );
+export const useWallet = (connector: WalletConnect) => {
+  const walletAddress = connector.connected ? connector.accounts[0] : null;
 
   const connectWalletHandler = async () => {
     try {
       connector.connected
         ? await connector.killSession()
-        : await connector.connect();
+        : await connector.connect({chainId: 3});
     } catch (err) {
       console.log(err);
     }
   };
-
-  return {
-    connector: memoizedConnector,
-    connected: connector.connected,
-    connectWalletHandler,
-    walletAddress,
-  };
+  const connected = connector.connected;
+  return {connected, connectWalletHandler, walletAddress};
 };

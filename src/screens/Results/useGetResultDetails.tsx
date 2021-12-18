@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Linking, TouchableHighlight} from 'react-native';
 import defaultSettings from '../../../assets/data/defaultSettings';
 import {BlockChainData, VerificationTypes} from '../../common/types';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import knownValues from '../../../assets/data/knownValues.js';
 import {scale} from '../../common/utils';
+import {Video} from 'expo-av';
 
 const knownContractVersions = knownValues['knownContractVersions'] as any;
 const {PASS, WARNING, FAIL, IMPOSSIBLE} = VerificationTypes;
@@ -92,20 +93,44 @@ const getDeviceImage = (
   scaledERC20Balance: number,
   cid: string,
 ) => {
+  const [isVideo, setIsVideo] = useState(false);
+
+  useEffect(() => {
+    if (cid) {
+      fetch(
+        'https://ipfs.io/ipfs/QmagtqYd6D2cNHudEJQnNNNS9DTnACwjLSBJoHXea9QXaq',
+      ).then(result =>
+        setIsVideo(
+          // @ts-ignore
+          result.headers.map['content-type'].split('/')[0] === 'video',
+        ),
+      );
+    }
+  }, []);
+
   if (cid) {
-    return (
-      <TouchableHighlight
-        onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
-        <Image
-          style={{
-            width: scale(175),
-            height: scale(175),
-            borderRadius: scale(30),
-          }}
-          source={{uri: defaultSettings.ipfsNode + '/' + cid}}
-        />
-      </TouchableHighlight>
-    );
+    if (isVideo)
+      return (
+        <TouchableHighlight
+          onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
+          <Video source={{uri: defaultSettings.ipfsNode + '/' + cid}} />
+        </TouchableHighlight>
+      );
+    else {
+      return (
+        <TouchableHighlight
+          onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
+          <Image
+            style={{
+              width: scale(175),
+              height: scale(175),
+              borderRadius: scale(30),
+            }}
+            source={{uri: defaultSettings.ipfsNode + '/' + cid}}
+          />
+        </TouchableHighlight>
+      );
+    }
   } else if (unscaledERC20Balance > 0) {
     let imageString = require(ASSETS + `/img/1.png`);
     switch (scaledERC20Balance) {

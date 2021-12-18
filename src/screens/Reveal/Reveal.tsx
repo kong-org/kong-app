@@ -6,10 +6,10 @@ import buttonStyles from '../../../assets/styles/buttonStyles';
 import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
-import {Video} from 'expo-av';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {RouteProp} from '@react-navigation/native';
 import {scale} from '../../common/utils';
+import {Video} from '../../components/Video';
 
 const {height, width} = Dimensions.get('screen');
 interface IReveal {
@@ -37,13 +37,9 @@ export const Reveal: FC<IReveal> = ({route, navigation}) => {
             alignItems: 'center',
           }}>
           <Video
-            ref={video}
             source={{
               uri: `https://ipfs.io/ipfs/${imageId}`,
             }}
-            style={{width: width, height: 350, marginBottom: 29}}
-            isLooping
-            resizeMode="cover"
           />
         </View>
         <Text

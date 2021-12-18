@@ -18,12 +18,14 @@ import {Detected} from '../Reveal/Detected';
 import {Polling} from '../Reveal/Polling';
 import {Timeout} from '../Reveal/Timeout';
 import {Reveal} from '../Reveal/Reveal';
+import {useWalletConnect} from '@walletconnect/react-native-dapp';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
-  const {walletAddress, connectWalletHandler} = useWallet();
-  const connectButtonTitle = walletAddress
-    ? truncateAddress(walletAddress)
+  const connector = useWalletConnect();
+  const {walletAddress, connectWalletHandler} = useWallet(connector);
+  const connectButtonTitle = connector.connected
+    ? truncateAddress(walletAddress!)
     : 'CONNECT WALLET';
   const {
     state: {
@@ -41,6 +43,7 @@ export const Routes = () => {
           backgroundColor: '#000000',
         },
         headerShadowVisible: false,
+        gestureEnabled: false,
       }}>
       <Stack.Screen
         name="FirstLaunch"
@@ -51,6 +54,7 @@ export const Routes = () => {
         name="Settings"
         component={Settings}
         options={({navigation}) => ({
+          gestureEnabled: true,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation?.navigate('Home')}>
               <Image
@@ -90,6 +94,7 @@ export const Routes = () => {
         name="FAQS"
         component={FAQS}
         options={({navigation}) => ({
+          gestureEnabled: true,
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation?.navigate('Settings')}>
               <Image
@@ -103,7 +108,7 @@ export const Routes = () => {
       <Stack.Screen
         name="Processing"
         component={Processing}
-        options={{headerShown: false, gestureEnabled: false}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Results"
@@ -156,7 +161,6 @@ const RevealRoutes = ({resetState}: {resetState: () => void}) => {
         name="Detected"
         component={Detected}
         options={({navigation}) => ({
-          gestureEnabled: false,
           headerTitle: props => (
             <Text
               style={{
@@ -184,7 +188,7 @@ const RevealRoutes = ({resetState}: {resetState: () => void}) => {
       <Stack.Screen
         name="Polling"
         component={Polling}
-        options={{headerShown: false, gestureEnabled: false}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Reveal"

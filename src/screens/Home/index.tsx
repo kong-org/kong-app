@@ -18,6 +18,7 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import {VerifyBeforeClaimModal} from './VerifiyBeforeClaimModal';
 import {useWallet} from '../../hooks/useWallet';
 import {scale} from '../../common/utils';
+import {useWalletConnect} from '@walletconnect/react-native-dapp';
 
 const {height, width} = Dimensions.get('screen');
 interface IHome {
@@ -39,7 +40,8 @@ export const Home: FC<IHome> = ({navigation}) => {
       nfc: {nfcScanStart, nfcClaim},
     },
   } = useGlobalStore();
-  const {connected, walletAddress} = useWallet();
+  const connector = useWalletConnect();
+  const {walletAddress, connected} = useWallet(connector);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const claimHandler = async () => {

@@ -6,9 +6,9 @@ import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {LinearProgress} from 'react-native-elements';
-import {Video} from 'expo-av';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
+import {Video} from '../../components/Video';
 
 const {height, width} = Dimensions.get('screen');
 interface IPolling {
@@ -26,13 +26,9 @@ export const Polling: FC<IPolling> = ({navigation}) => {
       <SafeAreaView style={PollingStyles.viewPollingBody}>
         <View style={PollingStyles.viewPollingContainer}>
           <Video
-            ref={video}
             source={{
               uri: 'https://storage.googleapis.com/kong-assets/kong-card.mp4',
             }}
-            style={{width: width, height: height * 0.7, marginBottom: 29}}
-            isLooping
-            resizeMode="cover"
           />
 
           <Text style={PollingStyles.textPolling}>
@@ -62,11 +58,13 @@ const PollingStylesFn = (headerHeight: number) =>
     viewPollingBody: {
       position: 'absolute',
       height: height - headerHeight,
+      width: width,
     },
     viewPollingContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      height: '100%',
     },
     viewDetectedButtonContainer: {
       paddingLeft: scale(25),
