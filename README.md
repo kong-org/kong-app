@@ -23,8 +23,9 @@ Next, clone repo and run the following:
 
 To run on ios,
 
+      rm Podfile.lock
       npx pod install
-      
+    
 Inside of Xcode's Pod folder,
 
     remove all Compiled Sources other than `CocoaAsyncSocket-dummy`

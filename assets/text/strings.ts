@@ -16,18 +16,18 @@ const strings = new LocalizedStrings({
 
     // Home.
     textHomeDescription:
-      'Kong is a physical cryptocurrency. Scan a Kong note via NFC to make sure it is authentic.', // 'Kong is a physical cryptocurrency. Scan Kong notes via NFC to make sure they are real.'
+      'A KONG SiLo is a physical NFT. Scan a SiLo tag via NFC to make sure it is authentic.', // 'Kong is a physical cryptocurrency. Scan Kong notes via NFC to make sure they are real.'
     textHomeHeading: 'WHAT IS KONG?',
     textHomeNfcDisabled:
       'Your device is capable of NFC scanning but NFC is disabled. To enable NFC, ',
     textHomeNfcDisabledClick: 'CLICK HERE',
     textHomeNfcNotSupported: 'NFC NOT SUPPORTED',
-    textHomeHoldScan: 'Hold Bill to Scan',
+    textHomeHoldScan: 'Hold Tag to Scan',
 
     // Settings
     textSettingsHeading: 'THIS IS KONG.',
     textSettingsDescription:
-      'Kong is a physical cryptocurrency. This app verifies the authenticity of Kong notes using elliptic curve cryptography and the Ethereum blockchain.',
+      'KONG SiLos are physical crypto assets. This app verifies the authenticity of SiLos including KONG Cash, Passports and merch using elliptic curve cryptography and the Ethereum blockchain.',
     textSettingsTellMeMore: 'TELL ME MORE!',
     textSettingsFAQ: 'FAQ & PRIVACY',
     textSettingsScanTypeHeading: 'SCAN TYPE',
@@ -43,7 +43,7 @@ const strings = new LocalizedStrings({
     textScanTypeDescriptionQuickOnly:
       'Full verfication is only available on iOS 13+.',
     textScanTypeDescription:
-      'Quick verfication confirms the note signed a recent blockhash, but it does not challenge the note directly. Full verfication challenges the secure element, but it is slower, and may not work on all smartphones.',
+      'Quick verfication confirms the SiLo signed a recent blockhash, but it does not challenge the note directly. Full verfication challenges the secure element, but it is slower, and may not work on all smartphones.',
 
     // Processing
     textProcessingHeading: 'STAY STILL',
@@ -73,20 +73,20 @@ const strings = new LocalizedStrings({
       'The tag you scanned is not registered or the blockchain is currently unreachable. The checks below therefore only verify the presence of cryptographic keys, assuming the format a registered tag would have. The checks do not provide ANY guarantees.',
     textResultsKongVerificationDescription:
       '' +
-      'You can use the results of this scan to manually verify the authenticity of your Kong note. Tap below to get detailed verification instructions:',
+      'You can use the results of this scan to manually verify the authenticity of your SiLo. Tap below to get detailed verification instructions:',
     textResultsKongVerificationInstructions:
       '' +
       '== KONG VERIFICATION ==' +
       '\n\n' +
-      'This readme walks you through the steps needed to verify the authenticity of your Kong note. The data below is from your latest scan. Every note and every scan will change some part of the data. This is expected. The rationale behind the steps below is explored in more detail on our website.' +
+      'This readme walks you through the steps needed to verify the authenticity of your SiLo. The data below is from your latest scan. Every SiLo and every scan will change some part of the data. This is expected. The rationale behind the steps below is explored in more detail on our website.' +
       '\n\n' +
       '----' +
       '\n\n' +
       'HARDWARE / KEY VERIFICATION.' +
       '\n\n' +
-      'A unique cryptographic key provides the secure link between your Kong note and the digital Kong token it owns. Verifying the authenticity of a Kong note thus requires verification of the key`s presence.' +
+      'A unique cryptographic key provides the secure link between your SiLo and the digital Kong token it owns. Verifying the authenticity of a SiLo thus requires verification of the key`s presence.' +
       '\n\n' +
-      'Your Kong note stores public key 0x{0}. The app has asked the note to sign a randomly generate challenge to verify that the note indeed houses this key. The challenge was built in two steps:' +
+      'Your SiLo stores public key 0x{0}. The app has asked the SiLo to sign a randomly generate challenge to verify that the SiLo indeed houses this key. The challenge was built in two steps:' +
       '\n\n' +
       'First, the phone used the internal random number generator to create a random number:\n' +
       '0x{1}' +
@@ -97,7 +97,7 @@ const strings = new LocalizedStrings({
       'The phone then combined these two variables into the following hash:\n' +
       '0x{3}' +
       '\n\n' +
-      'Finally, the phone asked the Kong note to sign this hash. The note returned the following signature:\n' +
+      'Finally, the phone asked the SiLo to sign this hash. The SiLo returned the following signature:\n' +
       '0x{4}' +
       '\n\n' +
       'To verify the integrity of this challenge and the response, do the following:\n' +
@@ -105,17 +105,17 @@ const strings = new LocalizedStrings({
       '   - verify that the combined hash is the sha256 hash of the random number generated by the phone and the blockhash\n' +
       '   - verify that the signature is valid\n' +
       '\n\n' +
-      'Passing all steps indicates that the Kong note indeed houes this public key.' +
+      'Passing all steps indicates that the SiLo indeed houes this public key.' +
       '\n\n' +
       '----' +
       '\n\n' +
       'BLOCKCHAIN VERIFICATION' +
       '\n\n' +
-      'Your Kong note is linked to a smart contract on the Ethereum blockchain at address {5}. This smart contract owns {6} {7}.' +
+      'Your SiLo is linked to a smart contract on the Ethereum blockchain at address {5}. This smart contract owns {6} {7}.' +
       '\n\n' +
-      'To check the smart contract`s code, visit etherscan.io or any other blockchain explorer and paste in the contract`s address. The contract`s logic is extremely simple and should reveal that only the public key associated with this Kong note will ultimately be able to claim the contract`s balance.' +
+      'To check the smart contract`s code, visit etherscan.io or any other blockchain explorer and paste in the contract`s address. The contract`s logic is extremely simple and should reveal that only the public key associated with this SiLo will ultimately be able to claim the contract`s balance.' +
       '\n\n' +
-      'The contract also contains the addresses of the elliptic curve contract that verifies the note`s signatures as well as the address of the associated token contract. To verify that the smart contract indeed owns the abovementioned balance, use etherscan.io or any other blockchain explorer, paste the address of the token contract at {8} and check the balance of address {5}.',
+      'The contract also contains the addresses of the elliptic curve contract that verifies the SiLo`s signatures as well as the address of the associated token contract. To verify that the smart contract indeed owns the abovementioned balance, use etherscan.io or any other blockchain explorer, paste the address of the token contract at {8} and check the balance of address {5}.',
 
     // Fail texts.
     // Unknown tag type.
@@ -136,7 +136,7 @@ const strings = new LocalizedStrings({
     // NFC Timeout.
     textFailTimeoutWarning: 'NFC CONNECTION FAILURE',
     textFailTimeoutDescription:
-      'Failed to reopen NFC connection after timeout. Change note orientation and rescan.',
+      'Failed to reopen NFC connection after timeout. Change SiLo orientation and rescan.',
 
     // NFC Read Tag Configuration.
     textFailNfcReadConfigWarning: 'NFC READ CONFIG FAILURE',
@@ -202,15 +202,15 @@ const strings = new LocalizedStrings({
 
     textFAQQuestion3: 'Why do my NFC scans fail?',
     textFAQAnswer3:
-      'The reliability of NFC varies between phones. When scanning, be sure to position the note close to the NFC antenna and try to hold it still during the scanning process. Consult the internet if you do not know where the NFC antenna is located in your phone.',
+      'The reliability of NFC varies between phones. When scanning, be sure to position the SiLo close to the NFC antenna and try to hold it still during the scanning process. Consult the internet if you do not know where the NFC antenna is located in your phone.',
 
-    textFAQQuestion4: 'The app says my bill is invalid - What do I do?',
+    textFAQQuestion4: 'The app says my SiLo is invalid - What do I do?',
     textFAQAnswer4:
       'You may sometimes see invalid results due to technical issues during the scanning process. Try scanning multiple times if this happens or re-syncing the gateway nodes via the tap to reset option. Consult our website for more information on the verification process.',
 
-    textFAQQuestion5: 'What is verification checking when I scan a bill?',
+    textFAQQuestion5: 'What is verification checking when I scan a SiLo?',
     textFAQAnswer5:
-      'Scanning a KONG bill checks several pieces of information including the ability of the bill to sign a random number and the existing of a smart contract backing the bill. Tap "Get Instructions" on the bottom of a valid scan for more information on what information is verified.',
+      'Scanning a KONG SiLo checks several pieces of information including the ability of the SiLo to sign a random number and the existing of a smart contract backing the SiLo. Tap "Get Instructions" on the bottom of a valid scan for more information on what information is verified.',
 
     textFAQQuestion6: 'What does "Synching Nodes" mean?',
     textFAQAnswer6:
