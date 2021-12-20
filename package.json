@@ -32,7 +32,7 @@
     "elliptic": "^6.5.4",
     "ethers": "^5.5.1",
     "events": "^1.1.1",
-    "expo": ">=43.0.0-* <44.0.0",
+    "expo": ">=44.0.0-* <45.0.0",
     "expo-av": "~10.1.2",
     "expo-random": "^12.0.1",
     "https-browserify": "0.0.1",
@@ -59,6 +59,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-tcp": "^3.3.2",
     "react-native-udp": "^2.7.0",
+    "react-native-unimodules": "^0.14.10",
     "react-native-vector-icons": "^9.0.0",
     "react-native-video": "^5.2.0",
     "readable-stream": "^1.0.33",
@@ -102,6 +103,13 @@
       "json",
       "node"
     ]
+  },
+  "expo": {
+    "autolinking": {
+      "exclude": [
+        "expo-file-system"
+      ]
+    }
   },
   "react-native": {
     "zlib": "browserify-zlib",

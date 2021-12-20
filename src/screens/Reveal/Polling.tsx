@@ -9,16 +9,19 @@ import {LinearProgress} from 'react-native-elements';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
 import {Video} from '../../components/Video';
+import {RouteProp} from '@react-navigation/native';
 
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IPolling {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Polling'>;
+  route: RouteProp<RootStackParamList, 'Polling'>;
 }
 
-export const Polling: FC<IPolling> = ({navigation}) => {
+export const Polling: FC<IPolling> = ({navigation, route}) => {
   const headerHeight = useHeaderHeight();
-  const {video} = useVideoRef();
   const PollingStyles = PollingStylesFn(headerHeight);
+  const message = route.params?.message;
+
   return (
     <View style={PollingStyles.viewPolling}>
       <StatusBar barStyle="light-content" />
@@ -29,11 +32,10 @@ export const Polling: FC<IPolling> = ({navigation}) => {
             source={{
               uri: 'https://storage.googleapis.com/kong-assets/kong-card.mp4',
             }}
+            isMuted
           />
 
-          <Text style={PollingStyles.textPolling}>
-            Polling Wallet Connect...
-          </Text>
+          <Text style={PollingStyles.textPolling}>{Polling}</Text>
           <LinearProgress
             style={{marginTop: 35}}
             color="#2BFF88"

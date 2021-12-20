@@ -4,21 +4,21 @@ PODS:
     - React
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - EXApplication (4.0.0):
+  - EXApplication (4.0.1):
     - ExpoModulesCore
   - EXAV (10.1.3):
     - ExpoModulesCore
-  - EXConstants (12.1.3):
+  - EXConstants (13.0.0):
     - ExpoModulesCore
-  - EXErrorRecovery (3.0.3):
+  - EXErrorRecovery (3.0.4):
     - ExpoModulesCore
-  - EXFileSystem (13.0.3):
+  - EXFileSystem (13.1.0):
     - ExpoModulesCore
-  - EXFont (10.0.3):
+  - EXFont (10.0.4):
     - ExpoModulesCore
-  - EXKeepAwake (10.0.0):
+  - EXKeepAwake (10.0.1):
     - ExpoModulesCore
-  - Expo (43.0.4):
+  - Expo (44.0.0):
     - ExpoModulesCore
   - ExpoModulesCore (0.4.9):
     - React-Core
@@ -620,14 +620,14 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
-  EXApplication: 4e001850816f38eb4812cb02fe059974daeafe4d
+  EXApplication: 2b8f4d665e050ecddffcfb1ce258b7216b6b7777
   EXAV: 997f4fe4b410399a10f533857cd791913231358a
-  EXConstants: 66361ff23b5ea7eae3684ffad0f15955c23b5134
-  EXErrorRecovery: 0e088d138e44f0e4a24655040e7f7c34ede8cc06
-  EXFileSystem: 624eef3e3a853f19cc0c26eaffab1519001d8c35
-  EXFont: 6e8f77d9741f5cd83f710adbf26ebb57a036283b
-  EXKeepAwake: ca4071fb63b89a70b13d33f6147cf9b5433c122a
-  Expo: 5b1f70fc24753f39ab3a03078ca6e598587f7e54
+  EXConstants: 1514e671cb9ef1279696a44db86e2085dfa5e6ad
+  EXErrorRecovery: 9e481432a9ba7220832340911028892b49682a89
+  EXFileSystem: 35453fcb2f311ac6c67a2c77527fd4ac8dabe526
+  EXFont: e0a7f501df6e833398dfd4b075a022370e215236
+  EXKeepAwake: e190d9ee4550bcf5f8a46bdb199735f542795ebb
+  Expo: d027a753ab656b108712dc2d319abf973fae0376
   ExpoModulesCore: 3478a7d76470a5b3870220cb2240cd6cd362409f
   EXRandom: 96ad8cae9f2ba17caad172faa38f4603592f7978
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1

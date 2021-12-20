@@ -15,6 +15,7 @@ export type ChainSettings = {
   registerMerkleRootContract?: ethers.Contract;
   citizenERC20Contract?: ethers.Contract;
   citizenERC721Contract?: ethers.Contract;
+  revealCitizenContract?: ethers.Contract;
   provider?: ethers.providers.JsonRpcProvider;
 };
 
@@ -45,6 +46,17 @@ export type BlockChainData = {
   blockNumber?: number;
   blockHash?: string;
   blockTime?: number;
+  token?: {
+    nonce?: string;
+    tokenAddress?: string;
+    tokenId?: string;
+    name?: string;
+    description?: string;
+    attributes?: {[key: string]: string};
+    image?: string;
+    revealAddress?: string;
+    revealCid?: string;
+  };
   contractSecondaryPublicKeyHash?: string;
   expectedUnscaledERC20Balance?: number;
   contractPublicKeyX: string;

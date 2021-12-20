@@ -36,17 +36,17 @@ const knownValues = {
             "type": "ERC20 Mint",
             "curve": "SECP256R1",
             "expectedECCAddress": "0xf471789937856D80e589F5996cf8b0511DDD9de4"
-        }
+        },
         // "0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
         //     "type": "ERC20 Mint",
         //     "curve": "SECP256R1",
         //     "expectedECCAddress": "0x39Bbf21600cb2823F88ec265fdf96D7DfEdf6fD7"
         // },
-        // "0xb65c630b17a7e632a1512bbe68156b5f83aab35d18da132889e85d3a3287e1d0": {
-        //     "type": "ERC20 Mint",
-        //     "curve": "SECP256R1",
-        //     "expectedECCAddress": "0x39Bbf21600cb2823F88ec265fdf96D7DfEdf6fD7"
-        // }        
+        "0xb65c630b17a7e632a1512bbe68156b5f83aab35d18da132889e85d3a3287e1d0": {
+            "type": "ERC20 Mint",
+            "curve": "SECP256R1",
+            "expectedECCAddress": "0x39Bbf21600cb2823F88ec265fdf96D7DfEdf6fD7"
+        }
     },
     knownHardwareManufacturers: {
         "0xb2661c8f913ccc97c03ed6512a5709f8e52d372ca5b7367d649c246c5249c8a6": "Microchip Technology Inc."

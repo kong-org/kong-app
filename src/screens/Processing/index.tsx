@@ -11,28 +11,51 @@ import {
 import strings from '../../../assets/text/strings';
 import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {scale} from '../../common/utils';
-const {height, width} = Dimensions.get('screen');
-interface IHome {
+import {isIOS, scale} from '../../common/utils';
+import {RouteProp} from '@react-navigation/native';
+import {LinearProgress} from 'react-native-elements';
+const {height, width} = Dimensions.get('window');
+interface IProcessing {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Processing'>;
+  route: RouteProp<RootStackParamList, 'Processing'>;
 }
 
 const ASSETS = '../../../assets';
 
-export const Processing: FC<IHome> = ({}) => {
+export const Processing: FC<IProcessing> = ({route}) => {
+  const message = route.params?.message;
+  console.log(message);
   return (
     <View style={ProcessingStyles.viewProcessing}>
       <StatusBar barStyle="light-content" />
 
-      <SafeAreaView style={ProcessingStyles.vieProcessingContainer}>
+      <SafeAreaView style={ProcessingStyles.viewProcessingContainer}>
         <Image source={require(ASSETS + '/img/processing.png')} />
         <Text style={ProcessingStyles.textProcessingHeading}>
           {strings.textProcessingHeading}
         </Text>
         <Text style={ProcessingStyles.textProcessingBody}>
-          {strings.textProcessingBody}
+          {message ? message : strings.textProcessingBody}
         </Text>
       </SafeAreaView>
+      {!isIOS && message && (
+        <View
+          style={{
+            height: height,
+            width,
+            display: 'flex',
+            position: 'absolute',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+          <LinearProgress
+            style={{marginTop: scale(50)}}
+            color="#2BFF88"
+            trackColor="#434348"
+            value={50}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -44,7 +67,7 @@ const ProcessingStyles = StyleSheet.create({
     height: height,
     width: width,
   },
-  vieProcessingContainer: {
+  viewProcessingContainer: {
     display: 'flex',
     alignItems: 'center',
     marginTop: scale(60),

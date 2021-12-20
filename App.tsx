@@ -60,11 +60,6 @@ const Inner = () => {
     initLoad();
   }, []);
 
-  useEffect(() => {
-    if (nfcSettings.nfcEnabled == false && !isIOS) {
-      nfcStart();
-    }
-  });
   return <Routes />;
 };
 
@@ -73,11 +68,11 @@ const App = () => {
 
   return (
     <GlobalStoreProvider value={globalStore}>
-      <NavigationContainer
-        linking={linking}
-        ref={navigationRef}
-        fallback={<Text>Loading...</Text>}>
-        <SafeAreaProvider>
+      <SafeAreaProvider>
+        <NavigationContainer
+          linking={linking}
+          ref={navigationRef}
+          fallback={<Text>Loading...</Text>}>
           <WalletConnectProvider
             redirectUrl={
               Platform.OS === 'web'
@@ -96,8 +91,8 @@ const App = () => {
             }}>
             <Inner />
           </WalletConnectProvider>
-        </SafeAreaProvider>
-      </NavigationContainer>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </GlobalStoreProvider>
   );
 };

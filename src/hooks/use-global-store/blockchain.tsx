@@ -1,6 +1,7 @@
 import registerMerkleRootABI from '../../../assets/data/RegisterMerkleRootABI.json';
 import citizenERC20ABI from '../../../assets/data/CitizenERC20ABI.json';
 import citizenERC721ABI from '../../../assets/data/CitizenERC721ABI.json';
+import revealCitizenABI from '../../../assets/data/RevealCitizenABI.json';
 
 import kongEntropyMerkle from '../../../assets/data/KongEntropyMerkle.json';
 import hashedInterfaces from '../../../assets/data/hashedInterfaces.json';
@@ -74,12 +75,18 @@ export const getBlockchainFns = ({
       citizenERC721ABI['abi'],
       provider,
     );
+    const revealCitizenContract: ethers.Contract = new ethers.Contract(
+      chainSettings.registerAddress.revealCitizen,
+      revealCitizenABI['abi'],
+      provider,
+    );
 
     updatedChainSettings({
       provider: provider,
       registerMerkleRootContract,
       citizenERC20Contract,
       citizenERC721Contract,
+      revealCitizenContract,
     });
   };
   const getBridgeData = async (publicKey: string) => {
@@ -94,10 +101,15 @@ export const getBlockchainFns = ({
     ).text();
 
     const data = isJSONable(response) && JSON.parse(response);
+    console.log(
+      data,
+      `${chainSettings.bridgeNode}/device?x=${pub.x}&y=${pub.y}`,
+    );
     if (data) {
       updateBlockchainData({
         cid: data.cid,
         name: data.name,
+        token: data.token,
         description: data.description,
         contractAddress: data.contractAddress,
         root: data.root,
@@ -832,7 +844,7 @@ export const getBlockchainFns = ({
           console.log(connector.accounts[0]);
           const tx = await connector.sendTransaction({
             from: connector.accounts[0],
-            to: '0x4100c66D2033338597FCB622D1cAb1EFD871F3Ac',
+            to: state.chainSettings.registerAddress.revealCitizen,
             data: encodedDataABI,
           });
           return tx;

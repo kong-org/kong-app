@@ -3,7 +3,7 @@ import {Text, TextInput} from 'react-native';
 import defaultSettings from '../../../assets/data/defaultSettings';
 import strings from '../../../assets/text/strings';
 import {MMKV, MMKVKeys} from '../../common/mmkv';
-import {scale} from '../../common/utils';
+import {isJSONable, scale} from '../../common/utils';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import {SettingsStyles} from './styles';
 
@@ -19,15 +19,31 @@ export const EditableSettings = () => {
 
   const [runReset, setRunReset] = useState(false);
   const resetFn = async () => {
-    setChainSettings(defaultSettings);
+    let data;
+    try {
+      const response = await (
+        await fetch(`${chainSettings.bridgeNode}/defaults`)
+      ).text();
+      data = isJSONable(response) && JSON.parse(response);
+    } catch (e) {
+      console.log(e);
+    }
+    // chainSettings set in order of MMKV > bridgeDefaults > localDefaults
+    const defaults = {
+      ethNode: data.ethNode ?? defaultSettings.ethNode,
+      ipfsNode: data.ipfsNode ?? defaultSettings.ipfsNode,
+      bridgeNode: defaultSettings.bridgeNode,
+      registerAddress: data.contracts ?? defaultSettings.registerAddress,
+    };
+    setChainSettings(defaults);
     try {
       setResetButtonText(strings.textSettingsResetPending);
-      MMKV.set(MMKVKeys.ETH_NODE, defaultSettings.ethNode);
-      MMKV.set(MMKVKeys.IPFS_NODE, defaultSettings.ipfsNode);
-      MMKV.set(MMKVKeys.BRIDGE_NODE, defaultSettings.bridgeNode);
+      MMKV.set(MMKVKeys.ETH_NODE, defaults.ethNode);
+      MMKV.set(MMKVKeys.IPFS_NODE, defaults.ipfsNode);
+      MMKV.set(MMKVKeys.BRIDGE_NODE, defaults.bridgeNode);
       MMKV.set(
         MMKVKeys.REGISTER_ADDRESS,
-        JSON.stringify(defaultSettings.registerAddress),
+        JSON.stringify(defaults.registerAddress),
       );
       setRunReset(true);
     } catch (error) {

@@ -9,7 +9,7 @@ import strings from '../../../assets/text/strings';
 import {isIOS, scale} from '../../common/utils';
 import {Video} from '../../components/Video';
 
-const {height} = Dimensions.get('screen');
+const {height} = Dimensions.get('window');
 interface IFirstLaunch {
   navigation: NativeStackNavigationProp<RootStackParamList, 'FirstLaunch'>;
 }
@@ -88,7 +88,6 @@ const FirstLaunchStyles = StyleSheet.create({
   viewFirstLaunchOverlay: {
     position: 'absolute',
     height: 0.9 * height,
-    paddingBottom: isIOS ? 0 : 0.1 * height,
     justifyContent: 'space-between',
     alignItems: 'center',
   },

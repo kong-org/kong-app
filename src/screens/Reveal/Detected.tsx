@@ -10,10 +10,10 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import {useWallet} from '../../hooks/useWallet';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
-import {Video} from '../../components/Video';
+import {Video, videoRef} from '../../components/Video';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IDetected {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Detected'>;
 }
@@ -27,7 +27,6 @@ export const Detected: FC<IDetected> = ({navigation}) => {
       nfc: {nfcReveal},
     },
   } = useGlobalStore();
-  const {video} = useVideoRef();
 
   const DetectedStyles = DetectedStylesFn(headerHeight);
   return (
@@ -57,7 +56,7 @@ export const Detected: FC<IDetected> = ({navigation}) => {
               buttonStyle={buttonStyles.buttonPrimary}
               onPress={() => {
                 nfcReveal(walletAddress!, connector);
-                video.current?.pauseAsync();
+                videoRef.current?.pauseAsync();
               }}
             />
           </View>

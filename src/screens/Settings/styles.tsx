@@ -1,7 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {scale} from '../../common/utils';
 
-var {height} = Dimensions.get('screen');
+var {height} = Dimensions.get('window');
 
 export const SettingsStyles = StyleSheet.create({
   // Settings.

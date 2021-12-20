@@ -1,5 +1,4 @@
 import {crc16ccitt} from 'crc';
-import {Platform} from 'react-native';
 import WalletConnect from '@walletconnect/client';
 import NfcManager, {
   Ndef,
@@ -30,7 +29,11 @@ import {
   PrefetchChainDataType,
 } from '../../common/types';
 import {useCallback} from 'react';
-import {navigate, checkCurrentRoute} from '../../common/RootNavigation';
+import {
+  navigate,
+  updateParams,
+  checkCurrentRoute,
+} from '../../common/RootNavigation';
 import {isIOS} from 'react-native-elements/dist/helpers';
 
 interface IGetNFCFns {
@@ -98,21 +101,12 @@ export const getNfcFns = ({
       const isNfcSupported = await NfcManager.isSupported();
       updateNfcSettings({nfcSupported: isNfcSupported});
       if (isNfcSupported) {
+        let isNfcEnabled;
         if (!isIOS) {
-          const isNfcEnabled = await NfcManager.isEnabled();
+          isNfcEnabled = await NfcManager.isEnabled();
+        }
 
-          if (isNfcEnabled) {
-            updateNfcSettings({nfcEnabled: isNfcEnabled});
-            try {
-              await NfcManager.start();
-              console.log('Successfully started NFC');
-              await nfcScanStart();
-            } catch (err) {
-              console.warn('Failed to start NFC: ', err);
-              updateNfcSettings({nfcSupported: false});
-            }
-          }
-        } else if (isIOS) {
+        if (isIOS || isNfcEnabled) {
           try {
             await NfcManager.start();
             console.log('Successfully started NFC');
@@ -131,13 +125,9 @@ export const getNfcFns = ({
   const nfcScanStart = async () => {
     // Close technology if it is still running.
     NfcManager.cancelTechnologyRequest().catch(err => console.warn(err));
+    !isIOS && navigate('Processing');
     if (state.fullVerification) {
-      if (isIOS) {
-        nfcIOSScanFull();
-      } else {
-        await NfcManager.registerTagEvent();
-        nfcAndroidScanFull();
-      }
+      nfcScanFull();
     } else {
       !isIOS && (await NfcManager.registerTagEvent());
       nfcQuickScan();
@@ -146,14 +136,11 @@ export const getNfcFns = ({
 
   // QUICK SCAN FNS
   const nfcNdefRegistrationCheck = async () => {
-    console.log('nfcDATA nDef', nfcData);
     try {
       const netState = await NetInfo.fetch();
       console.log(netState, nfcData);
-      // console.log(this.state.nfcData.localDevice)
-      // console.log(this.state.nfcData.hardwareHash)
+
       if (netState.isConnected && nfcData.localDevice && nfcData.hardwareHash) {
-        console.log(`localDevice checking merkle`, nfcData);
         const chainDataVal = {
           proof: (nfcData.localDevice as any)['proof'],
           root: (nfcData.localDevice as any)['root'],
@@ -210,27 +197,14 @@ export const getNfcFns = ({
 
   const nfcQuickScan = async () => {
     try {
-      await NfcManager.requestTechnology(
-        NfcTech.Ndef,
-        !isIOS
-          ? {
-              alertMessage: strings.textProcessingQuickTouchNoteIOS,
-              invalidateAfterFirstRead: true,
-            }
-          : {
-              alertMessage: 'Hold the chip close to the top of your phone',
-              isReaderModeEnabled: true,
-            },
-      );
+      await NfcManager.requestTechnology(NfcTech.Ndef, {
+        alertMessage: strings.textProcessingQuickTouchNote,
+        invalidateAfterFirstRead: true,
+      });
 
       const tag = await NfcManager.getNdefMessage();
       // Update view.
-      navigate('Processing');
-      isIOS &&
-        (await NfcManager.setAlertMessageIOS(
-          strings.textProcessingPreparingResultsIOS,
-        ));
-
+      sendProcessingMessage(strings.textProcessingPreparingResults);
       // Validate tag format.
       const validRecord = nfcValidateRecords(tag);
       console.log(validRecord, 'valid record?');
@@ -249,10 +223,7 @@ export const getNfcFns = ({
         await nfcNdefRegistrationCheck();
       }
     } catch (err) {
-      isIOS &&
-        (await NfcManager.setAlertMessageIOS(
-          strings.textProcessingPreparingResultsIOS,
-        ));
+      sendProcessingMessage(strings.textProcessingPreparingResults);
       await NfcManager.cancelTechnologyRequest().catch(() => 0);
     }
   };
@@ -360,9 +331,9 @@ export const getNfcFns = ({
         `ERC721 token cannot be found in wallet. Make sure you are connected to a wallet containing the reveal ERC721 and try again.`,
       );
     }
-    console.log(
-      `${state.chainSettings.bridgeNode}/reveal?x=${result.x}&y=${result.y}&r=${result.r}&s=${result.s}&blockNumber=${result.blockNumber}&addr=${result.walletAddress}`,
-    );
+    // console.log(
+    //   `${state.chainSettings.bridgeNode}/reveal?x=${result.x}&y=${result.y}&r=${result.r}&s=${result.s}&blockNumber=${result.blockNumber}&addr=${result.walletAddress}`,
+    // );
     // check if oracle exists
     const oracle = await (
       await fetch(
@@ -391,16 +362,16 @@ export const getNfcFns = ({
         e => navigateToFail(strings.textFailDefaultWarning, `Error: ${e}`),
       ),
     );
-    console.log(
-      tokenId,
-      ['0x' + result.r, '0x' + result.s],
-      '0x' + result.x,
-      '0x' + result.y,
-      result.blockNumber,
-      state.blockchainData.root,
-      oracle,
-    );
-    navigate('Polling');
+    // console.log(
+    //   tokenId,
+    //   ['0x' + result.r, '0x' + result.s],
+    //   '0x' + result.x,
+    //   '0x' + result.y,
+    //   result.blockNumber,
+    //   state.blockchainData.root,
+    //   oracle,
+    // );
+    navigate('Polling', {message: 'Polling wallet connect...'});
     const tx = await writeChainData(
       ChainMethods.REVEAL_CTIZEN_REVEAL_ORACLE,
       connector,
@@ -412,50 +383,61 @@ export const getNfcFns = ({
       state.blockchainData.root,
       oracle,
     );
+    updateParams({message: 'Polling for tx completion...'});
 
-    // // const tx =
-    // //   '0x04cf1e3c2d143f66d978b7e1ca890be260b342be70bf509bd26e5017f7d60759';
-    // const fetchItem = fetch(`${state.chainSettings.bridgeNode}/reveal`, {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   body: new URLSearchParams({
-    //     tx,
-    //   }).toString(),
-    // });
+    const waitingOnTx = await state.chainSettings.provider?.waitForTransaction(
+      tx,
+    );
+    console.log(waitingOnTx, 'done');
+    // const tx =
+    //   '0xdf93192a38a58b90f0f8796446f56aae6dc3127ad190d7adf2233e4fc16f6920';
 
-    // const retries = 3;
-    // let i = 0;
-    // while (i < retries) {
-    //   const response = await fetchItem;
-    //   if (response.ok) {
-    //     const responseJSON = await response.json();
-    //     console.log(responseJSON);
-    //     navigate('Reveal', {revealDetails: {...responseJSON, tokenId}});
-    //     break;
-    //   }
-    //   i++;
-    // }
-    // // after 3 retries go to timeout
-    // if (i === 3) {
-    //   navigate('Timeout');
-    // }
+    updateParams({message: 'Polling for image...'});
+
+    const fetchItem = fetch(`${state.chainSettings.bridgeNode}/reveal`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        tx,
+      }).toString(),
+    });
+    const retries = 2;
+    let i = 0;
+
+    while (i <= retries) {
+      const response = await fetchItem;
+      if (i === retries) {
+        navigate('Timeout');
+      } else if (response.ok) {
+        const responseJSON = await response.json();
+        navigate('Reveal', {revealDetails: {...responseJSON, tokenId}});
+        break;
+      }
+      i++;
+    }
   };
   const nfcClaim = async (walletAddress: string) => {
     console.log(`ClAIM CALLED: ${Date.now()}`);
+    !isIOS && navigate('Processing');
     try {
       updateHeadlessVerification(true);
       updateNfcData({
         nfcReadOutputExternalRandomNumber: walletAddress.slice(2),
       });
-      await nfcIOSRun(walletAddress.slice(2));
+      await nfcRun(walletAddress.slice(2));
       updateHeadlessVerification(false);
+
       // TODO: add more restrictive rules and conditonal handling of different contracts
+      console.log(state.blockchainData);
       if (state.blockchainData.contractAddress) {
-        console.log(state.blockchainData.contractAddress);
-        navigate('Detected');
+        if (state.blockchainData.token) {
+          navigate('Reveal', {revealDetails: {...state.blockchainData.token}});
+        } else {
+          navigate('Detected');
+        }
       } else {
         navigateToFail(
           'Unclaimable',
@@ -472,7 +454,7 @@ export const getNfcFns = ({
   };
 
   // FULL SCAN FNS
-  const nfcIOSScanFull = async () => {
+  const nfcScanFull = async () => {
     const randomBytes = await asyncWrapper(
       Random.getRandomBytesAsync(32),
       err => {
@@ -480,50 +462,59 @@ export const getNfcFns = ({
       },
     );
     const randomNumber = bytesToHex(randomBytes);
-    await nfcIOSRun(randomNumber);
+    await nfcRun(randomNumber);
   };
-  const nfcIOSRun = async (input: string) => {
-    console.log(`iOS FULL SCAN CALLED: ${Date.now()}`);
+
+  const nfcRun = async (input: string) => {
+    console.log(`nfcRun CALLED: ${Date.now()}`);
+
     try {
       await prefetchChainData(PrefetchChainDataType.LATEST_BLOCK);
 
       console.log(`TECH CALLED: ${Date.now()}`);
-
-      await NfcManager.requestTechnology(NfcTech.MifareIOS, {
-        alertMessage: strings.textProcessingTouchNoteIOS,
-      });
+      if (isIOS) {
+        await NfcManager.requestTechnology(NfcTech.MifareIOS, {
+          alertMessage: strings.textProcessingTouchNote,
+        });
+      } else {
+        const isSupported = await NfcManager.isSupported();
+        isSupported &&
+          (await asyncWrapper(
+            NfcManager.requestTechnology(NfcTech.NfcA),
+            err => {
+              navigateToFail(
+                strings.textFailNfcTechRequestWarning,
+                strings.textFailNfcTechRequestDescription + '\n(' + err + ')',
+              );
+              NfcManager.cancelTechnologyRequest();
+            },
+          ));
+      }
 
       const tag = await NfcManager.getTag();
-      console.log(tag, 'TAG');
+      // console.log(tag, 'TAG');
 
       console.log(`GOT TAG: ${Date.now()} with tech ${(tag as any)?.tech}`);
       navigate('Processing');
-      await NfcManager.setAlertMessageIOS(
-        strings.textProcessingNoteDetectedIOS,
-      );
 
-      const configBytes = await asyncWrapper(
-        NfcManager.sendMifareCommandIOS([0x30, 0xe8]),
-        err => {
-          goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_CONFIG_WARNING, err);
-          NfcManager.cancelTechnologyRequest().catch(() => 0);
-          NfcManager.unregisterTagEvent().catch(() => 0);
-        },
-      );
+      sendProcessingMessage(strings.textProcessingNoteDetected);
+
+      const configBytes = await asyncWrapper(cmd([0x30, 0xe8]), err => {
+        goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_CONFIG_WARNING, err);
+        NfcManager.cancelTechnologyRequest().catch(() => 0);
+        NfcManager.unregisterTagEvent().catch(() => 0);
+      });
       updateNfcData({icBlockWithLastNdefRecord: configBytes[1]});
 
       /************
        * Get Keys. *
        ************/
 
-      await NfcManager.setAlertMessageIOS(strings.textProcessingUniqueInfoIOS);
+      sendProcessingMessage(strings.textProcessingUniqueInfo);
 
-      const ret = await asyncWrapper(
-        NfcManager.sendMifareCommandIOS([0x3a, 0x15, 0x42]),
-        err => {
-          goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_HASHES, err);
-        },
-      );
+      const ret = await asyncWrapper(cmd([0x3a, 0x15, 0x42]), err => {
+        goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_HASHES, err);
+      });
 
       let mifareRecord = nfcMifareParseRecord(ret);
       updateNfcData(mifareRecord);
@@ -560,7 +551,7 @@ export const getNfcFns = ({
       await asyncWrapper(
         Promise.all(
           registers.map(i => {
-            return NfcManager.sendMifareCommandIOS(
+            return cmd(
               [0xa2]
                 .concat(i) // Register number.
                 .concat(
@@ -573,20 +564,19 @@ export const getNfcFns = ({
           }),
         ),
         err => {
-          // TODO
-          // this._goToNfcFailScreen('nfcFailWriteInput', err);
+          navigateToFail('nfcFailWriteInput', err);
         },
       );
 
       //console.log(`going to msg`)
-      NfcManager.setAlertMessageIOS(strings.textProcessingSendingChallengeIOS);
+      await NfcManager.setAlertMessageIOS(
+        strings.textProcessingSendingChallenge,
+      );
+
       console.log((nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1);
       // Read lastIcBlock to finish input.
       await asyncWrapper(
-        NfcManager.sendMifareCommandIOS([
-          0x30,
-          (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1,
-        ]),
+        cmd([0x30, (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1]),
         err => {
           goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_LAST_NDEF, err);
         },
@@ -604,19 +594,12 @@ export const getNfcFns = ({
        * Read Results. *
        ****************/
 
-      const hashByteArray = await NfcManager.sendMifareCommandIOS([
-        0x3a, 0x64, 0x84,
-      ]);
-
-      await NfcManager.setAlertMessageIOS(
-        strings.textProcessingReadingResultsIOS,
-      );
+      const hashByteArray = await cmd([0x3a, 0x64, 0x84]);
+      sendProcessingMessage(strings.textProcessingReadingResults);
 
       console.log(`READ HASH BYTE ARRAY CALLED: ${Date.now()}`);
 
-      const signatureByteArray = await NfcManager.sendMifareCommandIOS([
-        0x3a, 0x84, 0xa4,
-      ]);
+      const signatureByteArray = await cmd([0x3a, 0x84, 0xa4]);
 
       console.log(
         'hashes',
@@ -643,10 +626,7 @@ export const getNfcFns = ({
        *********************/
 
       await asyncWrapper(
-        NfcManager.sendMifareCommandIOS([
-          0x30,
-          (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1,
-        ]),
+        cmd([0x30, (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1]),
         err => {
           goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_LAST_NDEF, err);
         },
@@ -654,252 +634,25 @@ export const getNfcFns = ({
       /****************
        * Verification. *
        ****************/
-      await NfcManager.setAlertMessageIOS(
-        strings.textProcessingPreparingResultsIOS,
-      );
+      sendProcessingMessage(strings.textProcessingPreparingResults);
 
       console.log(`Starting verification (in ms): ${Date.now()}`);
 
       await nfcStartFullVerification();
     } catch (err) {
-      NfcManager.setAlertMessageIOS(strings.textProcessingPreparingResultsIOS);
+      sendProcessingMessage(strings.textProcessingPreparingResults);
       console.log(err);
       goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_INFO, err);
       throw err;
     }
   };
-  const nfcAndroidScanFull = async () => {
-    /*********************
-     * Start NFC Handler. *
-     *********************/
-    try {
-      const isSupported = await NfcManager.isSupported();
 
-      console.log(`CHECK SUPPORT: ${Date.now()}`);
-
-      isSupported &&
-        (await asyncWrapper(NfcManager.requestTechnology(NfcTech.NfcA), err => {
-          navigateToFail(
-            strings.textFailNfcTechRequestWarning,
-            strings.textFailNfcTechRequestDescription + '\n(' + err + ')',
-          );
-          NfcManager.cancelTechnologyRequest();
-        }));
-
-      console.log(`TECH REQUEST: ${Date.now()}`);
-
-      // Update view.
-      // TODO
-      // this._goToScreen('atProcessing', strings.textProcessingStartAndroid);
-
-      /******************
-       * Check Tag Type. *
-       ******************/
-
-      const ret = await asyncWrapper(
-        NfcManager.transceive([0x3a, 0x11, 0x15]),
-        err => {
-          navigateToFail(
-            strings.textFailUnknownTagTypeWarning,
-            strings.textFailUnknownTagTypeDescription + '\n(' + err + ')',
-          );
-          NfcManager.cancelTechnologyRequest();
-        },
-      );
-
-      console.log(`CHECKING TAG TYPE: ${Date.now()}`);
-
-      let validTag =
-        JSON.stringify(ret.slice(2, -2)) ==
-        JSON.stringify([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3]);
-
-      // This should be removed once we have settled on an appropriate tag type check...
-      validTag = true;
-
-      if (validTag) {
-        /******************************
-         * Get Configuration Register. *
-         ******************************/
-
-        const configBytes = await asyncWrapper(
-          NfcManager.transceive([0x30, 0xe8]),
-          err => {
-            // this._goToNfcFailScreen('nfcFailReadConfigWarning', err);
-          },
-        );
-
-        updateNfcData({
-          icBlockWithLastNdefRecord: configBytes[1],
-        });
-
-        /************
-         * Get Keys. *
-         ************/
-
-        const ret = await asyncWrapper(
-          NfcManager.transceive([0x3a, 0x15, 0x42]),
-          err => {
-            // this._goToNfcFailScreen('nfcFailReadHashesWarning', err);
-          },
-        );
-        let mifareRecord = nfcMifareParseRecord(ret);
-        updateNfcData(mifareRecord);
-        await asyncWrapper(
-          fetchChainData(FetchChainDataType.LATEST_BLOCK),
-          err => {
-            navigateToFail(
-              strings.textFailBlockchainGetLatestBlockAndRegistrationWarning,
-              strings.textFailBlockchainGetLatestBlockAndRegistrationDescription +
-                '\n(' +
-                err +
-                ')',
-            );
-            NfcManager.cancelTechnologyRequest();
-          },
-        );
-        const randomBytes = await asyncWrapper(
-          Random.getRandomBytesAsync(32),
-          err => {
-            // this._goToNfcFailScreen('nfcFailRng', err);
-          },
-        );
-        const randomNumber = bytesToHex(randomBytes);
-
-        // Create short-hand names for block variables.
-        const blockHash = state.blockchainData.blockHash;
-        // var blockTime = this.state.blockchainData.blockTime;
-
-        // Create combined hash for input record.
-        const combinedHash = utils
-          .sha256('0x' + randomNumber + blockHash)
-          .slice(2);
-
-        const completeMemory = structureNdefMessage(
-          randomNumber,
-          blockHash!,
-          combinedHash,
-        );
-
-        // Create array with register numbers.
-        let registers = [...Array(Math.ceil(completeMemory.length / 4)).keys()];
-
-        // Remove registers that won't be written; The input record begins at register 0xB0.
-        registers = registers.filter(register => register >= 0xb0);
-
-        // Update state.
-        updateNfcData({
-          nfcWrittenInputExternalRandomNumber: randomNumber,
-          nfcWrittenInputBlockhash: blockHash,
-          nfcWrittenInputCombinedHash: combinedHash,
-        });
-        // Write.
-        await asyncWrapper(
-          Promise.all(
-            registers.map(i => {
-              return NfcManager.transceive(
-                [0xa2]
-                  .concat(i) // Register number.
-                  .concat(
-                    completeMemory.slice(
-                      i * 4, // Start position in payload.
-                      (i + 1) * 4,
-                    ), // End position in payload.
-                  ),
-              );
-            }),
-          ),
-          err => {
-            // TODO
-            // this._goToNfcFailScreen('nfcFailWriteInput', err);
-          },
-        );
-
-        // Read lastIcBlock to finish input.
-        await asyncWrapper(
-          NfcManager.transceive([
-            0x30,
-            (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1,
-          ]),
-          err => {
-            goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_LAST_NDEF, err);
-          },
-        );
-        /***************************
-         * Timeout for Calculation. *
-         ***************************/
-
-        await asyncWrapper(delay(2500), err => {
-          goToNfcFailScreen(NfcFailType.NFC_FAIL_TIMEOUT, err);
-        });
-        /****************
-         * Read Results. *
-         ****************/
-
-        const hashByteArray = await asyncWrapper(
-          NfcManager.transceive([0x3a, 0x64, 0x84]),
-          err => {
-            goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_HASHES, err);
-          },
-        );
-        const signatureByteArray = await asyncWrapper(
-          NfcManager.transceive([0x3a, 0x84, 0xa4]),
-          err => {
-            goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_SIGNATURES, err);
-          },
-        );
-        const mifareData = nfcMifareReadPayload(
-          hashByteArray,
-          signatureByteArray,
-        );
-
-        // Update state.
-        updateNfcData(mifareData);
-
-        /*********************
-         * Confirmation Read. *
-         *********************/
-
-        await asyncWrapper(
-          NfcManager.transceive([
-            0x30,
-            (nfcData.icBlockWithLastNdefRecord! + 1) * 4 - 1,
-          ]),
-          err => {
-            // this._goToNfcFailScreen('nfcFailReadLastNdef', err);
-          },
-        );
-
-        /****************
-         * Verification. *
-         ****************/
-
-        console.log(`Starting verification (in ms): ${Date.now()}`);
-
-        // this._goToScreen(
-        //   'atProcessing',
-        //   strings.textProcessingVerificationStartAndroid,
-        // );
-        // this._nfcStartFullVerification();
-      } else {
-        navigateToFail(
-          strings.textFailUnknownTagTypeWarning,
-          strings.textFailUnknownTagTypeDescription,
-        );
-        NfcManager.cancelTechnologyRequest();
-      }
-    } catch (err) {
-      navigateToFail(
-        strings.textFailNfcSupportWarning,
-        strings.textFailNfcSupportDescription + '\n(' + err + ')',
-      );
-      NfcManager.cancelTechnologyRequest();
-    }
-  };
   const nfcStartFullVerification = async () => {
     /******************************************
      * Check Registration and Begin Challenge. *
      ******************************************/
     const localDevice = getLocalDevice(nfcData.nfcReadInfoPrimaryPublicKeyHash);
+    console.log('LOCAL', localDevice);
     let hardwareHash;
     let promises: Promise<any>[] = [];
     if (localDevice) {
@@ -941,66 +694,31 @@ export const getNfcFns = ({
     }
     await Promise.all(promises);
     if (state.blockchainData.verifiedProof == true) {
-      if (Platform.OS == 'android') {
-        try {
-          const stateBytes = await NfcManager.transceive([0x3a, 0xac, 0xaf]);
-          var debugCode = hexToAscii(bytesToHex(stateBytes));
-          updateNfcData({debugCode});
-        } catch (err) {
-          console.log(`error from transceive: ${err}`);
-        }
+      try {
+        const stateBytes = await cmd([0x3a, 0xac, 0xaf]);
+        const debugCode = hexToAscii(bytesToHex(stateBytes));
+        updateNfcData({debugCode});
+        await NfcManager.cancelTechnologyRequest();
+      } catch (err) {
+        console.log('Could not close NFC technology: ' + err);
+      }
+      try {
+        await fetchChainData(
+          FetchChainDataType.CONTRACT_CODE,
+          state.blockchainData.contractVerifierAddress,
+        );
 
-        await NfcManager.cancelTechnologyRequest().catch(err => {
-          console.log('Could not close NFC technology: ' + err);
-        });
-        try {
-          await fetchChainData(
-            FetchChainDataType.CONTRACT_CODE,
-            state.blockchainData.contractVerifierAddress,
-          );
-          // TODO: fetch against server to see if there is any registered content
-          if (nfcData.nfcReadInfoPrimaryPublicKey) {
-            await getBridgeData(nfcData.nfcReadInfoPrimaryPublicKey);
-            await verifyMerkleProof();
-          }
-        } catch (err) {
-          navigateToFail(
-            strings.textFailBlockchainGetStateAndCodeWarning,
-            strings.textFailBlockchainGetStateAndCodeDescription +
-              '\n(' +
-              err +
-              ')',
-          );
-        }
-      } else {
-        try {
-          const stateBytes = await NfcManager.sendMifareCommandIOS([
-            0x3a, 0xac, 0xaf,
-          ]);
-          const debugCode = hexToAscii(bytesToHex(stateBytes));
-          updateNfcData({debugCode});
-          await NfcManager.cancelTechnologyRequest();
-        } catch (err) {
-          console.log('Could not close NFC technology: ' + err);
-        }
-        try {
-          await fetchChainData(
-            FetchChainDataType.CONTRACT_CODE,
-            state.blockchainData.contractVerifierAddress,
-          );
-
-          // TODO: fetch against server to see if there is any registered content
-          await getBridgeData(nfcData.nfcReadInfoPrimaryPublicKey!);
-          await verifyMerkleProof();
-        } catch (err) {
-          navigateToFail(
-            strings.textFailBlockchainGetStateAndCodeWarning,
-            strings.textFailBlockchainGetStateAndCodeDescription +
-              '\n(' +
-              err +
-              ')',
-          );
-        }
+        // TODO: fetch against server to see if there is any registered content
+        await getBridgeData(nfcData.nfcReadInfoPrimaryPublicKey!);
+        await verifyMerkleProof();
+      } catch (err) {
+        navigateToFail(
+          strings.textFailBlockchainGetStateAndCodeWarning,
+          strings.textFailBlockchainGetStateAndCodeDescription +
+            '\n(' +
+            err +
+            ')',
+        );
       }
 
       // NOTE: this covers the deprecated contract flow.
@@ -1028,27 +746,15 @@ export const getNfcFns = ({
       try {
         await Promise.all([fetchChainData(FetchChainDataType.ERC20_BALANCE)]); // Attempt to get debug code.
         try {
-          const stateBytes = await NfcManager.transceive([0x3a, 0xac, 0xaf]);
+          const stateBytes = await cmd([0x3a, 0xac, 0xaf]);
 
           const debugCode = hexToAscii(bytesToHex(stateBytes));
           updateNfcData({debugCode});
         } catch (err) {
-          console.log(`error from transceive: ${err}`);
-        }
-        if (Platform.OS == 'android') {
-          console.log('Beginning android verification.');
-        } else {
-          NfcManager.cancelTechnologyRequest().catch(err => {
-            console.log('Could not close NFC technology: ' + err);
-          });
-          console.log('Beginning ios verification.');
+          console.log(`error: ${err}`);
         }
         verifyEscrow();
       } catch (err) {
-        // navigateToFail(
-        //   strings.textFailBlockchainGetERC20DataWarning,
-        //   strings.textFailBlockchainGetERC20DataDescription + '\n(' + err + ')',
-        // );
         NfcManager.cancelTechnologyRequest().catch(err => {
           console.log('Could not close NFC technology: ' + err);
         });
@@ -1056,44 +762,22 @@ export const getNfcFns = ({
     } else {
       await getBridgeData(nfcData.nfcReadInfoPrimaryPublicKey!);
 
-      if (Platform.OS == 'ios') {
-        try {
-          const stateBytes = await NfcManager.sendMifareCommandIOS([
-            0x3a, 0xac, 0xaf,
-          ]);
-          const debugCode = hexToAscii(bytesToHex(stateBytes));
+      try {
+        const stateBytes = await cmd([0x3a, 0xac, 0xaf]);
+        const debugCode = hexToAscii(bytesToHex(stateBytes));
 
-          updateNfcData({debugCode});
+        updateNfcData({debugCode});
 
-          NfcManager.cancelTechnologyRequest().catch(err => {
-            console.log('Could not close NFC technology: ' + err);
-          });
-          console.log('entered here');
-          await verifyUnknownDevice();
-        } catch (err) {
-          NfcManager.cancelTechnologyRequest().catch(err => {
-            console.log('Could not close NFC technology: ' + err);
-          });
-          await verifyUnknownDevice();
-        }
-      } else {
-        try {
-          const stateBytes = await NfcManager.transceive([0x3a, 0xac, 0xaf]);
-
-          const debugCode = hexToAscii(bytesToHex(stateBytes));
-          updateNfcData({debugCode});
-          await verifyUnknownDevice();
-        } catch (err) {
-          // Commneting out because of simulated mode.
-          navigateToFail(
-            '',
-            '\n(' + err + ' / Could not get debug code / Unregistered device.)',
-          );
-          NfcManager.cancelTechnologyRequest().catch(err => {
-            console.log('Could not close NFC technology: ' + err);
-          });
-          await verifyUnknownDevice();
-        }
+        NfcManager.cancelTechnologyRequest().catch(err => {
+          console.log('Could not close NFC technology: ' + err);
+        });
+        console.log('entered here');
+        await verifyUnknownDevice();
+      } catch (err) {
+        NfcManager.cancelTechnologyRequest().catch(err => {
+          console.log('Could not close NFC technology: ' + err);
+        });
+        await verifyUnknownDevice();
       }
     }
   };
@@ -1106,8 +790,9 @@ export const getNfcFns = ({
       console.warn('goToNfcSetting fail', err);
     }
   };
+
   const goToNfcFailScreen = async (failType: NfcFailType, err: any) => {
-    NfcManager.setAlertMessageIOS(strings.textProcessingPreparingResultsIOS);
+    await sendProcessingMessage(strings.textProcessingPreparingResults);
 
     // TODO: catch actual NFC error message from system, notable in timeout
     let warning: string = '',
@@ -1155,19 +840,12 @@ export const getNfcFns = ({
         break;
     }
 
-    // Print out current state.
-    // console.log('Fail state:');
-    // console.log(this.state);
-    // for (i = 0; i <= this.state.length; i ++) {
-    //     console.log(this.state[i]);
-    // }
-
     // Set prev error so we pass along
     let passedErr = err;
     let stateBytes: Uint8Array | number[] = [];
-    if (isIOS && state.fullVerification) {
+    if (state.fullVerification) {
       try {
-        stateBytes = await NfcManager.sendMifareCommandIOS([0x3a, 0xac, 0xaf]);
+        stateBytes = await cmd([0x3a, 0xac, 0xaf]);
         const debugCode = hexToAscii(bytesToHex(stateBytes));
         console.warn(debugCode);
         navigateToFail(
@@ -1188,7 +866,7 @@ export const getNfcFns = ({
           console.log('Could not cancel NFC request: ' + err);
         });
       }
-    } else if (Platform.OS == 'ios') {
+    } else {
       const debugCode = hexToAscii(bytesToHex(stateBytes));
       console.warn(debugCode);
       navigateToFail(
@@ -1198,27 +876,6 @@ export const getNfcFns = ({
       NfcManager.cancelTechnologyRequest().catch(err => {
         console.log('Could not cancel NFC request: ' + err);
       });
-    } else if (Platform.OS == 'android') {
-      try {
-        const stateBytes = await NfcManager.transceive([0x3a, 0xac, 0xaf]);
-        const debugCode = hexToAscii(bytesToHex(stateBytes));
-        console.warn(debugCode);
-        navigateToFail(
-          warning,
-          description + '\n\n(System: ' + err + ' /' + debugCode + ')',
-        );
-        NfcManager.cancelTechnologyRequest().catch(err => {
-          console.log('Could not close NFC technology: ' + err);
-        });
-      } catch (err) {
-        navigateToFail(
-          warning,
-          description + '\n\n(System: ' + err + ' / Could not get debug code)',
-        );
-        NfcManager.cancelTechnologyRequest().catch(err => {
-          console.log('Could not close NFC technology: ' + err);
-        });
-      }
     }
   };
 
@@ -1228,13 +885,24 @@ export const getNfcFns = ({
     nfcStart,
     nfcScanStart,
     nfcQuickScan,
-    nfcIOSScanFull,
-    nfcAndroidScanFull,
+    nfcScanFull,
     goToNfcSetting,
   };
 };
 
 // UTILS
+
+const cmd: (bytes: number[]) => Promise<number[]> = bytes =>
+  isIOS ? NfcManager.sendMifareCommandIOS(bytes) : NfcManager.transceive(bytes);
+
+const sendProcessingMessage = async (message: string) => {
+  if (isIOS) {
+    await NfcManager.setAlertMessageIOS(message);
+  } else {
+    updateParams({message});
+  }
+};
+
 const nfcValidateRecords = (tag: TagEvent | null) => {
   // Validate tag format.
   let validRecord = true;

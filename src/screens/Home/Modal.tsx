@@ -14,19 +14,24 @@ import {scale} from '../../common/utils';
 import {useWallet} from '../../hooks/useWallet';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
-const {width} = Dimensions.get('screen');
+const {width} = Dimensions.get('window');
 interface IVerifyBeforeClaimModal {
   isVisible: boolean;
+  header: string;
+  body: string;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onPressFn: () => Promise<void>;
 }
 
 const ASSETS = '../../../assets';
 
-export const VerifyBeforeClaimModal: FC<IVerifyBeforeClaimModal> = ({
+export const Modal: FC<IVerifyBeforeClaimModal> = ({
   isVisible,
   setIsVisible,
+  header,
+  body,
+  onPressFn,
 }) => {
-  const connector = useWalletConnect();
   const {
     setters: {setFullVerification},
   } = useGlobalStore();
@@ -41,7 +46,7 @@ export const VerifyBeforeClaimModal: FC<IVerifyBeforeClaimModal> = ({
         </View>
         <View style={VerifyBeforeClaimStyles.viewVerifyBeforeClaimContainer}>
           <Text style={VerifyBeforeClaimStyles.textConnectStyles}>
-            CONNECT YOUR WALLET
+            {header}
           </Text>
           <Text
             style={{
@@ -50,22 +55,17 @@ export const VerifyBeforeClaimModal: FC<IVerifyBeforeClaimModal> = ({
               fontSize: scale(15),
               lineHeight: scale(22),
             }}>
-            Your account is not associated with any wallet. Please add your
-            wallet to continue claiming an item.
+            {body}
           </Text>
         </View>
         <Button
-          title={'CONNECT WALLET'}
+          title={header}
           titleStyle={VerifyBeforeClaimStyles.textButtonConnectVerify}
           buttonStyle={buttonStyles.buttonPrimary}
           onPress={async () => {
             setFullVerification(true);
             setIsVisible(false);
-            try {
-              await connector.connect();
-            } catch (e) {
-              console.log(e);
-            }
+            await onPressFn();
           }}
         />
       </View>

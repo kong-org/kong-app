@@ -44,6 +44,8 @@ export const Routes = () => {
         },
         headerShadowVisible: false,
         gestureEnabled: false,
+        headerBackVisible: false,
+        headerTitleAlign: 'center',
       }}>
       <Stack.Screen
         name="FirstLaunch"
@@ -194,7 +196,18 @@ const RevealRoutes = ({resetState}: {resetState: () => void}) => {
         name="Reveal"
         component={Reveal}
         options={({navigation}) => ({
-          headerShown: false,
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation?.navigate('Home');
+                resetState();
+              }}>
+              <Image
+                style={{height: 25, resizeMode: 'contain'}}
+                source={require('../../../assets/img/cross.png')}
+              />
+            </TouchableOpacity>
+          ),
         })}
       />
       <Stack.Screen

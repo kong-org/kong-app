@@ -10,7 +10,7 @@ import {Button} from 'react-native-elements';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import {scale} from '../../common/utils';
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IHome {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Fail'>;
   route: RouteProp<RootStackParamList, 'Fail'>;

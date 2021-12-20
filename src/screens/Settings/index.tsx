@@ -25,7 +25,7 @@ import {SettingsStyles} from './styles';
 import {EditableSettings} from './EditableSettings';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 import {connected} from 'process';
-var {height} = Dimensions.get('screen');
+var {height} = Dimensions.get('window');
 interface ISettings {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Settings'>;
 }
@@ -34,13 +34,8 @@ const ASSETS = '../../../assets';
 export const Settings: FC<ISettings> = ({navigation}) => {
   const {
     state: {fullVerification, chainSettings, resetButtonText},
-    setters: {setFullVerification, setChainSettings, setResetButtonText},
-    methods: {
-      resetToDefaultSettings,
-      blockchain: {loadContracts},
-    },
+    setters: {setFullVerification},
   } = useGlobalStore();
-  const [runReset, setRunReset] = useState(false);
 
   const connector = useWalletConnect();
 
@@ -106,6 +101,8 @@ export const Settings: FC<ISettings> = ({navigation}) => {
                     fontWeight: 'bold',
                   }}>
                   {connected ? 'DISCONNECT' : 'CONNECT'}
+                  {/* There's a bug where bold font will cut out the last letter on RN android */}
+                  {!isIOS && '  '}
                 </Text>
               </TouchableOpacity>
             </View>

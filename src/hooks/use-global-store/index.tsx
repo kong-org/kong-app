@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createContext, ReactNode, useContext, useState} from 'react';
 import {useMMKVBoolean} from 'react-native-mmkv';
 import WalletConnect from '@walletconnect/client';
@@ -21,6 +21,7 @@ import {ec} from 'elliptic';
 import {getVerificationFns} from './verification';
 import {getNfcFns} from './nfc';
 import {Platform} from 'react-native';
+import {isJSONable} from '../../common/utils';
 const GlobalStateContext = createContext<IStore | undefined>(undefined);
 
 interface IStore {
@@ -63,6 +64,7 @@ interface IMethods {
   refreshDeviceProofs: () => Promise<void>;
   resetState: () => void;
   blockchain: {
+    getBridgeData: (publicKey: string) => Promise<void>;
     loadContracts: (connector?: any) => Promise<void>;
   };
   verification: {
@@ -91,8 +93,6 @@ interface IMethods {
     nfcStart: () => Promise<void>;
     nfcScanStart: () => void;
     nfcQuickScan: () => Promise<void>;
-    nfcIOSScanFull: () => Promise<void>;
-    nfcAndroidScanFull: () => Promise<void>;
     goToNfcSetting: () => Promise<void>;
   };
 }
@@ -126,16 +126,43 @@ export const initializeGlobalStore = (): IStore => {
   const [nfcData, setNfcData] = useState({});
   const [curveData, setCurveData] = useState({} as CurveData);
   const [nfcSettings, setNfcSettings] = useState({});
-  const [chainSettings, setChainSettings] = useState<ChainSettings>({
-    ethNode: MMKV.getString(MMKVKeys.ETH_NODE) ?? defaultSettings.ethNode,
-    ipfsNode: MMKV.getString(MMKVKeys.IPFS_NODE) ?? defaultSettings.ipfsNode,
-    bridgeNode:
-      MMKV.getString(MMKVKeys.BRIDGE_NODE) ?? defaultSettings.bridgeNode,
-    registerAddress:
-      (MMKV.getString(MMKVKeys.REGISTER_ADDRESS) &&
-        JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS)!)) ??
-      defaultSettings.registerAddress,
-  });
+  const [chainSettings, setChainSettings] = useState<ChainSettings>(
+    {} as ChainSettings,
+  );
+
+  const fetchDefaults = async () => {
+    let data;
+    try {
+      const response = await (
+        await fetch(`${chainSettings.bridgeNode}/defaults`)
+      ).text();
+      data = isJSONable(response) && JSON.parse(response);
+    } catch (e) {
+      console.log(e);
+    }
+    // chainSettings set in order of MMKV > bridgeDefaults > localDefaults
+    setChainSettings({
+      ethNode:
+        MMKV.getString(MMKVKeys.ETH_NODE) ??
+        data.ethNode ??
+        defaultSettings.ethNode,
+      ipfsNode:
+        MMKV.getString(MMKVKeys.IPFS_NODE) ??
+        data.ipfsNode ??
+        defaultSettings.ipfsNode,
+      bridgeNode:
+        MMKV.getString(MMKVKeys.BRIDGE_NODE) ?? defaultSettings.bridgeNode,
+      registerAddress:
+        (MMKV.getString(MMKVKeys.REGISTER_ADDRESS) &&
+          JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS)!)) ??
+        data.contracts ??
+        defaultSettings.registerAddress,
+    });
+  };
+  useEffect(() => {
+    fetchDefaults();
+  }, [chainSettings.bridgeNode]);
+
   const [blockchainData, setBlockchainData] = useState<BlockChainData>(
     {} as BlockChainData,
   );
@@ -147,6 +174,7 @@ export const initializeGlobalStore = (): IStore => {
 
   const [headlessVerification, setHeadlessVerification] =
     useState<boolean>(false);
+
   // TODO: fix anti-pattern => loading state into a object to be used amongst methods
   // since state is async and will not update within a single render
   const currentState: CurrentState = {
@@ -191,8 +219,6 @@ export const initializeGlobalStore = (): IStore => {
     nfcStart,
     nfcScanStart,
     nfcQuickScan,
-    nfcIOSScanFull,
-    nfcAndroidScanFull,
     goToNfcSetting,
     nfcReveal,
   } = getNfcFns({
@@ -314,6 +340,7 @@ export const initializeGlobalStore = (): IStore => {
       resetState,
       blockchain: {
         loadContracts,
+        getBridgeData,
       },
       verification: {
         verifyEscrow,
@@ -328,8 +355,6 @@ export const initializeGlobalStore = (): IStore => {
         nfcStart,
         nfcScanStart,
         nfcQuickScan,
-        nfcIOSScanFull,
-        nfcAndroidScanFull,
         goToNfcSetting,
       },
     },

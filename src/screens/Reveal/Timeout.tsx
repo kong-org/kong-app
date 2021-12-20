@@ -15,7 +15,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {scale} from '../../common/utils';
 
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IReveal {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Reveal'>;
 }

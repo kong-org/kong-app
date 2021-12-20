@@ -7,21 +7,25 @@ interface IVideo {
   style?: StyleProp<ViewStyle>;
   source: AVPlaybackSource | undefined;
   isLooping?: boolean;
+  isMuted?: boolean;
 }
 
+export let videoRef: React.MutableRefObject<VideoPlayer | null>;
 export const Video: FC<IVideo> = ({
   style = {width: 350, height: 350},
   source,
   isLooping = true,
+  isMuted = false,
 }) => {
   const {video} = useVideoRef();
-
+  videoRef = video;
   return (
     <VideoPlayer
       ref={video}
       source={source}
       style={style}
       isLooping={isLooping}
+      isMuted={isMuted}
       resizeMode="cover"
     />
   );

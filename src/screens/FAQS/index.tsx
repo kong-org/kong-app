@@ -12,7 +12,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import strings from '../../../assets/text/strings';
 import {scale} from '../../common/utils';
 import {RootStackParamList} from '../Routes/RootStackParamList';
-const {height} = Dimensions.get('screen');
+const {height} = Dimensions.get('window');
 interface IFAQ {
   navigation: NativeStackNavigationProp<RootStackParamList, 'FAQS'>;
 }

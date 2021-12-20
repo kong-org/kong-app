@@ -1,17 +1,24 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
-import React, {FC} from 'react';
-import {Dimensions, StatusBar, StyleSheet, Text, View} from 'react-native';
+import React, {FC, useEffect, useRef} from 'react';
+import {
+  Animated,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {Button} from 'react-native-elements';
 import buttonStyles from '../../../assets/styles/buttonStyles';
 import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
-import {useVideoRef} from '../../hooks/useVideoRef';
 import {RouteProp} from '@react-navigation/native';
 import {scale} from '../../common/utils';
 import {Video} from '../../components/Video';
+import {useGlobalStore} from '../../hooks/use-global-store';
 
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IReveal {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Reveal'>;
   route: RouteProp<RootStackParamList, 'Reveal'>;
@@ -23,41 +30,56 @@ export const Reveal: FC<IReveal> = ({route, navigation}) => {
   } = route.params;
 
   const headerHeight = useHeaderHeight();
-  const {video} = useVideoRef();
-  const imageId = image?.split('/')[2];
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const RevealStyles = RevealStylesFn(headerHeight);
+  const imageId = image?.split('/')[2];
+  const {
+    state: {nfcData},
+    methods: {
+      blockchain: {getBridgeData},
+      verification: {verifyMerkleProof},
+    },
+  } = useGlobalStore();
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 5000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+  const verificationFn = async () => {
+    await getBridgeData(nfcData.nfcReadInfoPrimaryPublicKey!);
+    await verifyMerkleProof();
+  };
   return (
-    <View style={RevealStyles.viewReveal}>
+    <View style={{...RevealStyles.viewReveal}}>
       <StatusBar barStyle="light-content" />
-
-      <SafeAreaView style={RevealStyles.viewRevealBody}>
-        <View
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}>
+      <Animated.View style={{opacity: fadeAnim}}>
+        <SafeAreaView style={RevealStyles.viewRevealBody}>
           <Video
             source={{
               uri: `https://ipfs.io/ipfs/${imageId}`,
             }}
+            style={{width, height: 350}}
+            isLooping
           />
-        </View>
-        <Text
-          style={
-            RevealStyles.textRevealWelcome
-          }>{`WELCOME,\n CITIZEN #${tokenId}`}</Text>
-        <View
-          style={{
-            width: width - 2 * 25,
-          }}>
-          <Button
-            title={'VERIFICATION DETAILS'}
-            titleStyle={RevealStyles.textButtonVerification}
-            buttonStyle={buttonStyles.buttonSecondary}
-            onPress={() => navigation.navigate('Polling')}
-          />
-        </View>
-      </SafeAreaView>
+          <Text
+            style={
+              RevealStyles.textRevealWelcome
+            }>{`WELCOME,\n CITIZEN #${parseInt(tokenId, 16)}`}</Text>
+          <View
+            style={{
+              width: width - 2 * 25,
+            }}>
+            <Button
+              title={'VERIFICATION DETAILS'}
+              titleStyle={RevealStyles.textButtonVerification}
+              buttonStyle={buttonStyles.buttonSecondary}
+              onPress={verificationFn}
+            />
+          </View>
+        </SafeAreaView>
+      </Animated.View>
     </View>
   );
 };
@@ -76,6 +98,7 @@ const RevealStylesFn = (headerHeight: number) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      width: width,
     },
     textRevealWelcome: {
       color: '#FFFFFF',

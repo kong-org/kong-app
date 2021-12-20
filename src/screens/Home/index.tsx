@@ -15,12 +15,12 @@ import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import {useHeaderHeight} from '@react-navigation/elements';
-import {VerifyBeforeClaimModal} from './VerifiyBeforeClaimModal';
+import {Modal} from './Modal';
 import {useWallet} from '../../hooks/useWallet';
-import {scale} from '../../common/utils';
+import {isIOS, scale} from '../../common/utils';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
-
-const {height, width} = Dimensions.get('screen');
+import NfcManager from 'react-native-nfc-manager';
+const {height, width} = Dimensions.get('window');
 interface IHome {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
 }
@@ -34,22 +34,45 @@ export const Home: FC<IHome> = ({navigation}) => {
   const {
     state: {
       nfcSettings: {nfcSupported},
-      fullVerification,
     },
     methods: {
-      nfc: {nfcScanStart, nfcClaim},
+      nfc: {nfcScanStart, nfcClaim, goToNfcSetting, nfcStart},
     },
   } = useGlobalStore();
   const connector = useWalletConnect();
   const {walletAddress, connected} = useWallet(connector);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isConnectWalletModalVisible, setIsConnectWalletModalVisible] =
+    useState(false);
+
+  const [isConfigureNFCVisible, setIsConfigureNFCVisible] = useState(false);
 
   const claimHandler = async () => {
-    console.log(connected);
     if (!connected) {
-      setIsModalVisible(true);
+      setIsConnectWalletModalVisible(true);
     } else {
       await nfcClaim(walletAddress!);
+    }
+  };
+
+  const nfcStartHandler = async () => {
+    if (isIOS) {
+      nfcScanStart();
+    } else {
+      const isNfcEnabled = await NfcManager.isEnabled();
+      if (!isNfcEnabled) {
+        setIsConfigureNFCVisible(true);
+      } else {
+        await nfcStart();
+        nfcScanStart();
+      }
+    }
+  };
+
+  const connectWalletModalFn = async () => {
+    try {
+      await connector.connect();
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -79,7 +102,7 @@ export const Home: FC<IHome> = ({navigation}) => {
               }
               titleStyle={HomeStyles.textButtonScan}
               buttonStyle={buttonStyles.buttonPrimary}
-              onPress={nfcSupported ? nfcScanStart : () => {}}
+              onPress={nfcSupported ? nfcStartHandler : () => {}}
             />
             {nfcSupported && (
               <Button
@@ -93,10 +116,26 @@ export const Home: FC<IHome> = ({navigation}) => {
           </View>
         </View>
       </SafeAreaView>
-      <VerifyBeforeClaimModal
-        isVisible={isModalVisible}
-        setIsVisible={setIsModalVisible}
+      <Modal
+        isVisible={isConnectWalletModalVisible}
+        setIsVisible={setIsConnectWalletModalVisible}
+        header={'CONNECT YOUR WALLET'}
+        body={
+          ' Your account is not associated with any wallet. Please add your wallet to continue claiming an item.'
+        }
+        onPressFn={connectWalletModalFn}
       />
+      {!isIOS && (
+        <Modal
+          isVisible={isConfigureNFCVisible}
+          setIsVisible={setIsConfigureNFCVisible}
+          header={'Enable NFC'}
+          body={
+            'Your device is capable of NFC scanning but NFC is disabled. To enable NFC, press the button below'
+          }
+          onPressFn={goToNfcSetting}
+        />
+      )}
     </View>
   );
 };
@@ -116,7 +155,7 @@ const HomeStylesFn = (headerHeight: number) =>
       height: height * 0.5,
     },
     viewHomeBody: {
-      position: 'absolute',
+      // position: 'absolute',
       height: height - headerHeight,
       display: 'flex',
       justifyContent: 'flex-end',

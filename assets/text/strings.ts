@@ -47,24 +47,19 @@ const strings = new LocalizedStrings({
 
     // Processing
     textProcessingHeading: 'STAY STILL',
-    textProcessingBody: 'Keep the device on your phone',
+    textProcessingBody: 'Keep your phone on the device',
     // NFC Scan: iOS Specific.
-    textProcessingNewTagIOS: 'Beginning verification...',
-    textProcessingTouchNoteIOS: 'Hold iPhone near a NDEF Tag to scan',
-    textProcessingQuickTouchNoteIOS: 'Hold iPhone near a NDEF Tag to scan',
-    textProcessingNoteDetectedIOS: "Tag detected, don't move while scanning",
-    textProcessingUniqueInfoIOS:
+    textProcessingNewTag: 'Beginning verification...',
+    textProcessingTouchNote: 'Hold phone near a NDEF Tag to scan',
+    textProcessingQuickTouchNote: 'Hold phone near a NDEF Tag to scan',
+    textProcessingNoteDetected: "Tag detected, don't move while scanning",
+    textProcessingUniqueInfo:
       "Getting unique tag information, don't move while scanning",
-    textProcessingSendingChallengeIOS:
+    textProcessingSendingChallenge:
       "Sending challenge, this will take a moment, don't move while scanning",
-    textProcessingReadingResultsIOS:
-      "Reading results, don't move while scanning",
-    textProcessingPreparingResultsIOS: 'Scan complete, preparing results...',
-    textProcessingVerificationStartIOS: 'Preparing results...',
-
-    // NFC Scan: Android Specific.
-    textProcessingStartAndroid: 'NFC / Blockchain communication...',
-    textProcessingVerificationStartAndroid: 'Preparing results...',
+    textProcessingReadingResults: "Reading results, don't move while scanning",
+    textProcessingPreparingResults: 'Scan complete, preparing results...',
+    textProcessingVerificationStart: 'Preparing results...',
 
     // Results.
     textResultsBlockchainNodeDescription:

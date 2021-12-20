@@ -5,12 +5,12 @@ export type RootStackParamList = {
   Home: undefined;
   Settings: undefined;
   FAQS: undefined;
-  Processing: undefined;
+  Processing: {message?: string};
   Results: undefined;
   Fail: {warning: string; description: string};
   //Reveal Routse
   Detected: undefined;
-  Polling: undefined;
+  Polling: {message?: string};
   Reveal: {
     revealDetails: {
       tokenId: string;

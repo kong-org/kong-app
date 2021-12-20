@@ -5,7 +5,7 @@ import {BlockChainData, VerificationTypes} from '../../common/types';
 import {useGlobalStore} from '../../hooks/use-global-store';
 import knownValues from '../../../assets/data/knownValues.js';
 import {scale} from '../../common/utils';
-import {Video} from 'expo-av';
+import {Video} from '../../components/Video';
 
 const knownContractVersions = knownValues['knownContractVersions'] as any;
 const {PASS, WARNING, FAIL, IMPOSSIBLE} = VerificationTypes;
@@ -62,7 +62,9 @@ const getIcon = (verificationResult: VerificationTypes) => {
 };
 
 const getAssetName = (blockChainData: BlockChainData) => {
-  if (blockChainData.name) {
+  if (blockChainData.token !== undefined) {
+    return 'CITIZEN #' + parseInt(blockChainData.token.tokenId!, 16);
+  } else if (blockChainData.name) {
     return blockChainData.name;
   } else if (
     blockChainData.unscaledERC20Balance &&
@@ -72,7 +74,7 @@ const getAssetName = (blockChainData: BlockChainData) => {
       blockChainData.scaledERC20Balance
     } ${blockChainData.tokenName?.toUpperCase()}`;
   } else {
-    return '';
+    return 'UNREVEALED TOKEN';
   }
 };
 
@@ -91,15 +93,17 @@ const mapResultToResultName = (verificationResult: VerificationTypes) => {
 const getDeviceImage = (
   unscaledERC20Balance: number,
   scaledERC20Balance: number,
-  cid: string,
+  cid?: string,
+  token?: BlockChainData['token'],
 ) => {
   const [isVideo, setIsVideo] = useState(false);
+  if (token) {
+    cid = token?.image?.split('/')[2];
+  }
 
   useEffect(() => {
     if (cid) {
-      fetch(
-        'https://ipfs.io/ipfs/QmagtqYd6D2cNHudEJQnNNNS9DTnACwjLSBJoHXea9QXaq',
-      ).then(result =>
+      fetch(defaultSettings.ipfsNode + '/' + cid).then(result =>
         setIsVideo(
           // @ts-ignore
           result.headers.map['content-type'].split('/')[0] === 'video',
@@ -109,14 +113,21 @@ const getDeviceImage = (
   }, []);
 
   if (cid) {
-    if (isVideo)
+    if (isVideo) {
       return (
         <TouchableHighlight
           onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
-          <Video source={{uri: defaultSettings.ipfsNode + '/' + cid}} />
+          <Video
+            style={{
+              width: scale(175),
+              height: scale(175),
+              borderRadius: scale(30),
+            }}
+            source={{uri: defaultSettings.ipfsNode + '/' + cid}}
+          />
         </TouchableHighlight>
       );
-    else {
+    } else {
       return (
         <TouchableHighlight
           onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
@@ -218,7 +229,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
       chainSettings: {ethNode},
     },
   } = useGlobalStore();
-
+  console.log(blockchainData);
   const resultDetailsObject = {
     name: '',
     pillInfo: getEmoji(
@@ -231,6 +242,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
       blockchainData.unscaledERC20Balance!,
       blockchainData.scaledERC20Balance!,
       blockchainData.cid,
+      blockchainData.token,
     ),
     details: [] as {key: string; description?: string; image: JSX.Element}[],
     moreDetails: [] as {key: string; value: string | undefined}[],

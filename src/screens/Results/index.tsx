@@ -17,7 +17,7 @@ import {Button} from 'react-native-elements';
 import {useGetResultDetails} from './useGetResultDetails';
 import strings from '../../../assets/text/strings';
 import {scale, truncateDescription} from '../../common/utils';
-const {height, width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('window');
 interface IHome {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Results'>;
 }
