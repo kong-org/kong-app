@@ -131,7 +131,7 @@ export const initializeGlobalStore = (): IStore => {
   );
 
   const fetchDefaults = async () => {
-    let data;
+    let data: any;
     try {
       const response = await (
         await fetch(`${chainSettings.bridgeNode}/defaults`)
@@ -141,7 +141,8 @@ export const initializeGlobalStore = (): IStore => {
       console.log(e);
     }
     // chainSettings set in order of MMKV > bridgeDefaults > localDefaults
-    setChainSettings({
+    setChainSettings(prevState => ({
+      ...prevState,
       ethNode:
         MMKV.getString(MMKVKeys.ETH_NODE) ??
         data.ethNode ??
@@ -157,7 +158,7 @@ export const initializeGlobalStore = (): IStore => {
           JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS)!)) ??
         data.contracts ??
         defaultSettings.registerAddress,
-    });
+    }));
   };
   useEffect(() => {
     fetchDefaults();
