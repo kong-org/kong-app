@@ -8,21 +8,21 @@ PODS:
     - ExpoModulesCore
   - EXAV (10.1.3):
     - ExpoModulesCore
-  - EXConstants (13.0.0):
+  - EXConstants (12.1.3):
     - ExpoModulesCore
   - EXErrorRecovery (3.0.4):
     - ExpoModulesCore
-  - EXFileSystem (13.1.0):
+  - EXFileSystem (13.0.3):
     - ExpoModulesCore
   - EXFont (10.0.4):
     - ExpoModulesCore
   - EXKeepAwake (10.0.1):
     - ExpoModulesCore
-  - Expo (44.0.0):
+  - Expo (43.0.4):
     - ExpoModulesCore
   - ExpoModulesCore (0.4.9):
     - React-Core
-  - EXRandom (12.0.1):
+  - EXRandom (12.1.1):
     - React-Core
   - FBLazyVector (0.66.4)
   - FBReactNativeSpec (0.66.4):
@@ -622,14 +622,14 @@ SPEC CHECKSUMS:
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   EXApplication: 2b8f4d665e050ecddffcfb1ce258b7216b6b7777
   EXAV: 997f4fe4b410399a10f533857cd791913231358a
-  EXConstants: 1514e671cb9ef1279696a44db86e2085dfa5e6ad
+  EXConstants: 66361ff23b5ea7eae3684ffad0f15955c23b5134
   EXErrorRecovery: 9e481432a9ba7220832340911028892b49682a89
-  EXFileSystem: 35453fcb2f311ac6c67a2c77527fd4ac8dabe526
+  EXFileSystem: 624eef3e3a853f19cc0c26eaffab1519001d8c35
   EXFont: e0a7f501df6e833398dfd4b075a022370e215236
   EXKeepAwake: e190d9ee4550bcf5f8a46bdb199735f542795ebb
-  Expo: d027a753ab656b108712dc2d319abf973fae0376
+  Expo: 5b1f70fc24753f39ab3a03078ca6e598587f7e54
   ExpoModulesCore: 3478a7d76470a5b3870220cb2240cd6cd362409f
-  EXRandom: 96ad8cae9f2ba17caad172faa38f4603592f7978
+  EXRandom: 9b9f014c04850cf84e651ed100895a387106cdc3
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   Flipper: 30e8eeeed6abdc98edaf32af0cda2f198be4b733
