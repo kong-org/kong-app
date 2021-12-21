@@ -145,18 +145,18 @@ export const initializeGlobalStore = (): IStore => {
       ...prevState,
       ethNode:
         MMKV.getString(MMKVKeys.ETH_NODE) ??
-        data.ethNode ??
+        data?.ethNode ??
         defaultSettings.ethNode,
       ipfsNode:
         MMKV.getString(MMKVKeys.IPFS_NODE) ??
-        data.ipfsNode ??
+        data?.ipfsNode ??
         defaultSettings.ipfsNode,
       bridgeNode:
         MMKV.getString(MMKVKeys.BRIDGE_NODE) ?? defaultSettings.bridgeNode,
       registerAddress:
         (MMKV.getString(MMKVKeys.REGISTER_ADDRESS) &&
           JSON.parse(MMKV.getString(MMKVKeys.REGISTER_ADDRESS)!)) ??
-        data.contracts ??
+        data?.contracts ??
         defaultSettings.registerAddress,
     }));
   };

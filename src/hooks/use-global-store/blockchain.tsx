@@ -61,22 +61,22 @@ export const getBlockchainFns = ({
       new ethers.providers.JsonRpcProvider(chainSettings.ethNode);
 
     const registerMerkleRootContract: ethers.Contract = new ethers.Contract(
-      chainSettings.registerAddress.registerMerkleRoot,
+      chainSettings.registerAddress?.registerMerkleRoot,
       registerMerkleRootABI['abi'],
       provider,
     );
     const citizenERC20Contract: ethers.Contract = new ethers.Contract(
-      chainSettings.registerAddress.citizenERC20,
+      chainSettings.registerAddress?.citizenERC20,
       citizenERC20ABI['abi'],
       provider,
     );
     const citizenERC721Contract: ethers.Contract = new ethers.Contract(
-      chainSettings.registerAddress.citizenERC721,
+      chainSettings.registerAddress?.citizenERC721,
       citizenERC721ABI['abi'],
       provider,
     );
     const revealCitizenContract: ethers.Contract = new ethers.Contract(
-      chainSettings.registerAddress.revealCitizen,
+      chainSettings.registerAddress?.revealCitizen,
       revealCitizenABI['abi'],
       provider,
     );
@@ -458,7 +458,7 @@ export const getBlockchainFns = ({
               method: 'eth_call',
               params: [
                 {
-                  to: chainSettings.registerAddress.oldRegistry, // TODO: replace this this a variable that gets returned
+                  to: chainSettings.registerAddress?.oldRegistry, // TODO: replace this this a variable that gets returned
                   data:
                     hashedInterfaces.registerDevice.getRegistrationDetails +
                     (chainDataVal.length == 66
@@ -844,7 +844,7 @@ export const getBlockchainFns = ({
           console.log(connector.accounts[0]);
           const tx = await connector.sendTransaction({
             from: connector.accounts[0],
-            to: state.chainSettings.registerAddress.revealCitizen,
+            to: state.chainSettings.registerAddress?.revealCitizen,
             data: encodedDataABI,
           });
           return tx;

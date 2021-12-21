@@ -30,10 +30,10 @@ export const EditableSettings = () => {
     }
     // chainSettings set in order of MMKV > bridgeDefaults > localDefaults
     const defaults = {
-      ethNode: data.ethNode ?? defaultSettings.ethNode,
-      ipfsNode: data.ipfsNode ?? defaultSettings.ipfsNode,
+      ethNode: data?.ethNode ?? defaultSettings.ethNode,
+      ipfsNode: data?.ipfsNode ?? defaultSettings.ipfsNode,
       bridgeNode: defaultSettings.bridgeNode,
-      registerAddress: data.contracts ?? defaultSettings.registerAddress,
+      registerAddress: data?.contracts ?? defaultSettings.registerAddress,
     };
     setChainSettings(defaults);
     try {
@@ -153,7 +153,7 @@ export const EditableSettings = () => {
           loadContracts();
         }}
         multiline={true}
-        value={chainSettings.registerAddress.registerMerkleRoot}
+        value={chainSettings.registerAddress?.registerMerkleRoot}
       />
       <Text style={SettingsStyles.textSettingsScan}>CITIZEN ERC20</Text>
       <TextInput
@@ -176,7 +176,7 @@ export const EditableSettings = () => {
           loadContracts();
         }}
         multiline={true}
-        value={chainSettings.registerAddress.citizenERC20}
+        value={chainSettings.registerAddress?.citizenERC20}
       />
       <Text style={SettingsStyles.textSettingsScan}>CITIZEN ERC721</Text>
       <TextInput
@@ -199,7 +199,7 @@ export const EditableSettings = () => {
           loadContracts();
         }}
         multiline={true}
-        value={chainSettings.registerAddress.citizenERC721}
+        value={chainSettings.registerAddress?.citizenERC721}
       />
       <Text style={SettingsStyles.textSettingsScan}>REVEAL CITIZEN</Text>
       <TextInput
@@ -222,7 +222,7 @@ export const EditableSettings = () => {
           loadContracts();
         }}
         multiline={true}
-        value={chainSettings.registerAddress.revealCitizen}
+        value={chainSettings.registerAddress?.revealCitizen}
       />
       <Text style={SettingsStyles.textSettingsReset} onPress={resetFn}>
         {resetButtonText}
