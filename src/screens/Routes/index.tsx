@@ -19,6 +19,7 @@ import {Polling} from '../Reveal/Polling';
 import {Timeout} from '../Reveal/Timeout';
 import {Reveal} from '../Reveal/Reveal';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
+import {videoRef} from '../../components/Video';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
@@ -206,9 +207,9 @@ const RevealRoutes = ({resetState}: {resetState: () => void}) => {
         options={({navigation}) => ({
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => {
-                navigation?.navigate('Home');
-                resetState();
+              onPress={async () => {
+                navigation?.navigate('Detected');
+                await videoRef.current?.replayAsync();
               }}>
               <Image
                 style={{height: 25, resizeMode: 'contain'}}
