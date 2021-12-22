@@ -227,6 +227,7 @@ export type ResultDetailsObject = {
   data: {key: string; value: string | undefined}[];
   publicKeyHash: string | undefined;
   hardwareHash: string | undefined;
+  root?: string;
   ethNode: string;
 };
 
@@ -260,6 +261,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
     data: [] as {key: string; value: string | undefined}[],
     publicKeyHash: nfcData.nfcReadInfoPrimaryPublicKeyHash,
     hardwareHash: nfcData.hardwareHash,
+    root: blockchainData.root,
     ethNode,
   };
 

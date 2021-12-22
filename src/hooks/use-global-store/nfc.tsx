@@ -86,6 +86,7 @@ export const getNfcFns = ({
     setNfcSettings(state.nfcSettings);
     nfcSettings = state.nfcSettings;
   };
+
   const updateHeadlessVerification = (input: boolean) => {
     state.headlessVerification = input;
     setHeadlessVerification(input);
@@ -348,23 +349,14 @@ export const getNfcFns = ({
       navigateToFail('Reveal Error', `Oracle cannot be created: ${oracle}`);
       return;
     }
-    // const oracle = '0x12312312312312312312312312';
-    console.log(
-      connector.accounts,
-      connector.bridge,
-      connector.key,
-      connector.networkId,
-      connector.chainId,
-    );
-    const tokenId: any = parseInt(
-      await asyncWrapper(
-        await state.chainSettings.citizenERC721Contract?.tokenOfOwnerByIndex(
-          walletAddress,
-          0,
-        ),
-        e => navigateToFail(strings.textFailDefaultWarning, `Error: ${e}`),
-      ),
-    );
+    // console.log(
+    //   connector.accounts,
+    //   connector.bridge,
+    //   connector.key,
+    //   connector.networkId,
+    //   connector.chainId,
+    // );
+
     // console.log(
     //   tokenId,
     //   ['0x' + result.r, '0x' + result.s],
@@ -378,7 +370,7 @@ export const getNfcFns = ({
     const tx = await writeChainData(
       ChainMethods.REVEAL_CTIZEN_REVEAL_ORACLE,
       connector,
-      tokenId,
+      state.blockchainData.tokenId,
       ['0x' + result.r, '0x' + result.s],
       '0x' + result.x,
       '0x' + result.y,
@@ -416,7 +408,12 @@ export const getNfcFns = ({
         navigate('Timeout');
       } else if (response.ok) {
         const responseJSON = await response.json();
-        navigate('Reveal', {revealDetails: {...responseJSON, tokenId}});
+        navigate('Reveal', {
+          revealDetails: {
+            ...responseJSON,
+            tokenId: state.blockchainData.tokenId,
+          },
+        });
         break;
       }
       i++;
@@ -434,11 +431,14 @@ export const getNfcFns = ({
       updateHeadlessVerification(false);
 
       // TODO: add more restrictive rules and conditonal handling of different contracts
-      console.log(state.blockchainData);
       if (state.blockchainData.contractAddress) {
         if (state.blockchainData.token) {
           navigate('Reveal', {revealDetails: {...state.blockchainData.token}});
         } else {
+          await fetchChainData(
+            FetchChainDataType.GET_CITIZEN_TOKEN_ID,
+            walletAddress,
+          );
           navigate('Detected');
         }
       } else {

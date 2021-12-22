@@ -31,6 +31,7 @@ export type BlockChainData = {
   contractERC20Address?: string;
   tokenSymbol?: string;
   tokenName?: string;
+  tokenId?: string;
   hardwareManufacturer?: string;
   hardwareModel?: string;
   hardwareSerial?: string;
@@ -164,6 +165,7 @@ export enum FetchChainDataType {
   ERC20_OUTGOING_TRANSFER = 'ERC20OutgoingTransfer',
   LATEST_BLOCK = 'latestBlock',
   BLOCK_BY_HASH = 'blockByHash',
+  GET_CITIZEN_TOKEN_ID = 'getCitizenTokenId',
 }
 
 export enum ChainMethods {

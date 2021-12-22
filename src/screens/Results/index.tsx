@@ -54,6 +54,7 @@ export const Results: FC<IHome> = ({navigation}) => {
     name,
     publicKeyHash,
     ethNode,
+    root,
   } = useGetResultDetails();
 
   const ResultsStyles = ResultsStylesFn(color);
@@ -206,7 +207,7 @@ export const Results: FC<IHome> = ({navigation}) => {
             <View>
               <View style={ResultsStyles.viewResultsDetailedChecks}>
                 {publicKeyHash && (
-                  <View style={{marginBottom: 20}}>
+                  <View style={{marginBottom: scale(20)}}>
                     <Text style={ResultsStyles.textResultsValueHeader}>
                       PUBLIC KEY HASH
                     </Text>
@@ -218,8 +219,9 @@ export const Results: FC<IHome> = ({navigation}) => {
                   </View>
                 )}
               </View>
+
               {hardwareHash && (
-                <View style={{marginBottom: 20}}>
+                <View style={{marginBottom: scale(20)}}>
                   <Text style={ResultsStyles.textResultsValueHeader}>
                     HARDWARE HASH
                   </Text>
@@ -227,6 +229,18 @@ export const Results: FC<IHome> = ({navigation}) => {
                     selectable
                     style={ResultsStyles.textResultsValueSubheader}>
                     0x{hardwareHash}
+                  </Text>
+                </View>
+              )}
+              {root && (
+                <View style={{marginBottom: scale(20)}}>
+                  <Text style={ResultsStyles.textResultsValueHeader}>
+                    DEVICE MERKLE ROOT
+                  </Text>
+                  <Text
+                    selectable
+                    style={ResultsStyles.textResultsValueSubheader}>
+                    {root}
                   </Text>
                 </View>
               )}
@@ -326,7 +340,6 @@ const ResultsStylesFn = (color: string) =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       paddingTop: scale(25),
-      paddingBottom: scale(25),
       borderTopWidth: scale(1),
       borderTopColor: '#626270',
     },

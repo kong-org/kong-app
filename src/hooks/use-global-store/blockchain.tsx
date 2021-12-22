@@ -18,7 +18,7 @@ import {
 } from '../../common/types';
 import {MMKV, MMKVKeys} from '../../common/mmkv';
 import strings from '../../../assets/text/strings';
-import {isJSONable, web3} from '../../common/utils';
+import {asyncWrapper, isJSONable, web3} from '../../common/utils';
 import {navigate} from '../../common/RootNavigation';
 const knownTokens = knownValues['knownTokens'] as any;
 const knownHardwareModels = knownValues['knownHardwareModels'] as any;
@@ -435,6 +435,7 @@ export const getBlockchainFns = ({
       ERC20_OUTGOING_TRANSFER,
       LATEST_BLOCK,
       BLOCK_BY_HASH,
+      GET_CITIZEN_TOKEN_ID,
     } = FetchChainDataType;
     let updatedBlockchainData;
     let response;
@@ -795,6 +796,24 @@ export const getBlockchainFns = ({
               ? null
               : parseInt(responseJson.result.timestamp, 16),
           signedBlockValid: responseJson.result != null,
+        });
+        break;
+      case GET_CITIZEN_TOKEN_ID:
+        const tokenId: any = parseInt(
+          await asyncWrapper(
+            await state.chainSettings.citizenERC721Contract?.tokenOfOwnerByIndex(
+              chainDataVal,
+              0,
+            ),
+            (e: any) =>
+              navigate('Fail', {
+                warning: strings.textFailDefaultWarning,
+                description: `Error: ${e}`,
+              }),
+          ),
+        );
+        updateBlockchainData({
+          tokenId,
         });
         break;
       default:

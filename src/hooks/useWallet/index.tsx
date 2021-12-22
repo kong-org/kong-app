@@ -7,7 +7,7 @@ export const useWallet = (connector: WalletConnect) => {
     try {
       connector.connected
         ? await connector.killSession()
-        : await connector.connect({chainId: 3});
+        : await connector.connect();
     } catch (err) {
       console.log(err);
     }

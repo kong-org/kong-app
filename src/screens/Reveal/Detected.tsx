@@ -10,7 +10,7 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import {useWallet} from '../../hooks/useWallet';
 import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
-import {Video, videoRef} from '../../components/Video';
+import {Video} from '../../components/Video';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 
 const {height, width} = Dimensions.get('window');
@@ -23,10 +23,12 @@ export const Detected: FC<IDetected> = ({navigation}) => {
   const connector = useWalletConnect();
   const {walletAddress} = useWallet(connector);
   const {
+    state: {blockchainData},
     methods: {
       nfc: {nfcReveal},
     },
   } = useGlobalStore();
+  const {video} = useVideoRef();
 
   const DetectedStyles = DetectedStylesFn(headerHeight);
   return (
@@ -36,6 +38,7 @@ export const Detected: FC<IDetected> = ({navigation}) => {
       <SafeAreaView style={DetectedStyles.viewDetectedBody}>
         <View style={DetectedStyles.viewDetectedContainer}>
           <Video
+            ref={video}
             source={{
               uri: 'https://storage.googleapis.com/kong-assets/kong-card.mp4',
             }}
@@ -43,8 +46,9 @@ export const Detected: FC<IDetected> = ({navigation}) => {
           <View style={{alignItems: 'center'}}>
             <Text style={DetectedStyles.textDetectedId}>KONG ID DETECTED</Text>
             <Text style={DetectedStyles.textDetectedBody}>
-              Link your ID to your wallet below, to reveal your Kong Land
-              identity.
+              Link your Passport to{' \n'}
+              {`Citizen #${parseInt(blockchainData.tokenId!)}`} to reveal your
+              NFT identity.
             </Text>
           </View>
         </View>
@@ -56,7 +60,7 @@ export const Detected: FC<IDetected> = ({navigation}) => {
               buttonStyle={buttonStyles.buttonPrimary}
               onPress={() => {
                 nfcReveal(walletAddress!, connector);
-                videoRef.current?.pauseAsync();
+                video?.current?.pauseAsync();
               }}
             />
           </View>
