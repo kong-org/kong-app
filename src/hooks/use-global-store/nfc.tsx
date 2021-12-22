@@ -124,7 +124,8 @@ export const getNfcFns = ({
   };
   const nfcScanStart = async () => {
     // Close technology if it is still running.
-    NfcManager.cancelTechnologyRequest().catch(err => console.warn(err));
+    await NfcManager.cancelTechnologyRequest().catch(err => console.warn(err));
+    await NfcManager.start().catch(err => console.warn(err));
     !isIOS && navigate('Processing');
     await NfcManager.start();
     if (state.fullVerification) {
@@ -230,6 +231,7 @@ export const getNfcFns = ({
   };
   const nfcStartQuickVerification = async () => {
     console.log(state.blockchainData, 'DATA');
+
     if (state.blockchainData.verifiedProof == true) {
       try {
         await Promise.all([
@@ -336,17 +338,17 @@ export const getNfcFns = ({
     //   `${state.chainSettings.bridgeNode}/reveal?x=${result.x}&y=${result.y}&r=${result.r}&s=${result.s}&blockNumber=${result.blockNumber}&addr=${result.walletAddress}`,
     // );
     // check if oracle exists
-    const oracle = await (
-      await fetch(
-        `${state.chainSettings.bridgeNode}/reveal?x=${result.x}&y=${result.y}&r=${result.r}&s=${result.s}&blockNumber=${result.blockNumber}&addr=${result.walletAddress}`,
-      )
-    ).text();
+    // const oracle = await (
+    //   await fetch(
+    //     `${state.chainSettings.bridgeNode}/reveal?x=${result.x}&y=${result.y}&r=${result.r}&s=${result.s}&blockNumber=${result.blockNumber}&addr=${result.walletAddress}`,
+    //   )
+    // ).text();
 
-    if (oracle.slice(0, 2) !== '0x') {
-      navigateToFail('Reveal Error', `Oracle cannot be created: ${oracle}`);
-      return;
-    }
-
+    // if (oracle.slice(0, 2) !== '0x') {
+    //   navigateToFail('Reveal Error', `Oracle cannot be created: ${oracle}`);
+    //   return;
+    // }
+    const oracle = '0x12312312312312312312312312';
     console.log(
       connector.accounts,
       connector.bridge,
@@ -421,8 +423,6 @@ export const getNfcFns = ({
     }
   };
   const nfcClaim = async (walletAddress: string) => {
-    await NfcManager.cancelTechnologyRequest();
-    await NfcManager.start();
     console.log(`ClAIM CALLED: ${Date.now()}`);
     !isIOS && navigate('Processing');
     try {
@@ -436,11 +436,11 @@ export const getNfcFns = ({
       // TODO: add more restrictive rules and conditonal handling of different contracts
       console.log(state.blockchainData);
       if (state.blockchainData.contractAddress) {
-        if (state.blockchainData.token) {
-          navigate('Reveal', {revealDetails: {...state.blockchainData.token}});
-        } else {
-          navigate('Detected');
-        }
+        // if (state.blockchainData.token) {
+        //   navigate('Reveal', {revealDetails: {...state.blockchainData.token}});
+        // } else {
+        navigate('Detected');
+        // }
       } else {
         navigateToFail(
           'Unclaimable',

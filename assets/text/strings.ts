@@ -50,8 +50,8 @@ const strings = new LocalizedStrings({
     textProcessingBody: 'Keep your phone on the device',
     // NFC Scan: iOS Specific.
     textProcessingNewTag: 'Beginning verification...',
-    textProcessingTouchNote: 'Hold phone near a NDEF Tag to scan',
-    textProcessingQuickTouchNote: 'Hold phone near a NDEF Tag to scan',
+    textProcessingTouchNote: 'Hold phone near SiLo to scan',
+    textProcessingQuickTouchNote: 'Hold phone near SiLo to scan',
     textProcessingNoteDetected: "Tag detected, don't move while scanning",
     textProcessingUniqueInfo:
       "Getting unique tag information, don't move while scanning",

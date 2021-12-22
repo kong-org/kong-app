@@ -63,7 +63,7 @@ const getIcon = (verificationResult: VerificationTypes) => {
 
 const getAssetName = (blockChainData: BlockChainData) => {
   if (blockChainData.token !== undefined) {
-    return 'CITIZEN #' + parseInt(blockChainData.token.tokenId!, 16);
+    return 'CITIZEN #' + parseInt(blockChainData.token.tokenId!);
   } else if (blockChainData.name) {
     return blockChainData.name;
   } else if (

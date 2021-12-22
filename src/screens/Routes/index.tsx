@@ -110,7 +110,20 @@ export const Routes = () => {
       <Stack.Screen
         name="Processing"
         component={Processing}
-        options={{headerShown: false}}
+        options={({navigation}) => ({
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation?.navigate('Home');
+                resetState();
+              }}>
+              <Image
+                style={{height: 25, resizeMode: 'contain'}}
+                source={require('../../../assets/img/cross.png')}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="Results"
@@ -190,7 +203,20 @@ const RevealRoutes = ({resetState}: {resetState: () => void}) => {
       <Stack.Screen
         name="Polling"
         component={Polling}
-        options={{headerShown: false}}
+        options={({navigation}) => ({
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation?.navigate('Home');
+                resetState();
+              }}>
+              <Image
+                style={{height: 25, resizeMode: 'contain'}}
+                source={require('../../../assets/img/cross.png')}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="Reveal"

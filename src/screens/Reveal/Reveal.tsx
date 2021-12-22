@@ -66,7 +66,7 @@ export const Reveal: FC<IReveal> = ({route, navigation}) => {
           <Text
             style={
               RevealStyles.textRevealWelcome
-            }>{`WELCOME,\n CITIZEN #${parseInt(tokenId, 16)}`}</Text>
+            }>{`WELCOME,\n CITIZEN #${parseInt(tokenId)}`}</Text>
           <View
             style={{
               width: width - 2 * 25,

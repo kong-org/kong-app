@@ -78,7 +78,7 @@ const App = () => {
               Platform.OS === 'web'
                 ? //@ts-ignore
                   window.location.origin
-                : 'Kong://'
+                : 'KONG://'
             }
             clientMeta={{
               description: 'Kong Land',

@@ -6,7 +6,6 @@ import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {LinearProgress} from 'react-native-elements';
-import {useVideoRef} from '../../hooks/useVideoRef';
 import {scale} from '../../common/utils';
 import {Video} from '../../components/Video';
 import {RouteProp} from '@react-navigation/native';
@@ -35,7 +34,7 @@ export const Polling: FC<IPolling> = ({navigation, route}) => {
             isMuted
           />
 
-          <Text style={PollingStyles.textPolling}>{Polling}</Text>
+          <Text style={PollingStyles.textPolling}>{message}</Text>
           <LinearProgress
             style={{marginTop: 35}}
             color="#2BFF88"
