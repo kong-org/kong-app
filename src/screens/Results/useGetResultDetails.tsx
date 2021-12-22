@@ -116,6 +116,11 @@ const getDeviceImage = (
     if (isVideo) {
       return (
         <TouchableHighlight
+          style={{
+            width: scale(175),
+            height: scale(175),
+            borderRadius: scale(30),
+          }}
           onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
           <Video
             style={{
@@ -124,12 +129,18 @@ const getDeviceImage = (
               borderRadius: scale(30),
             }}
             source={{uri: defaultSettings.ipfsNode + '/' + cid}}
+            posterSource={require(ASSETS + `/img/VideoPlaceholder.png`)}
           />
         </TouchableHighlight>
       );
     } else {
       return (
         <TouchableHighlight
+          style={{
+            width: scale(175),
+            height: scale(175),
+            borderRadius: scale(30),
+          }}
           onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
           <Image
             style={{
@@ -229,7 +240,6 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
       chainSettings: {ethNode},
     },
   } = useGlobalStore();
-  console.log(blockchainData);
   const resultDetailsObject = {
     name: '',
     pillInfo: getEmoji(

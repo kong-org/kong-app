@@ -126,6 +126,7 @@ export const getNfcFns = ({
     // Close technology if it is still running.
     NfcManager.cancelTechnologyRequest().catch(err => console.warn(err));
     !isIOS && navigate('Processing');
+    await NfcManager.start();
     if (state.fullVerification) {
       nfcScanFull();
     } else {
@@ -420,6 +421,8 @@ export const getNfcFns = ({
     }
   };
   const nfcClaim = async (walletAddress: string) => {
+    await NfcManager.cancelTechnologyRequest();
+    await NfcManager.start();
     console.log(`ClAIM CALLED: ${Date.now()}`);
     !isIOS && navigate('Processing');
     try {
@@ -445,11 +448,9 @@ export const getNfcFns = ({
         );
       }
     } catch (err) {
-      navigateToFail(
-        strings.textFailDefaultWarning,
-        strings.textFailDefaultDescription + '\n(' + err + ')',
-      );
-      NfcManager.cancelTechnologyRequest();
+      await NfcManager.cancelTechnologyRequest();
+      console.log(err);
+      throw err;
     }
   };
 
@@ -642,7 +643,6 @@ export const getNfcFns = ({
     } catch (err) {
       sendProcessingMessage(strings.textProcessingPreparingResults);
       console.log(err);
-      goToNfcFailScreen(NfcFailType.NFC_FAIL_READ_INFO, err);
       throw err;
     }
   };

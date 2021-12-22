@@ -25,7 +25,7 @@ import {SettingsStyles} from './styles';
 import {EditableSettings} from './EditableSettings';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 import {connected} from 'process';
-var {height} = Dimensions.get('window');
+
 interface ISettings {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Settings'>;
 }

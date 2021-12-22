@@ -101,10 +101,7 @@ export const getBlockchainFns = ({
     ).text();
 
     const data = isJSONable(response) && JSON.parse(response);
-    console.log(
-      data,
-      `${chainSettings.bridgeNode}/device?x=${pub.x}&y=${pub.y}`,
-    );
+
     if (data) {
       updateBlockchainData({
         cid: data.cid,
