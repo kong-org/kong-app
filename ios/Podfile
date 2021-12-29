@@ -14,7 +14,8 @@ target 'KONG' do
     :hermes_enabled => false
   )
 
-
+  pod 'ViroReact', :path => '../node_modules/@viro-community/react-viro/ios/'
+  pod 'ViroKit', :path => '../node_modules/@viro-community/react-viro/ios/dist/ViroRenderer/'
 
   target 'KONGTests' do
     inherit! :complete

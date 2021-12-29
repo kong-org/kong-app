@@ -22,4 +22,9 @@ export type RootStackParamList = {
     };
   };
   Timeout: undefined;
+  ARView: {
+    tokenId: string;
+    image: string;
+    attributes: {[key: string]: string};
+  };
 };

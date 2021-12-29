@@ -20,6 +20,7 @@ import {Timeout} from '../Reveal/Timeout';
 import {Reveal} from '../Reveal/Reveal';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 import {videoRef} from '../../components/Video';
+import {ARView} from '../Results/ARView';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routes = () => {
@@ -156,6 +157,23 @@ export const Routes = () => {
               onPress={() => {
                 navigation?.navigate('Home');
                 resetState();
+              }}>
+              <Image
+                style={{height: 25, resizeMode: 'contain'}}
+                source={require('../../../assets/img/cross.png')}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="ARView"
+        component={ARView}
+        options={({navigation}) => ({
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation?.navigate('Results');
               }}>
               <Image
                 style={{height: 25, resizeMode: 'contain'}}

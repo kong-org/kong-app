@@ -524,6 +524,12 @@ export const getNfcFns = ({
 
       // Create short-hand names for block variables.
       const blockHash = state.blockchainData.blockHash;
+      if (!blockHash) {
+        navigateToFail(
+          'Blockhash not found',
+          'Try syncing device merkle root again.',
+        );
+      }
       // const  blockTime = blockchainData.blockTime;
       console.log(`blockHash ${blockHash}`);
 

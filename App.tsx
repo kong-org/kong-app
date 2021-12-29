@@ -31,7 +31,6 @@ const linking: LinkingOptions<RootStackParamList> = {
 const Inner = () => {
   const navigation = useNavigation();
   const {
-    state: {nfcSettings},
     setters: {setCurveData},
     methods: {
       createCurves,
@@ -44,9 +43,7 @@ const Inner = () => {
     Linking.addEventListener('url', (event: {url: any}) =>
       console.log(event.url),
     );
-    if (!MMKV.getBoolean(MMKVKeys.PREVIOUSLY_LAUNCHED)) {
-      MMKV.set(MMKVKeys.PREVIOUSLY_LAUNCHED, true);
-    }
+
     await nfcStart();
 
     createCurves().then(curveData => {
@@ -83,7 +80,7 @@ const App = () => {
             clientMeta={{
               description: 'Kong Land',
               url: 'https://kong.land',
-              icons: ['https://walletconnect.org/walletconnect-logo.png'],
+              icons: ['https://kong.land/images/logo.svg'],
               name: 'Kong',
             }}
             storageOptions={{

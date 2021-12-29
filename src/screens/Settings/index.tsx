@@ -1,11 +1,9 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC, useCallback, useEffect, useState} from 'react';
 import {
-  Dimensions,
   Image,
   Platform,
   StatusBar,
-  StyleSheet,
   Switch,
   Text,
   TextInput,
@@ -122,6 +120,7 @@ export const Settings: FC<ISettings> = ({navigation}) => {
               </Text>
 
               <Switch
+                accessibilityRole="button"
                 trackColor={{false: '#8C8C9F', true: '#2BFF88'}}
                 thumbColor={fullVerification ? '#000003' : '#EDEDFD'}
                 onValueChange={() => setFullVerification(!fullVerification)}

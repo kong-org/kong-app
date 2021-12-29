@@ -20,6 +20,7 @@ import {useWallet} from '../../hooks/useWallet';
 import {isIOS, scale} from '../../common/utils';
 import {useWalletConnect} from '@walletconnect/react-native-dapp';
 import NfcManager from 'react-native-nfc-manager';
+import {navigate} from '../../common/RootNavigation';
 const {height, width} = Dimensions.get('window');
 interface IHome {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;

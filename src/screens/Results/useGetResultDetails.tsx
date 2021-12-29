@@ -93,6 +93,7 @@ const mapResultToResultName = (verificationResult: VerificationTypes) => {
 const getDeviceImage = (
   unscaledERC20Balance: number,
   scaledERC20Balance: number,
+  ipfsNode: string,
   cid?: string,
   token?: BlockChainData['token'],
 ) => {
@@ -103,7 +104,7 @@ const getDeviceImage = (
 
   useEffect(() => {
     if (cid) {
-      fetch(defaultSettings.ipfsNode + '/' + cid).then(result =>
+      fetch(ipfsNode + '/' + cid).then(result =>
         setIsVideo(
           // @ts-ignore
           result.headers.map['content-type'].split('/')[0] === 'video',
@@ -121,14 +122,14 @@ const getDeviceImage = (
             height: scale(175),
             borderRadius: scale(30),
           }}
-          onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
+          onPress={() => Linking.openURL(ipfsNode + '/' + cid)}>
           <Video
             style={{
               width: scale(175),
               height: scale(175),
               borderRadius: scale(30),
             }}
-            source={{uri: defaultSettings.ipfsNode + '/' + cid}}
+            source={{uri: ipfsNode + '/' + cid}}
             posterSource={require(ASSETS + `/img/VideoPlaceholder.png`)}
           />
         </TouchableHighlight>
@@ -141,14 +142,14 @@ const getDeviceImage = (
             height: scale(175),
             borderRadius: scale(30),
           }}
-          onPress={() => Linking.openURL(defaultSettings.ipfsNode + '/' + cid)}>
+          onPress={() => Linking.openURL(ipfsNode + '/' + cid)}>
           <Image
             style={{
               width: scale(175),
               height: scale(175),
               borderRadius: scale(30),
             }}
-            source={{uri: defaultSettings.ipfsNode + '/' + cid}}
+            source={{uri: ipfsNode + '/' + cid}}
           />
         </TouchableHighlight>
       );
@@ -229,6 +230,7 @@ export type ResultDetailsObject = {
   hardwareHash: string | undefined;
   root?: string;
   ethNode: string;
+  tokenData: BlockChainData['token'];
 };
 
 export const useGetResultDetails: () => ResultDetailsObject = () => {
@@ -238,7 +240,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
       fullVerification,
       blockchainData,
       nfcData,
-      chainSettings: {ethNode},
+      chainSettings: {ethNode, ipfsNode},
     },
   } = useGlobalStore();
   const resultDetailsObject = {
@@ -252,6 +254,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
     image: getDeviceImage(
       blockchainData.unscaledERC20Balance!,
       blockchainData.scaledERC20Balance!,
+      ipfsNode,
       blockchainData.cid,
       blockchainData.token,
     ),
@@ -263,6 +266,7 @@ export const useGetResultDetails: () => ResultDetailsObject = () => {
     hardwareHash: nfcData.hardwareHash,
     root: blockchainData.root,
     ethNode,
+    tokenData: blockchainData?.token,
   };
 
   /**

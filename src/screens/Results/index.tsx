@@ -55,6 +55,7 @@ export const Results: FC<IHome> = ({navigation}) => {
     publicKeyHash,
     ethNode,
     root,
+    tokenData,
   } = useGetResultDetails();
 
   const ResultsStyles = ResultsStylesFn(color);
@@ -255,21 +256,29 @@ export const Results: FC<IHome> = ({navigation}) => {
               <Text style={ResultsStyles.textResultsNode}>{ethNode}</Text>
             </View>
           </View>
-          {/* <View style={ResultsStyles.viewResultsGetInstructions}>
-            <View style={{marginBottom: 20}}>
-              <Text style={ResultsStyles.textResultsInstructions}>
+          {tokenData && (
+            <View style={ResultsStyles.viewResultsGetInstructions}>
+              <View style={{marginBottom: 20}}>
+                {/* <Text style={ResultsStyles.textResultsInstructions}>
                 You can use the results of this scan to manually verify the
                 authenticity of your Kong object. Tap below to get instructions:
-              </Text>
-              <Button
-                type="outline"
-                title={'GET INSTRUCTIONS'}
-                titleStyle={ResultsStyles.textResultsGetInstructions}
-                buttonStyle={{...buttonStyles.buttonSecondary}}
-                onPress={() => {}}
-              />
+              </Text> */}
+                <Button
+                  type="outline"
+                  title={'VIEW AR'}
+                  titleStyle={ResultsStyles.textResultsGetInstructions}
+                  buttonStyle={{...buttonStyles.buttonSecondary}}
+                  onPress={() =>
+                    navigation.navigate('ARView', {
+                      tokenId: tokenData.tokenId!,
+                      image: tokenData.image!,
+                      attributes: tokenData.attributes!,
+                    })
+                  }
+                />
+              </View>
             </View>
-          </View> */}
+          )}
         </View>
       </ScrollView>
     </View>
