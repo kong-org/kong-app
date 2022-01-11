@@ -1,4 +1,4 @@
-package com.kong;
+package ch.vrfy;
 import expo.modules.ReactActivityDelegateWrapper;
 import com.facebook.react.ReactActivityDelegate;
 

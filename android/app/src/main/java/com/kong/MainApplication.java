@@ -1,4 +1,4 @@
-package com.kong;
+package ch.vrfy;
 import android.content.res.Configuration;
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
@@ -76,7 +76,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.kong.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("ch.vrfy.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);
