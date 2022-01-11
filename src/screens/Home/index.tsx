@@ -95,7 +95,11 @@ export const Home: FC<IHome> = ({navigation}) => {
           </Text>
           <View style={HomeStyles.viewHomeButtonContainer}>
             <Button
-              title={strings.textHomeNfcNotSupported}
+              title={
+                nfcSupported
+                  ? strings.textButtonScan
+                  : strings.textHomeNfcNotSupported
+              }
               titleStyle={HomeStyles.textButtonScan}
               buttonStyle={buttonStyles.buttonPrimary}
               onPress={nfcSupported ? nfcStartHandler : () => {}}

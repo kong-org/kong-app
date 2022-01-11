@@ -14,7 +14,7 @@ import {RootStackParamList} from '../Routes/RootStackParamList';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {RouteProp} from '@react-navigation/native';
-import {scale} from '../../common/utils';
+import {isIOS, scale} from '../../common/utils';
 import {Video} from '../../components/Video';
 import {useGlobalStore} from '../../hooks/use-global-store';
 
@@ -99,6 +99,7 @@ const RevealStylesFn = (headerHeight: number) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       width: width,
+      ...(!isIOS && {paddingBottom: scale(10)}),
     },
     textRevealWelcome: {
       color: '#FFFFFF',
