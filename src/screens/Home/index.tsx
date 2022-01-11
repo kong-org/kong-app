@@ -95,11 +95,7 @@ export const Home: FC<IHome> = ({navigation}) => {
           </Text>
           <View style={HomeStyles.viewHomeButtonContainer}>
             <Button
-              title={
-                nfcSupported
-                  ? strings.textButtonScan
-                  : strings.textHomeNfcNotSupported
-              }
+              title={strings.textHomeNfcNotSupported}
               titleStyle={HomeStyles.textButtonScan}
               buttonStyle={buttonStyles.buttonPrimary}
               onPress={nfcSupported ? nfcStartHandler : () => {}}
@@ -159,6 +155,7 @@ const HomeStylesFn = (headerHeight: number) =>
       height: height - headerHeight,
       display: 'flex',
       justifyContent: 'flex-end',
+      ...(!isIOS && {paddingBottom: scale(10)}),
     },
     viewHomeContainer: {
       paddingLeft: 25,
