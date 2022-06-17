@@ -4,17 +4,25 @@ PODS:
     - React
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
+  - EXApplication (4.0.1):
+    - ExpoModulesCore
   - EXAV (10.1.3):
     - ExpoModulesCore
   - EXConstants (12.1.3):
     - ExpoModulesCore
+  - EXErrorRecovery (3.0.4):
+    - ExpoModulesCore
   - EXFileSystem (13.0.3):
     - ExpoModulesCore
-  - Expo (43.0.5):
+  - EXFont (10.0.4):
     - ExpoModulesCore
-  - ExpoModulesCore (0.4.10):
+  - EXKeepAwake (10.0.1):
+    - ExpoModulesCore
+  - Expo (43.0.4):
+    - ExpoModulesCore
+  - ExpoModulesCore (0.4.9):
     - React-Core
-  - EXRandom (12.1.2):
+  - EXRandom (12.1.1):
     - React-Core
   - FBLazyVector (0.66.4)
   - FBReactNativeSpec (0.66.4):
@@ -289,9 +297,9 @@ PODS:
   - React-jsinspector (0.66.4)
   - React-logger (0.66.4):
     - glog
-  - react-native-get-random-values (1.7.2):
+  - react-native-get-random-values (1.7.1):
     - React-Core
-  - react-native-mmkv (1.6.3):
+  - react-native-mmkv (1.5.4):
     - MMKV
     - React-Core
   - react-native-netinfo (6.2.1):
@@ -300,7 +308,7 @@ PODS:
     - React
   - react-native-randombytes (3.6.1):
     - React-Core
-  - react-native-safe-area-context (3.4.1):
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - react-native-udp (2.7.0):
     - React
@@ -374,18 +382,18 @@ PODS:
     - React-jsi (= 0.66.4)
     - React-logger (= 0.66.4)
     - React-perflogger (= 0.66.4)
-  - ReactNativeLocalization (2.3.1):
+  - ReactNativeLocalization (2.1.7):
     - React-Core
-  - RNCAsyncStorage (1.17.3):
+  - RNCAsyncStorage (1.15.14):
     - React-Core
   - RNOS (1.2.6):
     - React
-  - RNScreens (3.13.1):
+  - RNScreens (3.10.1):
     - React-Core
     - React-RCTImage
-  - RNSVG (12.3.0):
-    - React-Core
-  - RNVectorIcons (9.1.0):
+  - RNSVG (12.1.1):
+    - React
+  - RNVectorIcons (9.0.0):
     - React-Core
   - TcpSockets (3.3.2):
     - React
@@ -397,9 +405,13 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - EXApplication (from `../node_modules/expo-application/ios`)
   - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
+  - EXFont (from `../node_modules/expo-font/ios`)
+  - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - Expo (from `../node_modules/expo/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - EXRandom (from `../node_modules/expo-random/ios`)
@@ -496,12 +508,20 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  EXApplication:
+    :path: "../node_modules/expo-application/ios"
   EXAV:
     :path: "../node_modules/expo-av/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
+  EXErrorRecovery:
+    :path: "../node_modules/expo-error-recovery/ios"
   EXFileSystem:
     :path: "../node_modules/expo-file-system/ios"
+  EXFont:
+    :path: "../node_modules/expo-font/ios"
+  EXKeepAwake:
+    :path: "../node_modules/expo-keep-awake/ios"
   Expo:
     :path: "../node_modules/expo/ios"
   ExpoModulesCore:
@@ -600,12 +620,16 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
-  EXAV: 8adf9a1c0161144d77e96149a1e5a5f9358be290
-  EXConstants: 6d585d93723b18d7a8c283591a335609e3bc153e
-  EXFileSystem: 99aac7962c11c680681819dd9cbca24e20e5b1e7
-  Expo: d9588796cd19999da4d440d87bf7eb7ae4dbd608
-  ExpoModulesCore: c9438f6add0fb7b04b7c64eb97a833d2752a7834
-  EXRandom: 1d00fd04d7d874c0c9d1ff87cee59ffe0b638a3d
+  EXApplication: 2b8f4d665e050ecddffcfb1ce258b7216b6b7777
+  EXAV: 997f4fe4b410399a10f533857cd791913231358a
+  EXConstants: 66361ff23b5ea7eae3684ffad0f15955c23b5134
+  EXErrorRecovery: 9e481432a9ba7220832340911028892b49682a89
+  EXFileSystem: 624eef3e3a853f19cc0c26eaffab1519001d8c35
+  EXFont: e0a7f501df6e833398dfd4b075a022370e215236
+  EXKeepAwake: e190d9ee4550bcf5f8a46bdb199735f542795ebb
+  Expo: 5b1f70fc24753f39ab3a03078ca6e598587f7e54
+  ExpoModulesCore: 3478a7d76470a5b3870220cb2240cd6cd362409f
+  EXRandom: 9b9f014c04850cf84e651ed100895a387106cdc3
   FBLazyVector: e5569e42a1c79ca00521846c223173a57aca1fe1
   FBReactNativeSpec: fe08c1cd7e2e205718d77ad14b34957cce949b58
   Flipper: 30e8eeeed6abdc98edaf32af0cda2f198be4b733
@@ -635,14 +659,14 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 94ce921e1d8ce7023366873ec371f3441383b396
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
-  react-native-get-random-values: 30b3f74ca34e30e2e480de48e4add2706a40ac8f
-  react-native-mmkv: 6d019cdfab9c197e10561a58ef4096b49bc9ecce
-  react-native-netinfo: 3d3769f0d65de15c83a9bf1346f8be71de5a24bf
-  react-native-nfc-manager: c792b9d484af4a8a82f0ae9b4a0fdf14567510dc
-  react-native-randombytes: 421f1c7d48c0af8dbcd471b0324393ebf8fe7846
-  react-native-safe-area-context: 9e40fb181dac02619414ba1294d6c2a807056ab9
-  react-native-udp: ff9d13e523f2b58e6bc5d4d32321ac60671b5dc9
-  react-native-video: a4c2635d0802f983594b7057e1bce8f442f0ad28
+  react-native-get-random-values: 2c4ff6b44cb71291dabe9a8ae87d3877dcf387da
+  react-native-mmkv: e5f1b39df34542f8130abd651f5f9ad8a8b21241
+  react-native-netinfo: 877946c7b4eb85a639cf1ea31333dadc2be999a1
+  react-native-nfc-manager: 5fe5b49e9f447387399335510ce17285fba88554
+  react-native-randombytes: 5fc412efe7b5c55b9002c0004d75fe5fabcaa507
+  react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
+  react-native-udp: ccbd878f0f3b968217fc7e3d5eb5839fcaab8b6c
+  react-native-video: 77ce22be7abff9e373527ca10106a99dea3ba56c
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -655,16 +679,16 @@ SPEC CHECKSUMS:
   React-RCTVibration: e3ffca672dd3772536cb844274094b0e2c31b187
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
-  ReactNativeLocalization: 076497d7ca70341c751cd3b3e7c86187332a182d
-  RNCAsyncStorage: 005c0e2f09575360f142d0d1f1f15e4ec575b1af
+  ReactNativeLocalization: 6535b6a1425eb3bd8cd32285810931d9709ffa5d
+  RNCAsyncStorage: 4b6538222ce3f01f61011f512226ba3aaa0dc336
   RNOS: 6f2f9a70895bbbfbdad7196abd952e7b01d45027
-  RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
-  RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
-  RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
-  TcpSockets: 14306fb79f9750ea7d2ddd02d8bed182abb01797
+  RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
+  TcpSockets: 8d839b9b14f6f344d98e4642ded13ab3112b462d
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: af771674f4541d9083b8034a7a6bc9ff45e42bec
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1
