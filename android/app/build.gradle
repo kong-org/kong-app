@@ -134,8 +134,8 @@ android {
         applicationId "ch.vrfy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1641923570
-        versionName "2.0.0"
+        versionCode 1649266306
+        versionName "2.0.1"
     }
     splits {
         abi {
