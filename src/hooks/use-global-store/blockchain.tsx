@@ -212,7 +212,7 @@ export const getBlockchainFns = ({
 
           // We set the deviceRootCount incrementally as we need to deal with flaky nodes that error out.
           MMKV.set(MMKVKeys.DEVICE_ROOT_COUNT, i);
-          if (deviceRootCount == i) {
+          if (deviceRootCount === i) {
             setResetButtonText(`${strings.textSettingsReset}`);
           } else {
             setResetButtonText(
@@ -390,7 +390,7 @@ export const getBlockchainFns = ({
         } catch (error) {
           console.log(`ecc address cannot be verified`);
         }
-        // var entropyContractIsMinterBool = (entropyContractIsMinter == "true")
+        // var entropyContractIsMinterBool = (entropyContractIsMinter === "true")
 
         console.log(`BLOCKCHAIN DATA AFTER VERIFY MINTER: ${Date.now()}`);
         updateBlockchainData({
@@ -459,7 +459,7 @@ export const getBlockchainFns = ({
                   to: chainSettings.registerAddress?.oldRegistry, // TODO: replace this this a variable that gets returned
                   data:
                     hashedInterfaces.registerDevice.getRegistrationDetails +
-                    (chainDataVal.length == 66
+                    (chainDataVal.length === 66
                       ? chainDataVal.slice(2)
                       : chainDataVal),
                 },
@@ -471,9 +471,9 @@ export const getBlockchainFns = ({
           responseJson = await response.json();
           // Only parse non-zero results.
           if (
-            responseJson.result == '0x' ||
-            parseInt(responseJson.result, 16) == 0 ||
-            responseJson.result == undefined
+            responseJson.result === '0x' ||
+            parseInt(responseJson.result, 16) === 0 ||
+            responseJson.result === undefined
           ) {
             updatedBlockchainData = Object.assign({}, blockchainData, {
               contractRegistered: false,
@@ -704,7 +704,7 @@ export const getBlockchainFns = ({
         console.log(responseJson);
 
         updateBlockchainData({
-          ERC20IncomingTransfer: responseJson.result.length == 1,
+          ERC20IncomingTransfer: responseJson.result.length === 1,
         });
         break;
       case ERC20_OUTGOING_TRANSFER:
@@ -741,7 +741,7 @@ export const getBlockchainFns = ({
         console.log(responseJson);
 
         updateBlockchainData({
-          ERC20OutgoingTransfer: responseJson.result.length == 1,
+          ERC20OutgoingTransfer: responseJson.result.length === 1,
         });
         break;
       case LATEST_BLOCK:
@@ -792,7 +792,7 @@ export const getBlockchainFns = ({
 
         updateBlockchainData({
           signedBlockTime:
-            responseJson.result == null
+            responseJson.result === null
               ? null
               : parseInt(responseJson.result.timestamp, 16),
           signedBlockValid: responseJson.result != null,
@@ -808,7 +808,7 @@ export const getBlockchainFns = ({
             (e: any) =>
               navigate('Fail', {
                 warning: strings.textFailDefaultWarning,
-                description: `Error: ${e}`,
+                description: `Error: Cannot find token id`,
               }),
           ),
         );
@@ -857,7 +857,6 @@ export const getBlockchainFns = ({
           chainDataVal,
         );
         try {
-          console.log(connector.accounts[0]);
           const tx = await connector.sendTransaction({
             from: connector.accounts[0],
             to: state.chainSettings.registerAddress?.revealCitizen,

@@ -246,7 +246,7 @@ export const initializeGlobalStore = (): IStore => {
   };
 
   const createCurves: () => Promise<CurveData> = async () => {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
       const curveP256 = new ec('p256');
       const interval = setInterval(function () {
         if (curveP256 !== undefined) {
@@ -293,7 +293,7 @@ export const initializeGlobalStore = (): IStore => {
 
   const resetState = () => {
     // Ensure that Android phone restarts scanning.
-    if (Platform.OS == 'android') {
+    if (Platform.OS === 'android') {
       // this._nfcAndroidScan();
     }
 

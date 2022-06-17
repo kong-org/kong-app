@@ -317,7 +317,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "KONG" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kong" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -616,7 +616,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = KONG/KONG.entitlements;
 				CURRENT_PROJECT_VERSION = 1640154007;
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
+				DEVELOPMENT_TEAM = 6TDH2RLH5Q;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = KONG/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -630,7 +630,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.airtime.kongApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andy.kongApp;
 				PRODUCT_NAME = KONG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -647,7 +647,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = KONG/KONG.entitlements;
 				CURRENT_PROJECT_VERSION = 1640154007;
-				DEVELOPMENT_TEAM = VU5JJZ69G2;
+				DEVELOPMENT_TEAM = 6TDH2RLH5Q;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KONG/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -661,7 +661,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.airtime.kongApp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.andy.kongApp;
 				PRODUCT_NAME = KONG;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -701,7 +701,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -767,7 +767,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -814,7 +814,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "KONG" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "kong" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
