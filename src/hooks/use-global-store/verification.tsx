@@ -114,11 +114,11 @@ export const getVerificationFns = ({
           type: 'value',
           status: FAIL,
           descriptionShort: `Tokens owned too low ${unscaledERC20Balance} (exp. ${
-            expectedUnscaledERC20Balance / (tokenName == 'Kong' ? 10 ** 18 : 1)
+            expectedUnscaledERC20Balance / (tokenName === 'Kong' ? 10 ** 18 : 1)
           }) ${tokenName}`,
         });
-      } else if (unscaledERC20Balance == 0) {
-        //&& (ERC20IncomingTransfer == false)) {
+      } else if (unscaledERC20Balance === 0) {
+        //&& (ERC20IncomingTransfer === false)) {
         // var balanceCheck = false;
         verificationResults.push({
           key: 'erc20BalanceCheck',
@@ -261,8 +261,8 @@ export const getVerificationFns = ({
       //   const inputOutputCheck =
       //     nfcData.nfcReadOutputExternalRandomNumber ==
       //       nfcData.nfcReadInputExternalRandomNumber &&
-      //     nfcData.nfcReadOutputBlockhash == nfcData.nfcReadInputBlockhash &&
-      //     nfcData.nfcReadOutputCombinedHash == nfcData.nfcReadInputCombinedHash;
+      //     nfcData.nfcReadOutputBlockhash === nfcData.nfcReadInputBlockhash &&
+      //     nfcData.nfcReadOutputCombinedHash === nfcData.nfcReadInputCombinedHash;
 
       verificationResults.push({
         key: 'external_signature',
@@ -304,7 +304,7 @@ export const getVerificationFns = ({
     );
     const verificationResultContracts =
       verificationResultsContracts.filter(item => item.status === FAIL)
-        .length == 0 &&
+        .length === 0 &&
       verificationResultsContracts.filter(item => item.status === PASS).length >
         0
         ? PASS
@@ -323,15 +323,16 @@ export const getVerificationFns = ({
     ) {
       verificationResultHardware = FAIL;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
-        .length == 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length > 0
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
+        .length === 0 &&
+      verificationResultsHardware.filter(item => item.status === PASS).length >
+        0
     ) {
       verificationResultHardware = PASS;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
         .length > 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length >=
+      verificationResultsHardware.filter(item => item.status === PASS).length >=
         0
     ) {
       verificationResultHardware = IMPOSSIBLE;
@@ -341,10 +342,10 @@ export const getVerificationFns = ({
 
     //Overall result.
     const verificationResult =
-      verificationResults.filter(item => item.status == FAIL).length == 0 &&
-      verificationResults.filter(item => item.status == IMPOSSIBLE).length >=
+      verificationResults.filter(item => item.status === FAIL).length === 0 &&
+      verificationResults.filter(item => item.status === IMPOSSIBLE).length >=
         0 &&
-      verificationResults.filter(item => item.status == PASS).length > 0
+      verificationResults.filter(item => item.status === PASS).length > 0
         ? PASS
         : FAIL;
 
@@ -592,49 +593,51 @@ export const getVerificationFns = ({
 
     // Value.
     const verificationResultsValue = verificationResults.filter(
-      item => item.type == 'value',
+      item => item.type === 'value',
     );
     const verificationResultValue =
-      verificationResultsValue.filter(item => item.status == FAIL).length ==
+      verificationResultsValue.filter(item => item.status === FAIL).length ==
         0 &&
-      (verificationResultsValue.filter(item => item.status == PASS).length >
+      (verificationResultsValue.filter(item => item.status === PASS).length >
         0 ||
-        verificationResultsValue.filter(item => item.status == WARNING).length >
-          0)
+        verificationResultsValue.filter(item => item.status === WARNING)
+          .length > 0)
         ? PASS
         : FAIL;
 
     // Contracts.
     const verificationResultsContracts = verificationResults.filter(
-      item => item.type == 'contracts',
+      item => item.type === 'contracts',
     );
     const verificationResultContracts =
-      verificationResultsContracts.filter(item => item.status == FAIL).length ==
-        0 &&
-      verificationResultsContracts.filter(item => item.status == PASS).length >
+      verificationResultsContracts.filter(item => item.status === FAIL)
+        .length === 0 &&
+      verificationResultsContracts.filter(item => item.status === PASS).length >
         0
         ? PASS
         : FAIL;
 
     // Hardware.
     const verificationResultsHardware = verificationResults.filter(
-      item => item.type == 'hardware',
+      item => item.type === 'hardware',
     );
     let verificationResultHardware;
     if (
-      verificationResultsHardware.filter(item => item.status == FAIL).length > 0
+      verificationResultsHardware.filter(item => item.status === FAIL).length >
+      0
     ) {
       verificationResultHardware = FAIL;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
-        .length == 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length > 0
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
+        .length === 0 &&
+      verificationResultsHardware.filter(item => item.status === PASS).length >
+        0
     ) {
       verificationResultHardware = PASS;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
         .length > 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length >=
+      verificationResultsHardware.filter(item => item.status === PASS).length >=
         0
     ) {
       verificationResultHardware = IMPOSSIBLE;
@@ -644,10 +647,10 @@ export const getVerificationFns = ({
 
     // Overall result.
     const verificationResult =
-      verificationResults.filter(item => item.status == FAIL).length == 0 &&
-      verificationResults.filter(item => item.status == IMPOSSIBLE).length >=
+      verificationResults.filter(item => item.status === FAIL).length === 0 &&
+      verificationResults.filter(item => item.status === IMPOSSIBLE).length >=
         0 &&
-      verificationResults.filter(item => item.status == PASS).length > 0
+      verificationResults.filter(item => item.status === PASS).length > 0
         ? PASS
         : FAIL;
 
@@ -675,7 +678,7 @@ export const getVerificationFns = ({
 
     if (
       !state.headlessVerification ||
-      verificationResult == VerificationTypes.FAIL
+      verificationResult === VerificationTypes.FAIL
     ) {
       navigate('Results');
     }
@@ -778,23 +781,25 @@ export const getVerificationFns = ({
 
     // Hardware.
     const verificationResultsHardware = verificationResults.filter(
-      item => item.type == 'hardware',
+      item => item.type === 'hardware',
     );
     let verificationResultHardware;
     if (
-      verificationResultsHardware.filter(item => item.status == FAIL).length > 0
+      verificationResultsHardware.filter(item => item.status === FAIL).length >
+      0
     ) {
       verificationResultHardware = FAIL;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
-        .length == 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length > 0
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
+        .length === 0 &&
+      verificationResultsHardware.filter(item => item.status === PASS).length >
+        0
     ) {
       verificationResultHardware = PASS;
     } else if (
-      verificationResultsHardware.filter(item => item.status == IMPOSSIBLE)
+      verificationResultsHardware.filter(item => item.status === IMPOSSIBLE)
         .length > 0 &&
-      verificationResultsHardware.filter(item => item.status == PASS).length >=
+      verificationResultsHardware.filter(item => item.status === PASS).length >=
         0
     ) {
       verificationResultHardware = IMPOSSIBLE;
@@ -802,10 +807,10 @@ export const getVerificationFns = ({
 
     // Overall result.
     const verificationResult =
-      verificationResults.filter(item => item.status == FAIL).length == 0 &&
-      verificationResults.filter(item => item.status == IMPOSSIBLE).length >=
+      verificationResults.filter(item => item.status === FAIL).length === 0 &&
+      verificationResults.filter(item => item.status === IMPOSSIBLE).length >=
         0 &&
-      verificationResults.filter(item => item.status == PASS).length > 0
+      verificationResults.filter(item => item.status === PASS).length > 0
         ? IMPOSSIBLE
         : FAIL;
 
@@ -960,12 +965,12 @@ export const getVerificationFns = ({
     }
 
     // Remove leading '0x' in msgHash.
-    if (msgHash.length == 66 && msgHash.slice(0, 2) == '0x') {
+    if (msgHash.length === 66 && msgHash.slice(0, 2) === '0x') {
       msgHash = msgHash.slice(2);
     }
 
     // Remove leading '04' in publicKey.
-    if (publicKeyLong.length == 130 && publicKeyLong.slice(0, 2) == '04') {
+    if (publicKeyLong.length === 130 && publicKeyLong.slice(0, 2) === '04') {
       publicKeyLong = publicKeyLong.slice(2);
     }
 
